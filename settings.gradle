@@ -10,6 +10,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+//        외부라이브러리추가(깃허브 라이브러리 사용) 상단에 Sync Now 눌러야함.
+        maven { url 'https://jitpack.io'}
     }
 }
 rootProject.name = "24mo"
