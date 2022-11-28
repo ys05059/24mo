@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!--    상단바-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@color/wine"
+        android:padding="0dp"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    <!--       뒤로가기 버튼-->
+        <ImageButton
+            android:id = "@+id/go_back_btn"
+            android:visibility="invisible"
+            android:layout_width="48dp"
+            android:layout_height="41dp"
+            android:background="@color/wine"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/arrow_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.509" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:fontFamily="@font/lineseed_rg"
+            android:gravity="center"
+            android:text="와인 추천"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--        홈으로 이동 버튼-->
+        <Button
+            android:id="@+id/go_to_home_btn"
+            android:layout_width="132dp"
+            android:layout_height="47dp"
+            android:background="@drawable/button_round_white"
+            android:fontFamily="@font/lineseed_bd"
+            android:padding="0dp"
+            android:text="홈으로 이동"
+            android:textColor="@color/wine"
+            android:textSize="23dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.942"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.507" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    프래그먼트 적용부분-->
+    <FrameLayout
+        android:id="@+id/step_id"
+        android:layout_width="match_parent"
+        android:layout_height="583dp"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Top_bar" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

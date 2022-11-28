@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+<!--    상단바-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/middle_bar"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/wine"
+        android:elevation="20dp"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/what_question_label"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/lineseed_bd"
+            android:gravity="center"
+            android:text="Step 1. 태그를 설정해주세요"
+            android:textColor="@color/white"
+            android:textSize="23dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--태그버튼들의 레이아웃-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="358dp"
+        android:layout_height="540dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/middle_bar"
+        app:layout_constraintVertical_bias="0.16">
+
+        <Button
+            android:id="@+id/tag1"
+            android:layout_width="340dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="78dp"
+            android:background="@drawable/button_less_round_white"
+            android:elevation="20dp"
+            android:fontFamily="@font/lineseed_rg"
+            android:gravity="center"
+            android:text="#달달한"
+            android:textColor="@color/grey_font"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tag2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/tag2"
+            android:layout_width="340dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="170dp"
+            android:background="@drawable/button_less_round_white"
+            android:elevation="20dp"
+            android:fontFamily="@font/lineseed_rg"
+            android:gravity="center"
+            android:text="#선물하기 좋은"
+            android:textColor="@color/grey_font"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tag3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/tag3"
+            android:layout_width="340dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="260dp"
+            android:background="@drawable/button_less_round_white"
+            android:elevation="20dp"
+            android:fontFamily="@font/lineseed_rg"
+            android:gravity="center"
+            android:text="#가장 많이 팔린"
+            android:textColor="@color/grey_font"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tag4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/tag4"
+            android:layout_width="340dp"
+            android:layout_height="80dp"
+            android:background="@drawable/button_less_round_white"
+            android:elevation="20dp"
+            android:fontFamily="@font/lineseed_rg"
+            android:gravity="center"
+            android:text="#드라이한"
+            android:textColor="@color/grey_font"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.769" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
