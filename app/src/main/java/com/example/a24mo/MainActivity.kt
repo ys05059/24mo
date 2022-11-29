@@ -12,6 +12,7 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
@@ -85,9 +86,9 @@ class MainActivity : AppCompatActivity(){
 
     //이미지 슬라이드 이미지 추가함수.
     fun Add_Image_list (): ArrayList<SlideModel>{
-        //SlideModel("url", "제목")
         var image_list = ArrayList<SlideModel>()
         //scaleType = FIT, CENTER_CROP ,CENTER_INSIDE
+        //SlideModel("url" or R.drawable.img, "제목")
         image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0172000/W0172249.png", ScaleTypes.FIT))
         image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/IMAGE/0166000/T0166442_003.png",ScaleTypes.FIT))
         image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0172000/W0172322.png", ScaleTypes.FIT))
