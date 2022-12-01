@@ -7,19 +7,27 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.example.a24mo.databinding.ActivityMainBinding
+import com.example.a24mo.databinding.HomeLayoutBinding
 
 class MainActivity : AppCompatActivity(){
     //화면전환 인텐트 관련 코드
@@ -28,14 +36,27 @@ class MainActivity : AppCompatActivity(){
     val DetailSearch_wine_code = 200
     val manager_menu_code = 200
 
+    lateinit var transaction : FragmentTransaction
+    var presentFragment :Fragment? = null
+    lateinit var fragmentManager: FragmentManager
+    lateinit var homeLayoutBinding: HomeLayoutBinding
+
+    lateinit var viewModel  : MainViewModel
+
     //슬라이드할 이미지 리스트
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home_layout) //홈화면 레이아웃 xml
+        homeLayoutBinding = HomeLayoutBinding.inflate(layoutInflater)
+        setContentView(homeLayoutBinding.root) //홈화면 레이아웃 xml
+
+        fragmentManager = supportFragmentManager
+        var informationFragment = InformationFragment()
+
+         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
     //홈화면 관련 버튼
         //이미지 슬라이드
-        val Image_Slider = findViewById<ImageSlider>(R.id.image_slider) //레이아웃의 이미지슬라이드 뷰 ID
+        val Image_Slider = homeLayoutBinding.imageSlider //레이아웃의 이미지슬라이드 뷰 ID
         var Event_Wite_list = Add_Image_list() //이미지슬라이드에 슬라이드할 이미지 추가함수.
         Image_Slider.setImageList(Event_Wite_list)
         Image_Slider.startSliding(3000) //이미지 넘기는 시간 조절.
@@ -44,6 +65,14 @@ class MainActivity : AppCompatActivity(){
             override fun onItemSelected(position: Int) {
                 //와인 상세정보 출력창과 연결필요
                 //선택한 이미지 = position(ex. 첫번재사진  -> 0 / 두번째사진 -> 1 ...)
+                // id는 어디에 저장 되어있는건지, title을 id로 지정하고 받아와야할듯..?
+
+                val wid = 152589                                         // 일단 임시로 생성
+                viewModel.getWineDetail(wid)                                // wid 넘기면서 viewmodel에 해당 내용 넣어두기
+//                viewModel.setWD(wid)
+                Log.d("MainActivity", "이미지 클릭 실행")
+                replaceTransaction(informationFragment)
+                Log.d("MainActivity", "프래그먼트 전환 시작")
             }
         })
         //액티비티 화면전환 관련
@@ -57,27 +86,27 @@ class MainActivity : AppCompatActivity(){
         }
 
         //와인검색,추천 버튼
-        var Recommend_Wine : Button = findViewById(R.id.Recommend_Wine_btn) // 와인추천버튼
+        var Recommend_Wine = homeLayoutBinding.RecommendWineBtn // 와인추천버튼
         Recommend_Wine.setOnClickListener {
             val intent = Intent(this, Recommend_Wind::class.java )
             requestLaunch.launch(intent)
         }
-        var Search_Wine : Button = findViewById(R.id.Detail_Search_btn) // 와인상세검색 버튼
+        var Search_Wine = homeLayoutBinding.DetailSearchBtn // 와인상세검색 버튼
         Search_Wine.setOnClickListener {
 
         }
 
         //장바구니, 바코드 버튼
-        var Shopping_Basket : Button = findViewById(R.id.Shopping_Basket) // 장바구니버튼
+        var Shopping_Basket : Button = homeLayoutBinding.ShoppingBasket // 장바구니버튼
         Shopping_Basket.setOnClickListener {
 
         }
 
-        var Bar_Cord : Button = findViewById(R.id.BarCord) //바코드 버튼
+        var Bar_Cord : Button = homeLayoutBinding.BarCord //바코드 버튼
         Bar_Cord.setOnClickListener{show_Scanner()}
 
         //관리자메뉴
-        var manager_menu : ImageButton = findViewById(R.id.Manager_Btn)
+        var manager_menu : ImageButton = homeLayoutBinding.ManagerBtn
         manager_menu.setOnClickListener {
 
         }
@@ -108,4 +137,16 @@ class MainActivity : AppCompatActivity(){
         alertDialog.show()
     }
 
+
+    fun replaceTransaction(fragment: Fragment) {
+        if(presentFragment == fragment) {
+            Toast.makeText(this, "이미 해당 Fragment를 보여주고 있습니다.",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
+        transaction = fragmentManager.beginTransaction()
+        transaction.replace(homeLayoutBinding.fragmentContainer.id, fragment).commit()
+        presentFragment = fragment
+        transaction.addToBackStack(null)
+    }
 }
