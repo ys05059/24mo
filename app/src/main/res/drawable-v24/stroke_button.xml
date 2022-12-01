@@ -2,8 +2,11 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <stroke
-        android:width="5dp"
+        android:width="4dp"
         android:color="@color/red"/>
+
+    <solid
+        android:color="@color/white" />
 
     <corners
         android:radius="30dp"/>
