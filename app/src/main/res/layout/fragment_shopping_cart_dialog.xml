@@ -1,48 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:id="@+id/ShoppingCartDialog">
+    android:gravity="center|top">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:fontFamily="@font/nanum_gothic_bold"
-        android:padding="15dp"
-        android:textSize="22dp"
-        android:text="장바구니 목록" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal">
-
-        <CheckBox android:id="@+id/checkbox_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="전체선택"
-            android:fontFamily="@font/nanum_gothic" />
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recylcerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/ShoppingCartDialog">
 
         <TextView
             android:layout_width="match_parent"
@@ -52,41 +21,81 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:fontFamily="@font/nanum_gothic_extra_bold"
+            android:fontFamily="@font/nanum_gothic_bold"
             android:padding="15dp"
             android:textSize="22dp"
-            android:text="최종 금액" />
+            android:text="장바구니 목록" />
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+
+            <CheckBox android:id="@+id/checkbox_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체선택"
+                android:fontFamily="@font/nanum_gothic" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylcerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/nanum_gothic_extra_bold"
+                android:padding="15dp"
+                android:textSize="22dp"
+                android:text="최종 금액" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="130dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/nanum_gothic_extra_bold"
+                android:padding="15dp"
+                android:textSize="22dp"
+                android:text="\\70,000" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D4D4D3"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
+            android:background="@drawable/solid_button"
+            android:layout_marginTop="10dp"
+            android:text="닫기"
+            android:textColor="@color/white"
             android:fontFamily="@font/nanum_gothic_extra_bold"
-            android:padding="15dp"
-            android:textSize="22dp"
-            android:text="\\70,000" />
+            android:textSize="18dp"
+            android:id="@+id/closeButton" />
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#D4D4D3"
-        android:layout_marginTop="10dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/solid_button"
-        android:layout_marginTop="10dp"
-        android:text="닫기"
-        android:fontFamily="@font/nanum_gothic_extra_bold"
-        android:textSize="18dp"
-        android:id="@+id/closeButton" />
-
-</LinearLayout>
+</ScrollView>
