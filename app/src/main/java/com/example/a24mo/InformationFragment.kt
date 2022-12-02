@@ -72,7 +72,7 @@ class InformationFragment : Fragment() {
         val wvariety :TextView = view.findViewById(R.id.information_variety)
 
         val wsweetness :LinearLayout = view.findViewById(R.id.information_sweetness)
-        addrating(wsweetness, 5)
+        addrating(wsweetness, 4)
 
         val wacidity :LinearLayout = view.findViewById(R.id.information_acidity)
         addrating(wacidity, 3)
