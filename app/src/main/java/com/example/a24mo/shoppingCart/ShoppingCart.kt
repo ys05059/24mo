@@ -8,5 +8,7 @@ data class ShoppingCart(
     var sweet: String,
     var sour: String,
     var body: String,
-    var tanin: String
+    var tannin: String,
+    var price: String,
+    var alcohol: String,
 )

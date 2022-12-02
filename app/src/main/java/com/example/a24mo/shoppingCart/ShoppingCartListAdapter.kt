@@ -32,7 +32,9 @@ class ShoppingCartListAdapter(val shoppingCart:MutableList<ShoppingCart>): Recyc
         binding.wineSweet.text=shoppingCart[position].sweet
         binding.wineSour.text=shoppingCart[position].sour
         binding.wineBody.text=shoppingCart[position].body
-        binding.wineTanin.text=shoppingCart[position].tanin
+        binding.wineTanin.text=shoppingCart[position].tannin
+        binding.winePrice.text=shoppingCart[position].price
+        binding.wineAlcohol.text=shoppingCart[position].alcohol
 //        holder.itemView.setOnClickListener {
 //            itemClickListener.onClick(it, position)
 //        }
