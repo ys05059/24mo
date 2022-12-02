@@ -67,17 +67,21 @@ class InformationFragment : Fragment() {
             .fallback(defaultImage)
             .into(wimg)
 
-
-        //wimg.setImageResource()
-
         val wprice :TextView = view.findViewById(R.id.information_price)
         val wcapacity :TextView = view.findViewById(R.id.information_capacity)
         val wvariety :TextView = view.findViewById(R.id.information_variety)
 
-        //val wsweetness :TextView = view.findViewById(R.id.information_name)
-        //val wacidity :TextView = view.findViewById(R.id.information_name)
-        //val wbody :TextView = view.findViewById(R.id.information_name)
-        //val wtannin :TextView = view.findViewById(R.id.information_name)
+        val wsweetness :LinearLayout = view.findViewById(R.id.information_sweetness)
+        addrating(wsweetness, 5)
+
+        val wacidity :LinearLayout = view.findViewById(R.id.information_acidity)
+        addrating(wacidity, 3)
+
+        val wbody :LinearLayout = view.findViewById(R.id.information_boddy)
+        addrating(wbody, 1)
+
+        val wtannin :LinearLayout = view.findViewById(R.id.information_tannin)
+        addrating(wtannin, 0)
 
         val walcohol :TextView = view.findViewById(R.id.information_alcohol)
         val wtemp :TextView = view.findViewById(R.id.information_temperature)
@@ -87,16 +91,13 @@ class InformationFragment : Fragment() {
 
 
         //동적으로 ImageView 생성후 추가
-        val aimg2 = ImageView(context)
-        val imageLayoutParams = LinearLayout.LayoutParams(105,105) //ImageView LayoutSize
-        val aimgurl = "https://www.wine21.com/02_images/icon/ico-berry.png"
-        aimg2.layoutParams = imageLayoutParams
 
-        GlideApp.with(this)
-            .load(aimgurl)
-            .into(aimg2)
-
-        waroma.addView(aimg2)
+        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png")
+        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png")
+        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png")
+        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png")
+        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png")
+        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png")
 
         wname.setText("비에티, 로에로 아네이스")
         wtype.setText("#레드와인")
@@ -109,6 +110,37 @@ class InformationFragment : Fragment() {
         wtemp.setText("8~10C")
 
         return view
+    }
+
+    //parent = waroma, wfood
+    //imgurl = "https://www.wine21.com/02_images/icon/ico-berry.png"
+    fun addimg(parent:LinearLayout, imgurl:String) {
+        val imgv = ImageView(context)
+        val imageLayoutParams = LinearLayout.LayoutParams(105,105) //ImageView LayoutSize
+        imgv.layoutParams = imageLayoutParams
+
+        GlideApp.with(this)
+            .load(imgurl)
+            .into(imgv)
+
+        parent.addView(imgv)
+    }
+
+    //parent = wsweetness, wacidty ...
+    //value = 0~5
+    fun addrating(parent:LinearLayout, value:Int) {
+        for (i: Int in 1..5) {
+            val imgv = ImageView(context).apply {
+                setImageResource(R.drawable.grade)
+                layoutParams = ViewGroup.LayoutParams(
+                    30, 30
+                )
+                alpha = 0.03f
+                if (i<=value)
+                    alpha = 0.2f * i
+            }
+            parent.addView(imgv)
+        }
     }
 
     companion object {

@@ -105,22 +105,67 @@
         <!--당도, 산도-->
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="당도"/>
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <LinearLayout
+                android:id="@+id/information_sweetness"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="산도"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:text="당도" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/information_acidity"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:text="산도" />
+            </LinearLayout>
         </LinearLayout>
 
         <!--바디, 타닌-->
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <LinearLayout
+                android:id="@+id/information_boddy"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:text="바디" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/information_tannin"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:text="타닌" />
+
+            </LinearLayout>
         </LinearLayout>
 
         <!--알코올, 음용온도-->
