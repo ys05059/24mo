@@ -17,8 +17,9 @@ class MainViewModel :  ViewModel(){
     var job : Job? = null
 
     // 추천 관련 data들
-    var Recommend_First_Tag = 0
-    var Recommend_Second_Tag = 0
+    var Recommend_First_Tag  :String = ""
+    var Recommend_Second_Tag : String = ""
+    var Recommend_Is_Back : Int = 1
 
 //    var R_first_tag : String
 //        get() = Recommend_First_Tag

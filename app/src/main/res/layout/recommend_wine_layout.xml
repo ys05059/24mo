@@ -22,7 +22,7 @@
         <!--       뒤로가기 버튼-->
         <ImageButton
             android:id = "@+id/go_back_btn"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_width="48dp"
             android:layout_height="41dp"
             android:background="@color/wine"
