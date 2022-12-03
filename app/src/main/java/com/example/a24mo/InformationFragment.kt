@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.view.marginRight
 import com.bumptech.glide.Glide
 
 // TODO: Rename parameter arguments, choose names that match
@@ -92,12 +93,12 @@ class InformationFragment : Fragment() {
 
         //동적으로 ImageView 생성후 추가
 
-        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png")
-        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png")
-        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png")
-        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png")
-        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png")
-        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png")
+        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png", "체리")
+        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png", "체리")
+        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png", "체리")
+        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png", "체리")
+        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png", "체리")
+        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png", "체리")
 
         wname.setText("비에티, 로에로 아네이스")
         wtype.setText("#레드와인")
@@ -114,16 +115,31 @@ class InformationFragment : Fragment() {
 
     //parent = waroma, wfood
     //imgurl = "https://www.wine21.com/02_images/icon/ico-berry.png"
-    fun addimg(parent:LinearLayout, imgurl:String) {
+    //value = "체리"
+    fun addimg(parent:LinearLayout, imgurl:String, value: String) {
+        val ll = LinearLayout(context)
         val imgv = ImageView(context)
+        val tv = TextView(context)
+
+        val llLayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        ll.layoutParams = llLayoutParams
+        ll.orientation = LinearLayout.VERTICAL
+
         val imageLayoutParams = LinearLayout.LayoutParams(105,105) //ImageView LayoutSize
         imgv.layoutParams = imageLayoutParams
+
+        val tvLayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        tv.layoutParams = tvLayoutParams
+        tv.setText(value)
 
         GlideApp.with(this)
             .load(imgurl)
             .into(imgv)
 
-        parent.addView(imgv)
+        ll.addView(imgv)
+        ll.addView(tv)
+
+        parent.addView(ll)
     }
 
     //parent = wsweetness, wacidty ...
