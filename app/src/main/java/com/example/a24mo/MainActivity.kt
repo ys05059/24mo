@@ -1,40 +1,30 @@
 package com.example.a24mo
 
-import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
-import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.example.a24mo.databinding.ActivityMainBinding
 import com.example.a24mo.databinding.HomeLayoutBinding
 
 class MainActivity : AppCompatActivity(){
     //화면전환 인텐트 관련 코드
     lateinit var requestLaunch : ActivityResultLauncher<Intent>
-    val Recommend_wine_code = 100 //액티비티를 구분할 코드들
-    val DetailSearch_wine_code = 200
-    val manager_menu_code = 200
 
     lateinit var transaction : FragmentTransaction
     var presentFragment :Fragment? = null
@@ -51,6 +41,7 @@ class MainActivity : AppCompatActivity(){
 
         fragmentManager = supportFragmentManager
         var informationFragment = InformationFragment()
+        var informationFragment3 = InformationFragment3()
 
          viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
@@ -65,14 +56,21 @@ class MainActivity : AppCompatActivity(){
             override fun onItemSelected(position: Int) {
                 //와인 상세정보 출력창과 연결필요
                 //선택한 이미지 = position(ex. 첫번재사진  -> 0 / 두번째사진 -> 1 ...)
-                // id는 어디에 저장 되어있는건지, title을 id로 지정하고 받아와야할듯..?
-
-                val wid = 152589                                         // 일단 임시로 생성
-                viewModel.getWineDetail(wid)                                // wid 넘기면서 viewmodel에 해당 내용 넣어두기
+                // 행사 상품 id 저장
+                val eventWineArray =  mutableListOf<Int>()
+//                eventWineArray.add(152589)
+                eventWineArray.add(163213)
+                eventWineArray.add(167176)
+                eventWineArray.add(167509)
+                eventWineArray.add(167509)
+//                eventWineArray.add(166442)
+//                eventWineArray.add(172322)
+//                eventWineArray.add(170722)
+//                val wid = 152589                                         // 일단 임시로 생성
+                viewModel.getWineDetail(eventWineArray[position])                                // wid 넘기면서 viewmodel에 해당 내용 넣어두기
 //                viewModel.setWD(wid)
-                Log.d("MainActivity", "이미지 클릭 실행")
-                replaceTransaction(informationFragment)
-                Log.d("MainActivity", "프래그먼트 전환 시작")
+//                replaceTransaction(informationFragment)
+                replaceTransaction(informationFragment3)
             }
         })
         //액티비티 화면전환 관련
@@ -117,9 +115,10 @@ class MainActivity : AppCompatActivity(){
         //SlideModel("url", "제목")
         var image_list = ArrayList<SlideModel>()
         //scaleType = FIT, CENTER_CROP ,CENTER_INSIDE
-        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0172000/W0172249.png", ScaleTypes.FIT))
+        //행사 와인 이미지 넣기
+        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0152000/W0152589.jpg",ScaleTypes.FIT))
         image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/IMAGE/0166000/T0166442_003.png",ScaleTypes.FIT))
-        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0172000/W0172322.png", ScaleTypes.FIT))
+        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0172000/W0172322.png",ScaleTypes.FIT))
         image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/IMAGE/0170000/T0170722_001.png", ScaleTypes.FIT))
         return image_list
     }

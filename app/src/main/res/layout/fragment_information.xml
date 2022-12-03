@@ -42,7 +42,7 @@
                 android:layout_marginEnd="10dp"
                 android:padding="3dp"
                 android:textStyle="bold"
-                android:text="@{viewModel.wineDetail.w_type}" />
+                android:text="@{`#`+viewModel.wineDetail.w_type}" />
 
             <TextView
                 android:id="@+id/information_region"
@@ -53,7 +53,7 @@
                 android:layout_marginEnd="10dp"
                 android:padding="3dp"
                 android:textStyle="bold"
-                android:text="@{viewModel.wineDetail.w_region}" />
+                android:text="@{`#`+viewModel.wineDetail.w_region}" />
 
             <TextView
                 android:id="@+id/information_region2"
@@ -63,7 +63,7 @@
                 android:textColor="#990C14"
                 android:padding="3dp"
                 android:textStyle="bold"
-                android:text="@{viewModel.wineDetail.w_region2}" />
+                android:text="@{`#`+viewModel.wineDetail.w_region2}" />
 
         </LinearLayout>
 
@@ -94,7 +94,7 @@
                     android:textColor="@color/red"
                     android:textSize="24dp"
                     android:layout_marginRight="4dp"
-                    android:text="@{viewModel.wineDetail.w_price}" />
+                    android:text="@{viewModel.wineDetail.w_price+`원`}" />
 
                 <TextView
                     android:id="@+id/information_capacity"
@@ -104,7 +104,7 @@
                     android:background="@drawable/red_round"
                     android:padding="2dp"
                     android:textSize="14dp"
-                    android:text="@{viewModel.wineDetail.w_capacity}" />
+                    android:text="@{viewModel.wineDetail.w_capacity+`ml`}" />
 
             </LinearLayout>
 

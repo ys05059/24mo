@@ -19,7 +19,7 @@ class InformationFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("InformationFragment", "프래그먼트 전환 완료")
-//        // 만약 값이 바뀌게 하고 싶으면 옵저버 생성해줘야함 -> 이때 mutableLivaData가 바인딩되어있어야할듯
+//        // 만약 값이 자동으로 바뀌게 하고 싶으면 옵저버 생성해줘야함 -> 이때 mutableLivaData가 바인딩되어있어야할듯
 //        val nameObserver = Observer<String> { new_W_name ->
 //            binding.informationName = new_W_name
 //        }
