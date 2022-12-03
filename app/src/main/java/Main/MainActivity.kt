@@ -1,4 +1,4 @@
-package com.example.a24mo
+package Main
 
 import android.content.Intent
 import android.graphics.Color
@@ -20,6 +20,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.denzcoskun.imageslider.constants.ScaleTypes
+import Fragment.InformationFragment
+import Fragment.Recommend_First_Fragment
+import com.example.a24mo.R
 import com.example.a24mo.databinding.HomeLayoutBinding
 
 class MainActivity : AppCompatActivity(){
@@ -41,9 +44,8 @@ class MainActivity : AppCompatActivity(){
 
         fragmentManager = supportFragmentManager
         var informationFragment = InformationFragment()
-        var informationFragment3 = InformationFragment3()
-
-         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        val recommend_First_Fragment =Recommend_First_Fragment()
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
     //홈화면 관련 버튼
         //이미지 슬라이드
@@ -58,19 +60,13 @@ class MainActivity : AppCompatActivity(){
                 //선택한 이미지 = position(ex. 첫번재사진  -> 0 / 두번째사진 -> 1 ...)
                 // 행사 상품 id 저장
                 val eventWineArray =  mutableListOf<Int>()
-//                eventWineArray.add(152589)
-                eventWineArray.add(163213)
-                eventWineArray.add(167176)
-                eventWineArray.add(167509)
-                eventWineArray.add(167509)
-//                eventWineArray.add(166442)
-//                eventWineArray.add(172322)
-//                eventWineArray.add(170722)
-//                val wid = 152589                                         // 일단 임시로 생성
+                eventWineArray.add(156713)                                                      // 케이머스
+                eventWineArray.add(168882)                                                      // 디코이
+                eventWineArray.add(161502)                                                      // 몬테스
+                eventWineArray.add(163213)                                                      // 돔페리뇽
+                eventWineArray.add(167176)                                                      // 벨아사이
                 viewModel.getWineDetail(eventWineArray[position])                                // wid 넘기면서 viewmodel에 해당 내용 넣어두기
-//                viewModel.setWD(wid)
-//                replaceTransaction(informationFragment)
-                replaceTransaction(informationFragment3)
+                replaceTransaction(informationFragment)
             }
         })
         //액티비티 화면전환 관련
@@ -84,11 +80,10 @@ class MainActivity : AppCompatActivity(){
         }
 
         //와인검색,추천 버튼
-        var Recommend_Wine = homeLayoutBinding.RecommendWineBtn // 와인추천버튼
-        Recommend_Wine.setOnClickListener {
-            val intent = Intent(this, Recommend_Wind::class.java )
-            requestLaunch.launch(intent)
-        }
+        homeLayoutBinding.RecommendWineBtn.setOnClickListener {
+            replaceTransaction(recommend_First_Fragment)
+        }  // 와인추천버튼
+
         var Search_Wine = homeLayoutBinding.DetailSearchBtn // 와인상세검색 버튼
         Search_Wine.setOnClickListener {
 
@@ -116,10 +111,11 @@ class MainActivity : AppCompatActivity(){
         var image_list = ArrayList<SlideModel>()
         //scaleType = FIT, CENTER_CROP ,CENTER_INSIDE
         //행사 와인 이미지 넣기
-        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0152000/W0152589.jpg",ScaleTypes.FIT))
-        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/IMAGE/0166000/T0166442_003.png",ScaleTypes.FIT))
-        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0172000/W0172322.png",ScaleTypes.FIT))
-        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/IMAGE/0170000/T0170722_001.png", ScaleTypes.FIT))
+        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0156000/W0156713.jpg",ScaleTypes.FIT))          // 케이머스
+        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0168000/W0168882.png",ScaleTypes.FIT))          // 디코이
+        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0161000/W0161502.jpg",ScaleTypes.FIT))          // 몬테스 알파
+        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0163000/W0163213.jpg", ScaleTypes.FIT))         // 돔페리뇽
+        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0167000/W0167176.png", ScaleTypes.FIT))         // 벨 아사이
         return image_list
     }
 
@@ -144,7 +140,7 @@ class MainActivity : AppCompatActivity(){
             return
         }
         transaction = fragmentManager.beginTransaction()
-        transaction.replace(homeLayoutBinding.fragmentContainer.id, fragment).commit()
+        transaction.replace(R.id.fragment_container, fragment).commit()
         presentFragment = fragment
         transaction.addToBackStack(null)
     }

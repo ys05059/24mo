@@ -1,7 +1,5 @@
-package com.example.a24mo
+package Util
 
-import androidx.lifecycle.MutableLiveData
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

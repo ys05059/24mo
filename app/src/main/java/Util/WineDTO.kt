@@ -1,9 +1,4 @@
-package com.example.a24mo
-import android.graphics.drawable.Drawable
-import android.util.Log
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
+package Util
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -32,14 +27,12 @@ data class WineDTO(
         ,arrayOf(imageDTO())
         ,arrayOf(imageDTO())
     )
-
-    constructor(Wid: String, W_name: String) : this(
-        Wid, W_name, "", "", "", "",
-        "", "", "", "", "", "", "", "", ""
-        ,arrayOf(imageDTO())
-        ,arrayOf(imageDTO())
-    )
-
+//    constructor(Wid: String, W_name: String) : this(
+//        Wid, W_name, "", "", "", "",
+//        "", "", "", "", "", "", "", "", ""
+//        ,arrayOf(imageDTO())
+//        ,arrayOf(imageDTO())
+//    )
 }
 
 data class imageDTO(

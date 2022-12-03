@@ -1,4 +1,4 @@
-package com.example.a24mo
+package Util
 
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule

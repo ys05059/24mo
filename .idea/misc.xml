@@ -12,15 +12,19 @@
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/drawable/dialog_round.xml" value="0.196" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/drawable/grade.xml" value="0.223" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2215" />
+        <entry key="..\:/Android_Workspace/24mo/app/src/main/res/drawable/page_view_1.xml" value="0.3665" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/drawable/red_round.xml" value="0.248" />
+        <entry key="..\:/Android_Workspace/24mo/app/src/main/res/drawable/round_btn.xml" value="0.3665" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/drawable/white_round.xml" value="0.248" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/activity_main.xml" value="0.2203125" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/fragment_information.xml" value="0.3265822784810127" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/fragment_information2.xml" value="0.36666666666666664" />
-        <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/home_layout.xml" value="0.25" />
+        <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/home_layout.xml" value="0.1" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/recommend_wine_fragment1.xml" value="0.35643115942028986" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/recommend_wine_fragment2.xml" value="0.35643115942028986" />
-        <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/recommend_wine_layout.xml" value="0.35643115942028986" />
+        <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/recommend_wine_fragment_result.xml" value="0.365625" />
+        <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/recommend_wine_layout.xml" value="0.1" />
+        <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/shopping_basket_button.xml" value="0.365625" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/sign_up_test.xml" value="0.358695652173913" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/string2.xml" value="0.358695652173913" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/xml/network_security_config.xml" value="0.1875" />

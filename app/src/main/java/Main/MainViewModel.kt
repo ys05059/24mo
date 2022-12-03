@@ -1,12 +1,9 @@
-package com.example.a24mo
+package Main
 
-import android.app.Application
-import android.graphics.drawable.Drawable
 import android.util.Log
-import android.widget.ImageView
-import androidx.databinding.*
 import androidx.lifecycle.*
-import com.bumptech.glide.Glide
+import Util.WineDTO
+import Util.WineRemoteDataSource
 import kotlinx.coroutines.*
 
 class MainViewModel :  ViewModel(){
@@ -18,6 +15,18 @@ class MainViewModel :  ViewModel(){
     //코루틴하면서 생성
     val wineService = WineRemoteDataSource.getWineService()
     var job : Job? = null
+
+    // 추천 관련 data들
+    var Recommend_First_Tag = 0
+    var Recommend_Second_Tag = 0
+
+//    var R_first_tag : String
+//        get() = Recommend_First_Tag
+//        set(tag) {
+//            Recommend_First_Tag = tag
+//        }
+
+
 
     fun getWineDetail(Wid : Int){
         job = CoroutineScope(Dispatchers.IO).launch {

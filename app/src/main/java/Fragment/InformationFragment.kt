@@ -1,5 +1,6 @@
-package com.example.a24mo
+package Fragment
 
+import Main.MainViewModel
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,14 +12,18 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.a24mo.databinding.FragmentInformation2Binding
+import Util.GlideApp
+import com.example.a24mo.R
+import Util.WineDTO
+import com.example.a24mo.databinding.FragmentInformationBinding
+import Util.imageDTO
 import java.text.DecimalFormat
 
 
-class InformationFragment3 : Fragment() {
+class InformationFragment : Fragment() {
     private  lateinit var vm : MainViewModel
     //view 바인딩을 위한 변수들
-    private  var _binding : FragmentInformation2Binding? = null
+    private  var _binding : FragmentInformationBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,9 +40,9 @@ class InformationFragment3 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        _binding = FragmentInformation2Binding.inflate(inflater,container,false)
+        _binding = FragmentInformationBinding.inflate(inflater,container,false)
         val view = binding.root
-        val defaultImage = androidx.loader.R.drawable.notification_action_background
+
         var wid = 0
 
         //데이터 수정
@@ -59,7 +64,9 @@ class InformationFragment3 : Fragment() {
             }else
                 binding.informationAlcohol.text = new_WineDetail.W_alcohol
 
-            // ImageView인 경우
+            // 와인 이미지 추가
+            addWineImg(binding.informationImg,"https://wine21.speedgabia.com/WINE_MST/TITLE/0%d000/W0%d.jpg".format(wid/1000, wid))
+            // 특징 이미지 추가
             addrating(binding.informationSweetness,new_WineDetail.W_sweetness.toInt())
             addrating(binding.informationAcidity, new_WineDetail.W_acidity.toInt())
             addrating(binding.informationBoddy, new_WineDetail.W_body.toInt())
@@ -68,47 +75,40 @@ class InformationFragment3 : Fragment() {
             // 동적 ImageView 추가
             for (image in new_WineDetail.W_aroma_arr){
                 if(count >=3) break
-                addimg(binding.informationAroma,image)
+                addListImg(binding.informationAroma,image)
                 count++
             }
             count =0
             for (image in new_WineDetail.W_food_arr){
                 if(count >=3) break
-                addimg(binding.informationFood,image)
+                addListImg(binding.informationFood,image)
                 count++
             }
         }
         vm.wineDetail.observe(viewLifecycleOwner,wnameObserver)
+        return view
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
-        // 와인 이미지 띄우기
-        val wimg : ImageView = view.findViewById(R.id.information_img)
-        var url = "https://wine21.speedgabia.com/WINE_MST/TITLE/0%d000/W0%d.jpg".format(wid/1000, wid)
-
+    fun addWineImg(view: ImageView , url : String){
+        val defaultImage = androidx.loader.R.drawable.notification_action_background
         GlideApp.with(this)
             .load(url)                                  // 불러올 이미지 url
             .placeholder(defaultImage)                  // 이미지 로딩 시작하기 전 표시할 이미지
             .error(defaultImage)                        // 로딩 에러 발생 시 표시할 이미지
             .fallback(defaultImage)                     // 로드할 url 이 비어있을(null 등) 경우 표시할 이미지
 //            .circleCrop()                             // 동그랗게 자르기
-            .into(wimg)                                 // 이미지를 넣을 뷰
-
-//        //동적으로 ImageView 생성후 추가
-//
-//        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png")
-//        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png")
-//        addimg(waroma, "https://www.wine21.com/02_images/icon/ico-berry.png")
-//        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png")
-//        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png")
-//        addimg(wfood, "https://www.wine21.com/02_images/icon/ico-berry.png")
-
-        return view
+            .into(view)                                 // 이미지를 넣을 뷰
     }
 
     //parent = waroma, wfood
     //imgurl = "https://www.wine21.com/02_images/icon/ico-berry.png"
-    fun addimg(parent:LinearLayout, imageDto: imageDTO) {
-        val name = imageDto.name
+    fun addListImg(parent:LinearLayout, imageDto: imageDTO) {
+        val name = imageDto.name.split(',')[0]
         val imgurl = "https://www."+imageDto.url
         val ll = LinearLayout(context)
         val imgv = ImageView(context)

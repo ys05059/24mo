@@ -1,10 +1,5 @@
-package com.example.a24mo
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
+package Util
 import com.google.gson.GsonBuilder
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -12,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object WineRemoteDataSource {
     private val gson = GsonBuilder().setLenient().create()
 
-    fun getWineService() : WineService{
+    fun getWineService() : WineService {
         return Retrofit.Builder()
             .baseUrl("http://52.78.233.108/")
             .addConverterFactory(GsonConverterFactory.create(gson))

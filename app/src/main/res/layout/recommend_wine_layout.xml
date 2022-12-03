@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<!--    상단바-->
+    <!--    상단바-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Top_bar"
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-    <!--       뒤로가기 버튼-->
+        <!--       뒤로가기 버튼-->
         <ImageButton
             android:id = "@+id/go_back_btn"
             android:visibility="invisible"
@@ -70,7 +70,7 @@
             app:layout_constraintVertical_bias="0.507" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    프래그먼트 적용부분-->
+    <!--    프래그먼트 적용부분-->
     <FrameLayout
         android:id="@+id/step_id"
         android:layout_width="match_parent"
