@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentShoppingCartDialogBinding
 
+
 class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCartBtnClickListener {
     private val  TAG = "SC_DialogFragment"
     private  lateinit var vm : MainViewModel
@@ -23,7 +24,7 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // 풀스크린으로 보기
+        // 풀스크린으로 보기 -> res/values/dialog_fullscreen.xml 참고
         setStyle(STYLE_NO_TITLE, R.style.dialog_fullscreen)
 
         //false로 설정해 주면 화면 밖 또는 뒤로가기 클릭 시 다이얼로그가 dismiss되지 않음
@@ -41,9 +42,12 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         Log.d(TAG, vm.shoppingCartList.value.toString())
+
         if(!vm.shoppingCartList.value.isNullOrEmpty()){
             val adapter = ShoppingCartListAdapter(vm.shoppingCartList,this)
             binding.recyclerView.adapter = adapter
+
+            // 최종 금액 최신화하기
             var total_price : Int = 0
             vm.shoppingCartList.observe(this, Observer{
                 adapter.setData(it)
@@ -60,7 +64,7 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
             })
         }
 
-
+        // 닫기 버튼
         binding.closeButton.setOnClickListener {
             dismiss()
         }
