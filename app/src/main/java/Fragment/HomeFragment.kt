@@ -68,7 +68,7 @@ class HomeFragment : Fragment(){
 
         // 장바구니 버튼
         binding.ShoppingBasket.setOnClickListener {
-
+            ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }
         // 바코드 버튼
         binding.BarCord.setOnClickListener{show_Scanner()}

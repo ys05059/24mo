@@ -1,12 +1,15 @@
 package Main
 
+import Util.CartItem
 import android.util.Log
 import androidx.lifecycle.*
 import Util.WineDTO
 import Util.WineRemoteDataSource
+import android.view.Window
 import kotlinx.coroutines.*
 
 class MainViewModel :  ViewModel(){
+    private val  TAG = "MainViewModel"
     private var _liveWineDetail = MutableLiveData<WineDTO>()
     // field를 생성하는 동시에 field의 값을 할당, =로 대입한 변수의 getter는 field의 값을 리턴
     val wineDetail : MutableLiveData<WineDTO>
@@ -21,13 +24,34 @@ class MainViewModel :  ViewModel(){
     var Recommend_Second_Tag : String = ""
     var Recommend_Is_Back : Int = 1
 
-//    var R_first_tag : String
-//        get() = Recommend_First_Tag
-//        set(tag) {
-//            Recommend_First_Tag = tag
-//        }
+    // 장바구니 LIST
+    private val _shoppingCartList = MutableLiveData<ArrayList<CartItem>>()
+    val shoppingCartList : LiveData<ArrayList<CartItem>> get() = _shoppingCartList
 
+    // 장바구니에 와인 추가
+    fun addWine_CartList(wine: WineDTO){
+        var cartList =_shoppingCartList.value
+        if( cartList == null){
+            cartList = ArrayList<CartItem>()
+        }
+        cartList?.add(CartItem(wine))
+        _shoppingCartList.value = cartList!!
+        Log.d(TAG,"장바구니에 " + wine.Wid + " " + wine.W_name + " 가 추가되었습니다" )
+        Log.d(TAG, shoppingCartList.value.toString())
+    }
 
+    // 장바구니에서 와인 삭제
+    fun deleteWine_CartList(Wid:Int){
+        val iter = _shoppingCartList.value!!.iterator()
+        lateinit var item: CartItem
+        while(iter.hasNext()){
+            item = iter.next()
+            if(item.wine.Wid.equals(Wid)){
+                _shoppingCartList.value!!.remove(item)
+                Log.d(TAG,"장바구니에서 " + item.wine.Wid + " " + item.wine.W_name + " 가 삭제되었습니다" )
+            }
+        }
+    }
 
     fun getWineDetail(Wid : Int){
         job = CoroutineScope(Dispatchers.IO).launch {
@@ -41,10 +65,6 @@ class MainViewModel :  ViewModel(){
             }
         }
     }
-
-
-
-
 
     // 콜백 사용
 //    fun getWineDetail(Wid : Int) {

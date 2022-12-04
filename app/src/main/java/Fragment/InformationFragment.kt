@@ -1,5 +1,6 @@
 package Fragment
 
+import Main.MainActivity
 import Main.MainViewModel
 import android.os.Bundle
 import android.util.Log
@@ -83,6 +84,10 @@ class InformationFragment : Fragment() {
                 if(count >=3) break
                 addListImg(binding.informationFood,image)
                 count++
+            }
+            binding.addCartBtn.setOnClickListener{
+                vm.wineDetail.value?.let { it -> vm.addWine_CartList(it) }
+                (activity as MainActivity).replaceTransaction(HomeFragment())
             }
         }
         vm.wineDetail.observe(viewLifecycleOwner,wnameObserver)

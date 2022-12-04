@@ -28,6 +28,12 @@
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/sign_up_test.xml" value="0.358695652173913" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/string2.xml" value="0.358695652173913" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/xml/network_security_config.xml" value="0.1875" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/ic_launcher_background.xml" value="0.367" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/solid_button.xml" value="0.366" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/stroke_button.xml" value="0.366" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_information.xml" value="0.28802083333333334" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_shopping_cart_dialog.xml" value="0.18508997429305912" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/shopping_cart_recyclerview.xml" value="0.1" />
       </map>
     </option>
   </component>
