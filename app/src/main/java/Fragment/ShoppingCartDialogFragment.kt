@@ -1,6 +1,7 @@
 package Fragment
 
 import Main.MainViewModel
+import Util.CartItem
 import Util.price_format
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentShoppingCartDialogBinding
 
-class ShoppingCartDialogFragment : DialogFragment() {
+class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCartBtnClickListener {
     private val  TAG = "SC_DialogFragment"
     private  lateinit var vm : MainViewModel
     private var _binding: FragmentShoppingCartDialogBinding? = null
@@ -41,12 +42,13 @@ class ShoppingCartDialogFragment : DialogFragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         Log.d(TAG, vm.shoppingCartList.value.toString())
         if(!vm.shoppingCartList.value.isNullOrEmpty()){
-            val adapter = ShoppingCartListAdapter(vm.shoppingCartList)
+            val adapter = ShoppingCartListAdapter(vm.shoppingCartList,this)
             binding.recyclerView.adapter = adapter
             var total_price : Int = 0
             vm.shoppingCartList.observe(this, Observer{
                 adapter.setData(it)
                 // 선택된 와인들만 최종 금액 계산
+                total_price = 0
                 it.forEach{
                     total_price += it.wine.W_price.toInt() * it.count
                     Log.d(TAG,"W_price :  " + it.wine.W_price)
@@ -90,6 +92,12 @@ class ShoppingCartDialogFragment : DialogFragment() {
         return binding.root
     }
 
+    override fun plusCount(item: CartItem) {
+        vm.count_plus(item)
+    }
+    override fun minusCount(item: CartItem){
+        vm.count_minus(item)
+    }
 
     private fun loadFragment(fragment: Fragment){
         Log.d("clickTest","click!->"+fragment.tag)

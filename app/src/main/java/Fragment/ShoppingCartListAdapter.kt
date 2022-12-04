@@ -1,27 +1,38 @@
 package Fragment
 
 import Util.CartItem
-import Util.WineDTO
-import android.nfc.Tag
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.example.a24mo.R
 import com.example.a24mo.databinding.ShoppingCartRecyclerviewBinding
 import java.text.DecimalFormat
 
-class ShoppingCartListAdapter(private var shoppingCart:LiveData<ArrayList<CartItem>>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ShoppingCartListAdapter(private var shoppingCart:LiveData<ArrayList<CartItem>>,listener : OnCartBtnClickListener)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var recycleViewItems = ArrayList<CartItem>()
     private val  TAG = "ShoppingCartListAdapter"
 
+    private val mCallback_CartBtn = listener
+
     inner class MyViewHolder(val binding: ShoppingCartRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root){
-        // adapter로 넘어온 데이터 View로 바인딩해주기
+
         fun bind(cartItem : CartItem) = with (binding){
+            // adapter로 넘어온 데이터 View로 바인딩해주기
             item = cartItem
             adapter = this@ShoppingCartListAdapter
+
+            // + 버튼 클릭시 아이템 개수 1개 빼기
+            plusBtn.setOnClickListener {
+                Log.d(TAG,cartItem.wine.W_name +"의 + 버튼이 클릭 되었습니다")
+                mCallback_CartBtn.plusCount(cartItem)
+            }
+            minusBtn.setOnClickListener {
+                Log.d(TAG,cartItem.wine.W_name +"의 - 버튼이 클릭 되었습니다")
+                mCallback_CartBtn.minusCount(cartItem)
+            }
         }
     }
 
@@ -41,19 +52,7 @@ class ShoppingCartListAdapter(private var shoppingCart:LiveData<ArrayList<CartIt
             Log.d(TAG, "onBindViewHolder에서" + it.wine.Wid + " " + it.wine.W_name + " 가 확인됨")
         }
     }
-//        binding.wineName.text=shoppingCart[position].name
-//        binding.wineImg.setImageResource(R.drawable.wine1)
-//        binding.wineCategory.text=shoppingCart[position].category
-//        binding.wineFrom.text=shoppingCart[position].from
-//        binding.wineSweet.text=shoppingCart[position].sweet
-//        binding.wineSour.text=shoppingCart[position].sour
-//        binding.wineBody.text=shoppingCart[position].body
-//        binding.wineTanin.text=shoppingCart[position].tannin
-//        binding.winePrice.text=shoppingCart[position].price
-//        binding.wineAlcohol.text=shoppingCart[position].alcohol
-//        holder.itemView.setOnClickListener {
-//            itemClickListener.onClick(it, position)
-//        }
+
     interface OnItemClickListener {
         fun onClick(v: View, position: Int)
     }
@@ -61,6 +60,13 @@ class ShoppingCartListAdapter(private var shoppingCart:LiveData<ArrayList<CartIt
         this.itemClickListener = onItemClickListener
     }
     private lateinit var itemClickListener : OnItemClickListener
+
+    // + 버튼 클릭 했을 때를 위한 인터페이스
+    interface OnCartBtnClickListener{
+        fun plusCount(item : CartItem)
+        fun minusCount(item :CartItem)
+    }
+
 
     override fun getItemCount(): Int {
         return shoppingCart.value?.size!!

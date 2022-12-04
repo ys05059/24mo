@@ -34,23 +34,46 @@ class MainViewModel :  ViewModel(){
         if( cartList == null){
             cartList = ArrayList<CartItem>()
         }
-        cartList?.add(CartItem(wine))
+        // 이미 있는 장바구니에 있는 와인일 경우 따로 처리
+        var exist = false
+        cartList.forEach{
+            if(it.wine.Wid == wine.Wid) {
+                it.count++
+                exist = true
+            }
+        }
+        if(!exist){
+            cartList?.add(CartItem(wine))
+        }
         _shoppingCartList.value = cartList!!
         Log.d(TAG,"장바구니에 " + wine.Wid + " " + wine.W_name + " 가 추가되었습니다" )
         Log.d(TAG, shoppingCartList.value.toString())
     }
 
-    // 장바구니에서 와인 삭제
-    fun deleteWine_CartList(Wid:Int){
-        val iter = _shoppingCartList.value!!.iterator()
-        lateinit var item: CartItem
-        while(iter.hasNext()){
-            item = iter.next()
-            if(item.wine.Wid.equals(Wid)){
-                _shoppingCartList.value!!.remove(item)
-                Log.d(TAG,"장바구니에서 " + item.wine.Wid + " " + item.wine.W_name + " 가 삭제되었습니다" )
+    fun count_plus(item:CartItem){
+        var cartList =_shoppingCartList.value
+        if( cartList != null){
+            cartList.forEach {
+                if(it.wine.Wid == item.wine.Wid) {
+                    it.count++
+                }
             }
         }
+        _shoppingCartList.value = cartList!!
+        Log.d(TAG,"장바구니의 " + item.wine.Wid + " " + item.wine.W_name + " 가 1개 추가되었습니다" )
+    }
+
+    fun count_minus(item:CartItem){
+        var cartList =_shoppingCartList.value
+        if( cartList != null){
+            cartList.forEach {
+                if(it.wine.Wid == item.wine.Wid && it.count>0) {
+                    it.count--
+                    Log.d(TAG,"장바구니의 " + item.wine.Wid + " " + item.wine.W_name + " 가 1개 삭제되었습니다" )
+                }
+            }
+        }
+        _shoppingCartList.value = cartList!!
     }
 
     fun getWineDetail(Wid : Int){
