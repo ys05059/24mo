@@ -23,7 +23,7 @@ class MainViewModel :  ViewModel(){
     var Recommend_First_Tag  :String = ""
     var Recommend_Second_Tag : String = ""
     var Recommend_Is_Back : Int = 1
-
+    var shopping_count = 0
     // 장바구니 LIST
     private val _shoppingCartList = MutableLiveData<ArrayList<CartItem>>()
     val shoppingCartList : LiveData<ArrayList<CartItem>> get() = _shoppingCartList
