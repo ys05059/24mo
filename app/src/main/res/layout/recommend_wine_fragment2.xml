@@ -7,7 +7,7 @@
     android:background="@color/white"
     >
 
-<!--    상단바-->
+    <!--    상단바-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/middle_bar"
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--태그버튼들의 레이아웃-->
+    <!--태그버튼들의 레이아웃-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="358dp"

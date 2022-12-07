@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="Util.CartItem" />
+        <variable
+            name="adapter"
+            type="Fragment.ShoppingCartListAdapter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ShoppingCartDialog">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D4D4D3"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_gothic"
+                android:buttonTint="@color/black" />
+
+            <ImageView
+                android:id="@+id/wineImg"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/wine1" />
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:columnCount="2">
+
+                <TextView
+                    android:id="@+id/wineName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_gothic_bold"
+                    android:text="@{item.wine.w_name}"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
+                <GridLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:columnCount="2">
+
+                    <Button
+                        android:id="@+id/wineCategory"
+                        android:layout_width="83dp"
+                        android:layout_height="33dp"
+                        android:background="@drawable/solid_button"
+                        android:fontFamily="@font/nanum_gothic_bold"
+                        android:textColor="@color/white"
+                        android:text="@{item.wine.w_type +`와인`}"
+                        android:textSize="12dp"
+                        android:layout_marginTop="10dp" />
+
+                    <Button
+                        android:id="@+id/wineFrom"
+                        android:layout_width="83dp"
+                        android:layout_height="33dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/stroke_button"
+                        android:fontFamily="@font/nanum_gothic_bold"
+                        android:textColor="@color/red"
+                        android:text="@{item.wine.w_region+`산`}"
+                        android:textSize="12dp"
+                        android:layout_marginTop="10dp" />
+
+                </GridLayout>
+
+                <LinearLayout
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/nanum_gothic"
+                            android:text="당도"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+
+                        <Button
+                            android:id="@+id/wineSweet"
+                            android:layout_width="60dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/solid_button"
+                            android:fontFamily="@font/nanum_gothic_bold"
+                            android:text="@{adapter.feature_fun(item.wine.w_sweetness)}"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/nanum_gothic"
+                            android:text="산도"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+
+                        <Button
+                            android:id="@+id/wineSour"
+                            android:layout_width="60dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/solid_button"
+                            android:fontFamily="@font/nanum_gothic_bold"
+                            android:text="@{adapter.feature_fun(item.wine.w_acidity)}"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/nanum_gothic"
+                            android:text="바디"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+
+                        <Button
+                            android:id="@+id/wineBody"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/solid_button"
+                            android:fontFamily="@font/nanum_gothic_bold"
+                            android:text="@{adapter.body_fun(item.wine.w_body)}"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/nanum_gothic"
+                            android:text="타닌"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+
+                        <Button
+                            android:id="@+id/wineTanin"
+                            android:layout_width="60dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/solid_button"
+                            android:fontFamily="@font/nanum_gothic_bold"
+                            android:text="@{adapter.feature_fun(item.wine.w_tannin)}"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/nanum_gothic"
+                            android:text="도수"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/nanum_gothic_bold"
+                            android:text="@{item.wine.w_alcohol + `%`}"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:id="@+id/wineAlcohol" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </GridLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/wineCount"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/nanum_gothic_extra_bold"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:text="@{item.count + `개`}"
+                />
+            <TextView
+                android:id="@+id/winePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/nanum_gothic_extra_bold"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:text="@{adapter.price_format(item.wine.w_price)}"
+                />
+            <Button
+                android:id="@+id/plusBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textSize="22dp"
+                />
+            <Button
+                android:id="@+id/minusBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="22dp"
+                />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D4D4D3"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
+
+    </LinearLayout>
+</layout>
