@@ -64,7 +64,7 @@ class Recommend_Second_Fragment : Fragment(){
 
                 // 프래그먼트 전환
                 Handler(Looper.getMainLooper()).postDelayed({
-                    (activity as MainActivity).changeRecommendFragment(3)
+                    (activity as MainActivity).changeRecommendFragment(3,0)
                 }, slide_delay)
             }
         }

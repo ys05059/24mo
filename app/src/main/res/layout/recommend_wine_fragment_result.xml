@@ -7,8 +7,9 @@
     <!--    당신을 위한 와인 텍스트 뷰 및 태그들 보여주는 레이아웃-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="90dp"
         android:padding = "0dp"
+        android:background="@color/wine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -16,56 +17,42 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="347dp"
-            android:layout_height="60dp"
-            android:elevation="30dp"
-            android:fontFamily="@font/lineseed_bd"
-            android:gravity="center"
-            android:text="당신과 딱 맞는 와인목록 "
-            android:textColor="@color/wine"
-            android:textSize="33dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.202" />
-
         <!--        첫번째 태그-->
+        <!--        두번째 태그-->
+
         <TextView
             android:id="@+id/first_tag"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:background="@drawable/button_round"
+            android:layout_width="160dp"
+            android:layout_height="55dp"
+            android:background="@drawable/button_round_white"
             android:fontFamily="@font/lineseed_bd"
             android:gravity="center"
             android:text=""
-            android:textColor="@color/white"
-            android:textSize="16dp"
+            android:textColor="@color/wine"
+            android:textSize="19dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.195"
+            app:layout_constraintHorizontal_bias="0.139"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.77" />
-        <!--        두번째 태그-->
+            app:layout_constraintVertical_bias="0.514" />
+
         <TextView
             android:id="@+id/second_tag"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:background="@drawable/button_round"
+            android:layout_width="160dp"
+            android:layout_height="55dp"
+            android:background="@drawable/button_round_white"
             android:fontFamily="@font/lineseed_bd"
             android:gravity="center"
             android:text=""
-            android:textColor="@color/white"
-            android:textSize="16dp"
+            android:textColor="@color/wine"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.816"
+            app:layout_constraintHorizontal_bias="0.856"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.77" />
+            app:layout_constraintVertical_bias="0.514" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
