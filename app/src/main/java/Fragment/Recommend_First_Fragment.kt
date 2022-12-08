@@ -31,16 +31,6 @@ class Recommend_First_Fragment : Fragment(){
             find_view_byName(vm.Recommend_First_Tag)?.setBackgroundResource(R.drawable.button_round_white_red)
         }
 
-//        if(activity.is_Back == 1 && activity.what_this_step == 1) //뒤로가기를 클릭했고, 현재 페이지가 step1이면 , 이미 선택한값은 빨간색 테두리 칠하기
-//        {
-//            if(activity.what_firstStep_select != -1)
-//            {
-//                tag_list[activity.what_firstStep_select].setBackgroundResource(R.drawable.button_round_white_red)
-//                what_select = activity.what_firstStep_select
-//                select_count = 1
-//            }
-//
-//        }
         val ParentFragment : Recommend_Fragment =
             (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Recommend_Fragment
         ParentFragment.invisible_back_btn(true)

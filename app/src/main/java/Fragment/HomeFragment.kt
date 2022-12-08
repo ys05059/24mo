@@ -63,7 +63,13 @@ class HomeFragment : Fragment(){
 
         }
         // 장바구니 버튼
-        binding.ShoppingBtn.setText(viewModel.shopping_count.toString())
+        if(viewModel.shoppingCartList.value == null)
+        {
+            binding.ShoppingBtn.setText("0")
+        }
+        else{
+            binding.ShoppingBtn.setText(viewModel.shoppingCartList.value?.size.toString())
+        }
         binding.ShoppingBtn.setOnClickListener {
             ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }

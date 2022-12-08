@@ -42,7 +42,7 @@ class Recommend_Fragment : Fragment() {
 
         vm.Recommend_First_Tag = ""
         vm.Recommend_Second_Tag = ""
-        (activity as MainActivity).changeRecommendFragment(1,0)
+        (activity as MainActivity).changeRecommendFragment(1,2)
 
         return view
     }
