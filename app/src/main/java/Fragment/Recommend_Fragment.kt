@@ -36,13 +36,13 @@ class Recommend_Fragment : Fragment() {
             (activity as MainActivity).replaceTransaction(HomeFragment())
         }
         binding.goBackBtn.setOnClickListener{
-            (activity as MainActivity).changeRecommendFragment(vm.Recommend_Is_Back)
+            (activity as MainActivity).changeRecommendFragment(vm.Recommend_Is_Back,1)
             vm.Recommend_Is_Back--
         }
 
         vm.Recommend_First_Tag = ""
         vm.Recommend_Second_Tag = ""
-        (activity as MainActivity).changeRecommendFragment(1)
+        (activity as MainActivity).changeRecommendFragment(1,2)
 
         return view
     }

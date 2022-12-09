@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomBottomButton">
+        <attr name="customText" format="reference|string" />
+        <attr name="customTextColor" format="reference|color"/>
+    </declare-styleable>
+</resources>

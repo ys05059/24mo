@@ -57,19 +57,31 @@ class MainActivity : AppCompatActivity(){
         transaction.addToBackStack(null)
     }
 
-    fun changeRecommendFragment(step : Int){
+    fun changeRecommendFragment(step : Int, back: Int){
 //        if(Recommend_presentFragment == fragment) {
 //            Toast.makeText((activity as MainActivity), "이미 해당 Fragment를 보여주고 있습니다.",
 //                Toast.LENGTH_SHORT).show()
 //            return
 //        }
+        //back == 1 뒤로가기 /  0== 다음 step으로 가기
         Recommend_transaction =fragmentManager.beginTransaction()
-        Recommend_transaction.setCustomAnimations(
-            R.anim.enter_from_right,
-            R.anim.exit_to_left,
-            R.anim.enter_from_left,
-            R.anim.exit_to_right
-        )
+        when(back){
+            0->{
+                Recommend_transaction.setCustomAnimations(
+                    R.anim.enter_from_right,
+                    R.anim.exit_to_left,
+                    R.anim.enter_from_left,
+                    R.anim.exit_to_right)
+            }
+            1->{
+                Recommend_transaction.setCustomAnimations(
+                    R.anim.enter_from_left,
+                    R.anim.exit_to_right,
+                    R.anim.enter_from_right,
+                    R.anim.exit_to_left)
+            }
+        }
+
         when(step){
             1 -> Recommend_transaction.replace(R.id.step_id,Recommend_First_Fragment()).commit()
             2 -> Recommend_transaction.replace(R.id.step_id, Recommend_Second_Fragment()).commit()

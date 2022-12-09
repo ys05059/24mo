@@ -24,10 +24,30 @@ class MainViewModel :  ViewModel(){
     var Recommend_Second_Tag : String = ""
     var Recommend_Is_Back : Int = 1
 
+        //여기
+    private val _RecommendWineList = MutableLiveData<ArrayList<CartItem>>()
+    val RecommendWineList : LiveData<ArrayList<CartItem>> get() = _RecommendWineList
+    fun addWine_RecommendList(wine : WineDTO){
+        var recommendList = _RecommendWineList.value
+        if(recommendList == null){
+            recommendList = ArrayList<CartItem>()
+        }
+        var exist = false
+        recommendList.forEach {
+            if(it.wine.Wid == wine.Wid){
+                it.count++
+                exist= true
+            }
+        }
+        if(!exist){
+            recommendList?.add(CartItem(wine))
+        }
+        _RecommendWineList.value = recommendList!!
+    }
+
     // 장바구니 LIST
     private val _shoppingCartList = MutableLiveData<ArrayList<CartItem>>()
     val shoppingCartList : LiveData<ArrayList<CartItem>> get() = _shoppingCartList
-
     // 장바구니에 와인 추가
     fun addWine_CartList(wine: WineDTO){
         var cartList =_shoppingCartList.value

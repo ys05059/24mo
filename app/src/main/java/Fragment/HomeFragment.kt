@@ -25,7 +25,6 @@ class HomeFragment : Fragment(){
     private  lateinit var viewModel : MainViewModel
     private  var _binding : HomeLayoutBinding? = null
     private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,7 +33,6 @@ class HomeFragment : Fragment(){
         _binding = HomeLayoutBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-
         // 이미지 슬라이더
         val Image_Slider = binding.imageSlider //레이아웃의 이미지슬라이드 뷰 ID
         var Event_Wite_list = Add_Image_list() //이미지슬라이드에 슬라이드할 이미지 추가함수.
@@ -60,14 +58,19 @@ class HomeFragment : Fragment(){
         binding.RecommendWineBtn.setOnClickListener {
             (activity as MainActivity).replaceTransaction(Recommend_Fragment())
         }
-
         // 와인상세검색 버튼
         binding.DetailSearchBtn.setOnClickListener {
 
         }
-
         // 장바구니 버튼
-        binding.ShoppingBasket.setOnClickListener {
+        if(viewModel.shoppingCartList.value == null)
+        {
+            binding.ShoppingBtn.setText("0")
+        }
+        else{
+            binding.ShoppingBtn.setText(viewModel.shoppingCartList.value?.size.toString())
+        }
+        binding.ShoppingBtn.setOnClickListener {
             ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }
         // 바코드 버튼

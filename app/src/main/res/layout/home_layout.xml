@@ -70,7 +70,7 @@
             android:background="@drawable/button_round"
             android:text="와인 추천"
             android:textColor="@color/white"
-            android:textSize="38dp"
+            android:textSize="34dp"
             android:fontFamily="@font/lineseed_bd"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +86,7 @@
             android:background="@drawable/button_round"
             android:text="상세 검색"
             android:textColor="@color/white"
-            android:textSize="38dp"
+            android:textSize="34dp"
             android:fontFamily="@font/lineseed_bd"
             android:gravity = "center"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -95,23 +95,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.195" />
+
         <!--장바구니버튼-->
-        <Button
-            android:id="@+id/Shopping_Basket"
-            android:layout_width="188dp"
-            android:layout_height="74dp"
-            android:background="@drawable/button_round"
-            android:text="장바구니"
-            android:textColor="@color/white"
-            android:textSize="38dp"
-            android:fontFamily="@font/lineseed_bd"
+
+        <!--        <Button-->
+<!--            android:id="@+id/Shopping_Basket"-->
+<!--            android:layout_width="188dp"-->
+<!--            android:layout_height="74dp"-->
+<!--            android:background="@drawable/button_round"-->
+<!--            android:text="장바구니"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="34dp"-->
+<!--            android:fontFamily="@font/lineseed_bd"-->
+<!--            android:gravity="center"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.069"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.786" />-->
+
+        <!--바코드 검색버튼-->
+
+        <Fragment.CustomBottomButton
+            android:id="@+id/ShoppingBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintHorizontal_bias="0.071"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.786" />
-        <!--바코드 검색버튼-->
+            app:layout_constraintVertical_bias="0.788"
+            app:customText=""
+            app:customTextColor="@color/wine"
+            tools:ignore="MissingConstraints" />
+
         <Button
             android:id="@+id/BarCord"
             android:layout_width="188dp"
@@ -119,7 +139,7 @@
             android:background="@drawable/button_round"
             android:text="바코드 검색"
             android:textColor="@color/white"
-            android:textSize="38dp"
+            android:textSize="34dp"
             android:fontFamily="@font/lineseed_bd"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
