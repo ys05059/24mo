@@ -42,8 +42,8 @@
         android:id="@+id/recommend_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
-
+        android:layout_weight="1"
+        />
     <LinearLayout
         android:id="@+id/bottombar"
         android:layout_width="match_parent"
@@ -72,8 +72,6 @@
             android:text="결제하기"
             android:textColor="@color/white"
             android:textSize="31dp" />
-
-
-
     </LinearLayout>
+
 </LinearLayout>

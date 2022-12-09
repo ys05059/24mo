@@ -18,21 +18,16 @@ data class WineDTO(
     @SerializedName("variety") val W_variety : String,
     @SerializedName("temperature") val W_temperature : String,
     @SerializedName("alcohol") val W_alcohol : String,
+    @SerializedName("image_url") val W_image : String,
     @SerializedName("aroma_arr") val W_aroma_arr : Array<imageDTO>,
     @SerializedName("food_arr") val W_food_arr : Array<imageDTO>
 ):Serializable {
     constructor() : this(
         "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", ""
+        "", "", "", "", "", "", "", "",""
         ,arrayOf(imageDTO())
         ,arrayOf(imageDTO())
     )
-//    constructor(Wid: String, W_name: String) : this(
-//        Wid, W_name, "", "", "", "",
-//        "", "", "", "", "", "", "", "", ""
-//        ,arrayOf(imageDTO())
-//        ,arrayOf(imageDTO())
-//    )
 }
 
 data class imageDTO(
