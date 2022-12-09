@@ -5,6 +5,7 @@ import Main.MainViewModel
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,6 +62,7 @@ class HomeFragment : Fragment(){
         // 와인상세검색 버튼
         binding.DetailSearchBtn.setOnClickListener {
             (activity as MainActivity).replaceTransaction(Detail_Search_Fragment())
+
         }
         // 장바구니 버튼
         if(viewModel.shoppingCartList.value == null)
@@ -123,5 +125,13 @@ class HomeFragment : Fragment(){
         alertDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
         alertDialog.show()
+    }
+
+    private fun loadFragment(fragment: Fragment){
+        Log.d("clickTest","click!->"+fragment.tag)
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container,fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

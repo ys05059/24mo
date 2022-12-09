@@ -47,9 +47,10 @@ class MainViewModel :  ViewModel(){
         _RecommendWineList.value = recommendList!!
     }
 
-    // 장바구니 LIST
+    // 장바구니 리스트
     private val _shoppingCartList = MutableLiveData<ArrayList<CartItem>>()
     val shoppingCartList : LiveData<ArrayList<CartItem>> get() = _shoppingCartList
+
     // 장바구니에 와인 추가
     fun addWine_CartList(wine: WineDTO){
         var cartList =_shoppingCartList.value
