@@ -2,22 +2,59 @@ package Fragment
 
 import Main.MainActivity
 import Main.MainViewModel
+import android.app.Dialog
+import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
+import android.view.View.OnClickListener
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentDetailSearch1Binding
 import com.example.a24mo.databinding.RecommendWineFragment1Binding
 import com.example.a24mo.databinding.SelectPriceRangeBinding
 
+//가격대 다이얼로그를 위해 클래스를 만듬
+class PriceDialog(context: Context){
+    private val dialog = Dialog(context)
+    //레이아웃을 보여줌.
+    fun Show(){
+        dialog.setContentView(R.layout.select_price_range)
+        dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT)
+
+        val min_edit = dialog.findViewById<EditText>(R.id.minP)//최소금액입력 edittext
+        val max_edit = dialog.findViewById<EditText>(R.id.maxP) //최대금액입력 edittext
+        val done = dialog.findViewById<Button>(R.id.enter) //입력버튼
+        //입력버튼시 리스너
+        done.setOnClickListener {
+            onClickedListener.onClicked(min_edit.text.toString().toInt(), max_edit.text.toString().toInt())
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+    interface ButtonClickListener{ //3
+        fun onClicked(min_money: Int, max_money:Int) //인터페이스를 통해 프래그먼트에서 값을 받을수있음.
+    }
+    private lateinit var onClickedListener: ButtonClickListener //1
+    fun setOnClickedListener(listener: ButtonClickListener) { //2
+        onClickedListener = listener
+    }
+    //흐름 : 다이얼로그에서 입력 버튼클릭시 -> onClickedListener(1) 변수가 setOnClickedListener함수(2)를 통해 ButtonClickListener(3)로 초기화됨.
+    //이 ButtonClickListener(3) 은 인터페이스 이므로 다시 기존의 프래그먼트(상세검색_1)에서 구현함으로써 프래그먼트에서도 값을 전달받게됨. -> 뷰모델저장
+}
+
+//초창기 프래그먼트
 class Detail_Search_Fragment_1 : Fragment() {
 
     private  lateinit var vm : MainViewModel
@@ -34,39 +71,28 @@ class Detail_Search_Fragment_1 : Fragment() {
         //뒤로가기
         val ParentFragment : Detail_Search_Fragment =
             (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Detail_Search_Fragment
-        ParentFragment.invisible_back_btn(false)
+        ParentFragment.invisible_back_btn(true)
 
 
         //가격대
         binding.priceRange.setOnClickListener{
-            binding.priceRange.setBackgroundResource(R.drawable.button_round_white_red)
-            Price_Dialog()
+            binding.priceRange.setBackgroundResource(R.drawable.button_round_white_red) //선택시 테두리 빨갛게.
+            val dialog = PriceDialog(activity as MainActivity)
+            dialog.Show()
+            //뷰모델에 값을 전달하기위함.
+            dialog.setOnClickedListener(object : PriceDialog.ButtonClickListener{
+                override fun onClicked(min_money: Int, max_money: Int) {
+                    vm.minPrice = min_money //최솟값
+                    vm.maxPrice = max_money //최댓값
+                    Log.d("가격대", "min: ${vm.minPrice} max: ${vm.maxPrice}")
+                }
+            })
         }
-
         return view
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    fun Price_Dialog(){
-        val builder : AlertDialog.Builder = AlertDialog.Builder(activity as MainActivity)
-        val inflater : LayoutInflater = layoutInflater
-        builder.setView(inflater.inflate(R.layout.select_price_range, null))
-//        builder.setNegativeButton("돌아가기"){dialog,p1 -> dialog.cancel()}
-        val alertDialog : AlertDialog = builder.create()
-        var temp_min = dialog_binding!!.minP
-        var temp_max = dialog_binding!!.maxP
-        dialog_binding!!.enter.setOnClickListener {
-            vm.minPrice = temp_min.text.toString().toInt()
-            vm.maxPrice - temp_max.text.toString().toInt()
-            Log.d("Price", vm.minPrice.toString() + vm.maxPrice.toString())
-        }
-        alertDialog?.setCanceledOnTouchOutside(true)  //바깥 터치시 다이얼로그 사라짐
-        alertDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        alertDialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
-        alertDialog.show()
     }
 }
 
