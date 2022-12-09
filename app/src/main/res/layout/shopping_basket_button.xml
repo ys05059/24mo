@@ -39,9 +39,12 @@
         android:layout_height="37dp"
         android:fontFamily="@font/lineseed_bd"
         android:gravity="center"
+
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="26dp"
+        android:autoSizeMaxTextSize="34dp"
         android:text="0"
         android:textColor="@color/wine"
-        android:textSize="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.874"

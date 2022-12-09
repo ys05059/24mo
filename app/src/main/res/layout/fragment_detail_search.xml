@@ -1,3 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/wine"
+        android:orientation="horizontal"
+        >
+        <ImageButton
+            android:id = "@+id/go_back_btn"
+            android:visibility="visible"
+            android:layout_width="48dp"
+            android:layout_height="41dp"
+            android:background="@color/wine"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/arrow_left"
+            android:layout_marginTop="25dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:gravity="center"
+            android:text="상세 검색"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="25dp"/>
+
+        <Button
+            android:id="@+id/go_to_home_btn"
+            android:layout_width="132dp"
+            android:layout_height="47dp"
+            android:background="@drawable/button_round_white"
+            android:fontFamily="@font/lineseed_bd"
+            android:padding="0dp"
+            android:text="홈으로 이동"
+            android:textColor="@color/wine"
+            android:textSize="23dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="20dp"
+            />
+    </LinearLayout>
+
+    <FrameLayout
+
+        android:id ="@+id/searchFragmentArea"
+        android:layout_width="match_parent"
+        android:layout_height="583dp">
+
+    </FrameLayout>
+
+</LinearLayout>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
