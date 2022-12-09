@@ -18,6 +18,10 @@ import com.example.a24mo.R
 import Util.WineDTO
 import com.example.a24mo.databinding.FragmentInformationBinding
 import Util.imageDTO
+import android.view.Gravity
+import android.view.ViewGroup.MarginLayoutParams
+import androidx.core.view.marginRight
+import androidx.core.view.setMargins
 import java.text.DecimalFormat
 
 
@@ -28,8 +32,8 @@ class InformationFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         Log.d("InformationFragment", "프래그먼트 전환 완료")
+        super.onCreate(savedInstanceState)
 //        // 만약 값이 자동으로 바뀌게 하고 싶으면 옵저버 생성해줘야함 -> 이때 mutableLivaData가 바인딩되어있어야할듯
 //        val nameObserver = Observer<String> { new_W_name ->
 //            binding.informationName = new_W_name
@@ -49,45 +53,54 @@ class InformationFragment : Fragment() {
         //데이터 수정
         val formatter  = DecimalFormat("###,###")
         var count = 0
+
+        // 2번 실행되는 현상 임시로 해결
         val wnameObserver = Observer<WineDTO> { new_WineDetail ->
             // Update the UI, TextView인 경우
-            wid =  new_WineDetail.Wid.toInt()
-            binding.informationName.text = new_WineDetail.W_name
-            binding.informationType.text = "#"+new_WineDetail.W_type
-            binding.informationRegion.text = "#"+new_WineDetail.W_region
-            binding.informationRegion2.text = "#"+new_WineDetail.W_region2
-            binding.informationPrice.text = formatter.format(new_WineDetail.W_price.toInt()) + "원"
-            binding.informationCapacity.text = new_WineDetail.W_capacity + "ml"
-            binding.informationVariety.text = new_WineDetail.W_variety
-            binding.informationTemperature.text = new_WineDetail.W_temperature
-            if (new_WineDetail.W_alcohol == "0"){
-                binding.informationAlcohol.text = "정보없음"
-            }else
-                binding.informationAlcohol.text = new_WineDetail.W_alcohol
+            Log.d("test", "new_WineDetail")
+            if(!binding.informationName.text.equals(new_WineDetail.W_name)) {
+                wid =  new_WineDetail.Wid.toInt()
+                binding.informationName.text = new_WineDetail.W_name
+                binding.informationType.text = "#"+new_WineDetail.W_type
+                binding.informationRegion.text = "#"+new_WineDetail.W_region
+                binding.informationRegion2.text = "#"+new_WineDetail.W_region2
+                binding.informationPrice.text = formatter.format(new_WineDetail.W_price.toInt()) + "원"
+                binding.informationCapacity.text = new_WineDetail.W_capacity + "ml"
+                binding.informationVariety.text = new_WineDetail.W_variety
+                binding.informationTemperature.text = new_WineDetail.W_temperature
+                if (new_WineDetail.W_alcohol == "0"){
+                    binding.informationAlcohol.text = "정보없음"
+                }else
+                    binding.informationAlcohol.text = new_WineDetail.W_alcohol
 
-            // 와인 이미지 추가
-            addWineImg(binding.informationImg,"https://wine21.speedgabia.com/WINE_MST/TITLE/0%d000/W0%d.jpg".format(wid/1000, wid))
-            // 특징 이미지 추가
-            addrating(binding.informationSweetness,new_WineDetail.W_sweetness.toInt())
-            addrating(binding.informationAcidity, new_WineDetail.W_acidity.toInt())
-            addrating(binding.informationBoddy, new_WineDetail.W_body.toInt())
-            addrating(binding.informationTannin, new_WineDetail.W_tannin.toInt())
+                // 와인 이미지 추가
+                addWineImg(binding.informationImg,"https://wine21.speedgabia.com/WINE_MST/TITLE/0%d000/W0%d.jpg".format(wid/1000, wid))
+                // 특징 이미지 추가
+                addrating(binding.informationSweetness,new_WineDetail.W_sweetness.toInt())
+                addrating(binding.informationAcidity, new_WineDetail.W_acidity.toInt())
+                addrating(binding.informationBoddy, new_WineDetail.W_body.toInt())
+                addrating(binding.informationTannin, new_WineDetail.W_tannin.toInt())
 
-            // 동적 ImageView 추가
-            for (image in new_WineDetail.W_aroma_arr){
-                if(count >=3) break
-                addListImg(binding.informationAroma,image)
-                count++
-            }
-            count =0
-            for (image in new_WineDetail.W_food_arr){
-                if(count >=3) break
-                addListImg(binding.informationFood,image)
-                count++
-            }
-            binding.addCartBtn.setOnClickListener{
-                vm.wineDetail.value?.let { it -> vm.addWine_CartList(it) }
-                (activity as MainActivity).replaceTransaction(HomeFragment())
+                // 동적 ImageView 추가
+                for (image in new_WineDetail.W_aroma_arr){
+                    if(count >3) break
+                    addListImg(binding.informationAroma,image)
+                    count++
+                }
+                count =0
+                for (image in new_WineDetail.W_food_arr){
+                    if(count >3) break
+                    addListImg(binding.informationFood,image)
+                    count++
+                }
+                binding.addCartBtn.setOnClickListener{
+                    vm.wineDetail.value?.let { it -> vm.addWine_CartList(it) }
+                    (activity as MainActivity).replaceTransaction(HomeFragment())
+                }
+
+                binding.HomeBtn.setOnClickListener{
+                    (activity as MainActivity).replaceTransaction(HomeFragment())
+                }
             }
         }
         vm.wineDetail.observe(viewLifecycleOwner,wnameObserver)
@@ -121,13 +134,17 @@ class InformationFragment : Fragment() {
 
         val llLayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         ll.layoutParams = llLayoutParams
+        view?.resources?.displayMetrics?.density?.times(12)
+            ?.let { llLayoutParams.setMargins(0,0, it.toInt(),0) }
         ll.orientation = LinearLayout.VERTICAL
+        ll.gravity = Gravity.CENTER
 
         val imageLayoutParams = LinearLayout.LayoutParams(105,105) //ImageView LayoutSize
         imgv.layoutParams = imageLayoutParams
 
-        val tvLayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        val tvLayoutParams = LinearLayout.LayoutParams(105, LinearLayout.LayoutParams.WRAP_CONTENT)
         tv.layoutParams = tvLayoutParams
+        tv.textAlignment = View.TEXT_ALIGNMENT_CENTER
         tv.setText(name)
 
         GlideApp.with(this)
@@ -136,9 +153,8 @@ class InformationFragment : Fragment() {
 
         ll.addView(imgv)
         ll.addView(tv)
-//
+
         parent.addView(ll)
-//        parent.addView(imgv)
     }
 
     //parent = wsweetness, wacidty ...

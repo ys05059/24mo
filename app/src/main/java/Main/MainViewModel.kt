@@ -83,7 +83,6 @@ class MainViewModel :  ViewModel(){
                 if(response.isSuccessful){
                     _liveWineDetail.value= response.body()!!
                     Log.d("Test" , "코루틴 테스팅 중" +_liveWineDetail.value.toString())
-
                 }
             }
         }
