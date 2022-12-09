@@ -1,42 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
-    <LinearLayout
+    android:orientation="vertical"
+        android:gravity="center|top">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="@color/wine"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@color/wine"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/first_tag"
-            android:layout_width="160dp"
-            android:layout_height="55dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/button_round_white"
-            android:fontFamily="@font/nanum_gothic_bold"
-            android:gravity="center"
-            android:text=" "
-            android:textColor="@color/wine"
-            android:textSize="17dp" />
+            <TextView
+                android:id="@+id/first_tag"
+                android:layout_width="160dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_round_white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:gravity="center"
+                android:text=" "
+                android:textColor="@color/wine"
+                android:textSize="17dp" />
 
-        <TextView
-            android:id="@+id/second_tag"
-            android:layout_width="160dp"
-            android:layout_height="55dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/button_round_white"
-            android:fontFamily="@font/nanum_gothic_bold"
-            android:gravity="center"
-            android:text=" "
-            android:textColor="@color/wine"
-            android:textSize="17dp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/second_tag"
+                android:layout_width="160dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_round_white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:gravity="center"
+                android:text=" "
+                android:textColor="@color/wine"
+                android:textSize="17dp" />
+        </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recommend_recycler"
@@ -75,3 +82,4 @@
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>
