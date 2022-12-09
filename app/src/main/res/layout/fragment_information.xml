@@ -10,15 +10,37 @@
     android:background="#990C14">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/information_name"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/black_round"
-        android:textColor="@color/white"
-        android:padding="10dp"
-        android:textSize="30dp"
-        android:text="와인 이름" />
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/information_name"
+            android:layout_width="330dp"
+            android:layout_height="60dp"
+            android:background="@drawable/black_round"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12dp"
+            android:autoSizeMaxTextSize="30dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:layout_marginRight="8dp"
+            android:text="와인 이름" />
+
+        <Button
+            android:id="@+id/HomeBtn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/black_round"
+            android:text="Home"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -205,7 +227,6 @@
         <LinearLayout
             android:layout_width="240dp"
             android:layout_height="60dp"
-            android:gravity="center"
             android:id="@+id/information_aroma">
 
             <TextView
@@ -215,6 +236,7 @@
                 android:textColor="@color/white"
                 android:textSize="14dp"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_marginRight="12dp"
                 android:text="아로마"/>
 
@@ -224,7 +246,6 @@
         <LinearLayout
             android:layout_width="240dp"
             android:layout_height="60dp"
-            android:gravity="center"
             android:id="@+id/information_food">
 
             <TextView
@@ -234,8 +255,10 @@
                 android:textColor="@color/white"
                 android:textSize="12dp"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_marginRight="12dp"
                 android:text="음식매칭"/>
+
         </LinearLayout>
 
 
@@ -246,8 +269,10 @@
         android:layout_height="wrap_content">
         <Button
             android:id="@+id/addCartBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/white_round"
             android:text="담기"/>
     </LinearLayout>
 
