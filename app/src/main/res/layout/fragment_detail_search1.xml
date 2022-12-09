@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/wine_name_search"
+            android:layout_width="357dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_gray"
+            android:hint="     와인 이름을 검색하세요"
+            android:textColor="@color/grey_font"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp">
+        <Button
+            android:id="@+id/priceRange"
+            android:layout_width="357dp"
+            android:layout_height="70dp"
+            android:background="@drawable/button_less_round_white"
+            android:elevation="20dp"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:gravity="center_vertical"
+            android:text="      가격대"
+            android:textColor="@color/grey_font"
+            android:textSize="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/wineKind"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button_less_round_white"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:gravity="center_horizontal"
+            android:text="\n종류"
+            android:textColor="@color/grey_font"
+            android:textSize="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+        <Button
+            android:id="@+id/wineCountry"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button_less_round_white"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:gravity="center_horizontal"
+            android:text="\n생산지"
+            android:textColor="@color/grey_font"
+            android:textSize="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp">
+        </Button>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/wineAlcohol"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button_less_round_white"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:gravity="center_horizontal"
+            android:text="\n도수"
+            android:textColor="@color/grey_font"
+            android:textSize="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            />
+        <Button
+            android:id="@+id/wineFood"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/button_less_round_white"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:gravity="center_horizontal"
+            android:text="\n음식"
+            android:textColor="@color/grey_font"
+            android:textSize="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp">
+        </Button>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        >
+
+        <Button
+            android:id="@+id/wineOthers"
+            android:layout_width="360dp"
+            android:layout_height="70dp"
+            android:background="@drawable/button_less_round_white"
+            android:elevation="20dp"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:gravity="center_vertical"
+            android:text="   당도/산도/바디/타닌"
+            android:textColor="@color/grey_font"
+            android:textSize="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp">
+
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="79dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="0dp">
+
+        <Fragment.CustomBottomButton
+            android:id="@+id/ShoppingCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            app:customText=" "
+            app:customTextColor="@color/wine" />
+
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="188dp"
+            android:layout_height="74dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button_round"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:text="검색"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
