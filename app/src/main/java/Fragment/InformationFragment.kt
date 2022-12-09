@@ -20,6 +20,7 @@ import com.example.a24mo.databinding.FragmentInformationBinding
 import Util.imageDTO
 import android.view.Gravity
 import android.view.ViewGroup.MarginLayoutParams
+import androidx.core.view.children
 import androidx.core.view.marginRight
 import androidx.core.view.setMargins
 import java.text.DecimalFormat
@@ -58,49 +59,48 @@ class InformationFragment : Fragment() {
         val wnameObserver = Observer<WineDTO> { new_WineDetail ->
             // Update the UI, TextView인 경우
             Log.d("test", "new_WineDetail")
-            if(!binding.informationName.text.equals(new_WineDetail.W_name)) {
-                wid =  new_WineDetail.Wid.toInt()
-                binding.informationName.text = new_WineDetail.W_name
-                binding.informationType.text = "#"+new_WineDetail.W_type
-                binding.informationRegion.text = "#"+new_WineDetail.W_region
-                binding.informationRegion2.text = "#"+new_WineDetail.W_region2
-                binding.informationPrice.text = formatter.format(new_WineDetail.W_price.toInt()) + "원"
-                binding.informationCapacity.text = new_WineDetail.W_capacity + "ml"
-                binding.informationVariety.text = new_WineDetail.W_variety
-                binding.informationTemperature.text = new_WineDetail.W_temperature
-                if (new_WineDetail.W_alcohol == "0"){
-                    binding.informationAlcohol.text = "정보없음"
-                }else
-                    binding.informationAlcohol.text = new_WineDetail.W_alcohol
+            wid =  new_WineDetail.Wid.toInt()
+            binding.informationName.text = new_WineDetail.W_name
+            binding.informationType.text = "#"+new_WineDetail.W_type
+            binding.informationRegion.text = "#"+new_WineDetail.W_region
+            binding.informationRegion2.text = "#"+new_WineDetail.W_region2
+            binding.informationPrice.text = formatter.format(new_WineDetail.W_price.toInt()) + "원"
+            binding.informationCapacity.text = new_WineDetail.W_capacity + "ml"
+            binding.informationVariety.text = new_WineDetail.W_variety
+            binding.informationTemperature.text = new_WineDetail.W_temperature
+            if (new_WineDetail.W_alcohol == "0"){
+                binding.informationAlcohol.text = "정보없음"
+            }else
+                binding.informationAlcohol.text = new_WineDetail.W_alcohol
 
-                // 와인 이미지 추가
-                addWineImg(binding.informationImg,"https://wine21.speedgabia.com/WINE_MST/TITLE/0%d000/W0%d.jpg".format(wid/1000, wid))
-                // 특징 이미지 추가
-                addrating(binding.informationSweetness,new_WineDetail.W_sweetness.toInt())
-                addrating(binding.informationAcidity, new_WineDetail.W_acidity.toInt())
-                addrating(binding.informationBoddy, new_WineDetail.W_body.toInt())
-                addrating(binding.informationTannin, new_WineDetail.W_tannin.toInt())
+            // 와인 이미지 추가
+            addWineImg(binding.informationImg,"https://wine21.speedgabia.com/WINE_MST/TITLE/0%d000/W0%d.jpg".format(wid/1000, wid))
+            // 특징 이미지 추가
+            addrating(binding.informationSweetness, new_WineDetail.W_sweetness.toInt())
+            addrating(binding.informationAcidity, new_WineDetail.W_acidity.toInt())
+            addrating(binding.informationBoddy, new_WineDetail.W_body.toInt())
+            addrating(binding.informationTannin, new_WineDetail.W_tannin.toInt())
 
-                // 동적 ImageView 추가
-                for (image in new_WineDetail.W_aroma_arr){
-                    if(count >3) break
-                    addListImg(binding.informationAroma,image)
-                    count++
-                }
-                count =0
-                for (image in new_WineDetail.W_food_arr){
-                    if(count >3) break
-                    addListImg(binding.informationFood,image)
-                    count++
-                }
-                binding.addCartBtn.setOnClickListener{
-                    vm.wineDetail.value?.let { it -> vm.addWine_CartList(it) }
-                    (activity as MainActivity).replaceTransaction(HomeFragment())
-                }
+            // 동적 ImageView 추가
+            for (image in new_WineDetail.W_aroma_arr){
+                if(count >3) break
+                addListImg(binding.informationAroma,image)
+                count++
+            }
+            count =0
+            for (image in new_WineDetail.W_food_arr){
+                if(count >3) break
+                addListImg(binding.informationFood,image)
+                count++
+            }
+            binding.addCartBtn.setOnClickListener{
+                vm.wineDetail.value?.let { it -> vm.addWine_CartList(it) }
+                (activity as MainActivity).replaceTransaction(HomeFragment())
+            }
 
-                binding.HomeBtn.setOnClickListener{
-                    (activity as MainActivity).replaceTransaction(HomeFragment())
-                }
+            binding.HomeBtn.setOnClickListener{
+                (activity as MainActivity).replaceTransaction(HomeFragment())
+
             }
         }
         vm.wineDetail.observe(viewLifecycleOwner,wnameObserver)
@@ -160,6 +160,9 @@ class InformationFragment : Fragment() {
     //parent = wsweetness, wacidty ...
     //value = 0~5
     fun addrating(parent:LinearLayout, value:Int) {
+        if(parent.childCount>5)
+            for (i: Int in 1..5)
+                parent.removeView(parent.getChildAt(1))
         for (i: Int in 1..5) {
             val imgv = ImageView(context).apply {
                 setImageResource(R.drawable.grade)
