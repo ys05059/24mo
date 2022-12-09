@@ -24,6 +24,11 @@ class MainViewModel :  ViewModel(){
     var Recommend_Second_Tag : String = ""
     var Recommend_Is_Back : Int = 1
 
+    //상세검색
+    var minPrice : Int = 0
+    var maxPrice : Int = 0
+
+
 
     var Search_Is_Back : Int = 1
         //여기
