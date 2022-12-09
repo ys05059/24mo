@@ -45,41 +45,41 @@
                 android:textSize="17dp" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recommend_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recommend_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <LinearLayout
+        android:id="@+id/bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
 
-        <LinearLayout
-            android:id="@+id/bottombar"
-            android:layout_width="match_parent"
+        <Fragment.CustomBottomButton
+            android:id="@+id/basket"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
+            android:layout_marginLeft="10dp"
+            app:customText=""
+            app:customTextColor="@color/wine"
+            />
 
-            <Fragment.CustomBottomButton
-                android:id="@+id/basket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                app:customText=""
-                app:customTextColor="@color/wine"
-                />
-
-            <Button
-                android:id="@+id/pay"
-                android:layout_marginLeft="10dp"
-                android:layout_width="188dp"
-                android:layout_height="74dp"
-                android:background="@drawable/button_round"
-                android:fontFamily="@font/lineseed_bd"
-                android:gravity="center"
-                android:padding="0dp"
-                android:text="결제하기"
-                android:textColor="@color/white"
-                android:textSize="31dp" />
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/pay"
+            android:layout_marginLeft="10dp"
+            android:layout_width="188dp"
+            android:layout_height="74dp"
+            android:background="@drawable/button_round"
+            android:fontFamily="@font/lineseed_bd"
+            android:gravity="center"
+            android:padding="0dp"
+            android:text="결제하기"
+            android:textColor="@color/white"
+            android:textSize="31dp" />
     </LinearLayout>
+
+</LinearLayout>
 </ScrollView>

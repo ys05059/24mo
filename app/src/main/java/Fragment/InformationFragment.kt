@@ -74,7 +74,7 @@ class InformationFragment : Fragment() {
                 binding.informationAlcohol.text = new_WineDetail.W_alcohol
 
             // 와인 이미지 추가
-            addWineImg(binding.informationImg,"https://wine21.speedgabia.com/WINE_MST/TITLE/0%d000/W0%d.jpg".format(wid/1000, wid))
+            addWineImg(binding.informationImg,new_WineDetail.W_image)
             // 특징 이미지 추가
             addrating(binding.informationSweetness, new_WineDetail.W_sweetness.toInt())
             addrating(binding.informationAcidity, new_WineDetail.W_acidity.toInt())
@@ -93,8 +93,10 @@ class InformationFragment : Fragment() {
                 addListImg(binding.informationFood,image)
                 count++
             }
+
+            // 담기 버튼 동작
             binding.addCartBtn.setOnClickListener{
-                vm.wineDetail.value?.let { it -> vm.addWine_CartList(it) }
+                vm.wineDetail.value?.let { vm.addWine_CartList(it) }
                 (activity as MainActivity).replaceTransaction(HomeFragment())
             }
 
@@ -111,7 +113,7 @@ class InformationFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
+    // 와인 이미지 추가
     fun addWineImg(view: ImageView , url : String){
         val defaultImage = androidx.loader.R.drawable.notification_action_background
         GlideApp.with(this)
