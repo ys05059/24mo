@@ -37,6 +37,7 @@ class Detail_Search_Fragment : Fragment() {
             vm.Search_Is_Back--
         }
 
+
         (activity as MainActivity).changeDetailSearchFragment(1, 2)//초기 상세검색화면
 
         return view

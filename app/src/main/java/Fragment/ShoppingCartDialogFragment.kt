@@ -68,31 +68,6 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
         binding.closeButton.setOnClickListener {
             dismiss()
         }
-
-
-//        var actionBar = (activity as MainActivity?)!!.supportActionBar
-//
-        //actionBar?.setCustomView(R.id.menu_friend)
-
-//        binding.petListRecyclerView.layoutManager=LinearLayoutManager(requireContext())
-//        binding.petListRecyclerView.adapter= PetListAdapter(pets)
-
-//        shoppingCarts.add(ShoppingCart("와인 이름 들어갈 자리1","R.drawable.wine1","레드와인",
-//            "프랑스산", "높음", "낮음", "가벼움", "중간", "\\35,000", "10%"))
-//        shoppingCarts.add(ShoppingCart("와인 이름 들어갈 자리2","R.drawable.wine2","화이트와인",
-//            "프랑스산", "중간", "중간", "무거움", "낮음","\\50,000", "10%"))
-//        shoppingCarts.add(ShoppingCart("와인 이름 들어갈 자리3","R.drawable.wine1","로제와인",
-//            "프랑스산", "높음", "높음", "중간", "중간", "\\25,000", "10%"))
-//        shoppingCarts.add(ShoppingCart("와인 이름 들어갈 자리4","R.drawable.wine2","레드와인",
-//            "프랑스산", "낮음", "낮음", "가벼움", "높음", "\\45,000", "10%"))
-
-//        binding.recyclerView.adapter = shoppingCartListAdapter
-//        shoppingCartListAdapter.setItemClickListener(object : ShoppingCartListAdapter.OnItemClickListener{
-//            override fun onClick(v: View, position: Int) {
-//                //loadFragment()
-//            }
-//        })
-
         return binding.root
     }
 

@@ -33,6 +33,10 @@
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/stroke_button.xml" value="0.366" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_information.xml" value="0.28802083333333334" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_shopping_cart_dialog.xml" value="0.18508997429305912" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/recommend_wine_fragment1.xml" value="0.11666666666666667" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/recommend_wine_fragment2.xml" value="0.11666666666666667" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/recommend_wine_fragment_result.xml" value="0.1" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/recommend_wine_recyclerview.xml" value="0.11666666666666667" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/shopping_cart_recyclerview.xml" value="0.22" />
       </map>
     </option>
