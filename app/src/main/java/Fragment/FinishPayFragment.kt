@@ -26,7 +26,7 @@ class FinishPayFragment : Fragment(){
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         binding.returnHomeButton.setOnClickListener {
-            loadFragment(HomeFragment())
+            (activity as MainActivity).replaceTransaction(HomeFragment())
         }
 
         return view
@@ -35,14 +35,6 @@ class FinishPayFragment : Fragment(){
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun loadFragment(fragment: Fragment){
-        Log.d("clickTest","click!->"+fragment.tag)
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        //transaction.replace(R.id.fragment_container,fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
     }
 
 }
