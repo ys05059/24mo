@@ -29,6 +29,14 @@ class Detail_Search_Fragment : Fragment() {
         val view = binding.root
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
+        binding.goToHomeBtn.setOnClickListener {
+            (activity as MainActivity).replaceTransaction(HomeFragment())
+        }
+        binding.goBackBtn.setOnClickListener{
+            (activity as MainActivity).changeDetailSearchFragment(vm.Search_Is_Back,1)
+            vm.Search_Is_Back--
+        }
+
 
         (activity as MainActivity).changeDetailSearchFragment(1, 2)//초기 상세검색화면
 
