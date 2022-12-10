@@ -1,11 +1,8 @@
 package Main
 
-import Util.AdminDTO
-import Util.CartItem
+import Util.*
 import android.util.Log
 import androidx.lifecycle.*
-import Util.WineDTO
-import Util.WineRemoteDataSource
 import android.view.Window
 import kotlinx.coroutines.*
 import java.time.LocalDate
@@ -117,6 +114,9 @@ class MainViewModel :  ViewModel(){
     //admin Data
     private val _dailyList = MutableLiveData<ArrayList<AdminDTO>>()
     val dailyList : LiveData<ArrayList<AdminDTO>> get() = _dailyList
+
+    private val _dailySalesList = MutableLiveData<ArrayList<SalesDTO>>()
+    val dailySalesList : LiveData<ArrayList<SalesDTO>> get() = _dailySalesList
 
     fun getAdminData(){
         job = CoroutineScope(Dispatchers.IO).launch {
