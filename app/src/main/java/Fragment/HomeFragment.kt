@@ -61,8 +61,7 @@ class HomeFragment : Fragment(){
         }
         // 와인상세검색 버튼
         binding.DetailSearchBtn.setOnClickListener {
-          (activity as MainActivity).replaceTransaction(Detail_Search_Fragment())
-
+            (activity as MainActivity).replaceTransaction(Detail_Search_Fragment())
         }
         // 장바구니 버튼
         if(viewModel.shoppingCartList.value == null)
