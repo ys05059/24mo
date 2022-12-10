@@ -30,9 +30,18 @@ data class WineDTO(
     )
 }
 
+
 data class imageDTO(
     @SerializedName("name") val name : String,
     @SerializedName("url") val url : String
 ) : Serializable{
     constructor() : this("","")
+}
+
+
+data class recommendListReturn(
+    @SerializedName("status") val status : String,
+    @SerializedName("data") val recommend_list : ArrayList<WineDTO>
+):Serializable{
+    constructor() : this ("", ArrayList<WineDTO>())
 }

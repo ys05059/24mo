@@ -2,7 +2,7 @@
 <resources>
     <style name="dialog_fullscreen" parent="Theme.AppCompat.Dialog">
         <item name="android:windowIsFloating">false</item>
-        <item name="android:windowFullscreen">true</item>                       <!-- 안드로이드 설정창 (위에 시간나오는 바) 없애줌-->
+        <item name="android:windowFullscreen">false</item>                       <!-- 안드로이드 설정창 (위에 시간나오는 바) 없애줌-->
         <item name="android:windowBackground">@android:color/white</item>
 <!--        <item name="android:windowBackground">@android:color/transparent</item>-->
 <!--        <item name="android:textColorPrimary">@color/black</item>    &lt;!&ndash;content text color&ndash;&gt;-->

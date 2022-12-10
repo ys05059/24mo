@@ -10,47 +10,26 @@ import kotlinx.coroutines.*
 
 class MainViewModel :  ViewModel(){
     private val  TAG = "MainViewModel"
-    private var _liveWineDetail = MutableLiveData<WineDTO>()
-    // field를 생성하는 동시에 field의 값을 할당, =로 대입한 변수의 getter는 field의 값을 리턴
-    val wineDetail : MutableLiveData<WineDTO>
-        get() = _liveWineDetail
-
-    //코루틴하면서 생성
     val wineService = WineRemoteDataSource.getWineService()
     var job : Job? = null
 
-    // 추천 관련 data들
+    // 와인 1개 상세정보 받아옴
+    private var _liveWineDetail = MutableLiveData<WineDTO>()
+    val wineDetail : MutableLiveData<WineDTO> get() = _liveWineDetail                                    // field를 생성하는 동시에 field의 값을 할당, =로 대입한 변수의 getter는 field의 값을 리턴
+
+    // 와인 추천 리스트 상세정보 받아옴
+    private  var _liveRecommendList = MutableLiveData<ArrayList<WineDTO>>()
+    val recommendList : LiveData<ArrayList<WineDTO>>  get() = _liveRecommendList
+
+    // 추천 관련 변수들
     var Recommend_First_Tag  :String = ""
     var Recommend_Second_Tag : String = ""
     var Recommend_Is_Back : Int = 1
 
-
-    //상세검색
+    //상세검색 관련 변수들
     var minPrice : Int = 0
     var maxPrice : Int = 0
-
-
     var Search_Is_Back : Int = 1
-        //여기
-    private val _RecommendWineList = MutableLiveData<ArrayList<CartItem>>()
-    val RecommendWineList : LiveData<ArrayList<CartItem>> get() = _RecommendWineList
-    fun addWine_RecommendList(wine : WineDTO){
-        var recommendList = _RecommendWineList.value
-        if(recommendList == null){
-            recommendList = ArrayList<CartItem>()
-        }
-        var exist = false
-        recommendList.forEach {
-            if(it.wine.Wid == wine.Wid){
-                it.count++
-                exist= true
-            }
-        }
-        if(!exist){
-            recommendList?.add(CartItem(wine))
-        }
-        _RecommendWineList.value = recommendList!!
-    }
 
     // 장바구니 리스트
     private val _shoppingCartList = MutableLiveData<ArrayList<CartItem>>()
@@ -78,7 +57,34 @@ class MainViewModel :  ViewModel(){
         Log.d(TAG, shoppingCartList.value.toString())
     }
 
-    fun count_plus(item:CartItem){
+    // Retrofit 비동기 통신 - Wid로 와인 상세정보 받아오기
+    fun getWineDetail(Wid : Int){
+        job = CoroutineScope(Dispatchers.IO).launch {
+            val response  = wineService.getWineDetail(Wid)
+            withContext(Dispatchers.Main){
+                if(response.isSuccessful){
+                    _liveWineDetail.value= response.body()!!
+                    Log.d(TAG , "getWineDetail 테스트 : " +_liveWineDetail.value.toString())
+                }
+            }
+        }
+    }
+
+    // Retrofit 비동기 통신 - Tag 2개로 추천 와인 리스트 받아오기
+    fun getRecommnedList(Tag1 : String, Tag2 : String){
+        job = CoroutineScope(Dispatchers.IO).launch {
+            val response = wineService.getRecommendList(Tag1,Tag2)
+            withContext(Dispatchers.Main){
+                if(response.isSuccessful){
+                    _liveRecommendList.value = response.body()!!.recommend_list
+                    Log.d(TAG , "getRecommendList 테스트 : " +_liveRecommendList.value.toString())
+                }
+            }
+
+        }
+    }
+
+    fun cartItem_count_plus(item:CartItem){
         var cartList =_shoppingCartList.value
         if( cartList != null){
             cartList.forEach {
@@ -91,7 +97,7 @@ class MainViewModel :  ViewModel(){
         Log.d(TAG,"장바구니의 " + item.wine.Wid + " " + item.wine.W_name + " 가 1개 추가되었습니다" )
     }
 
-    fun count_minus(item:CartItem){
+    fun cartItem_count_minus(item:CartItem){
         var cartList =_shoppingCartList.value
         if( cartList != null){
             cartList.forEach {
@@ -102,18 +108,6 @@ class MainViewModel :  ViewModel(){
             }
         }
         _shoppingCartList.value = cartList!!
-    }
-
-    fun getWineDetail(Wid : Int){
-        job = CoroutineScope(Dispatchers.IO).launch {
-            val response  = wineService.getWineDetail(Wid)
-            withContext(Dispatchers.Main){
-                if(response.isSuccessful){
-                    _liveWineDetail.value= response.body()!!
-                    Log.d("Test" , "코루틴 테스팅 중" +_liveWineDetail.value.toString())
-                }
-            }
-        }
     }
 
     // 콜백 사용

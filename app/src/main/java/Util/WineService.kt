@@ -18,4 +18,11 @@ interface WineService {
     suspend fun getWineDetail(
         @Field("Wid") Wid: Int
     ): Response<WineDTO>
+
+    @FormUrlEncoded
+    @POST("get_recommend_wine_list.php")
+    suspend fun getRecommendList(
+        @Field("Tag1") Tag1: String,
+        @Field("Tag2") Tag2: String
+    ): Response<recommendListReturn>
 }

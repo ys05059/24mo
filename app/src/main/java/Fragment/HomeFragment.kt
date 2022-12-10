@@ -108,7 +108,7 @@ class HomeFragment : Fragment(){
             SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0161000/W0161502.jpg",
                 ScaleTypes.CENTER_INSIDE)
         )          // 몬테스 알파
-        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0163000/W0163213.jpg", ScaleTypes.CENTER_INSIDE))         // 돔페리뇽
+        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/IMAGE/0163000/T0163213_001.png", ScaleTypes.CENTER_INSIDE))         // 돔페리뇽
         image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0167000/W0167176.png", ScaleTypes.CENTER_INSIDE))         // 벨 아사이
         return image_list
     }
