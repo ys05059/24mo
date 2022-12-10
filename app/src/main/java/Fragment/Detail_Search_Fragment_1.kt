@@ -4,20 +4,10 @@ import Main.MainActivity
 import Main.MainViewModel
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,8 +16,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentDetailSearch1Binding
-import com.example.a24mo.databinding.RecommendWineFragment1Binding
-import com.example.a24mo.databinding.SelectPriceRangeBinding
 
 //가격대 다이얼로그를 위해 클래스를 만듬
 class PriceDialog(context: Context){

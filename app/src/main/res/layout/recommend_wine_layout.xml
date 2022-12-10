@@ -74,7 +74,7 @@
     <FrameLayout
         android:id="@+id/step_id"
         android:layout_width="match_parent"
-        android:layout_height="583dp"
+        android:layout_height="0dp"
         android:padding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
