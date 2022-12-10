@@ -118,11 +118,10 @@ class MainViewModel :  ViewModel(){
     private val _dailySalesList = MutableLiveData<ArrayList<SalesDTO>>()
     val dailySalesList : LiveData<ArrayList<SalesDTO>> get() = _dailySalesList
 
-    fun getAdminData(){
+    fun getDailyData(){
         job = CoroutineScope(Dispatchers.IO).launch {
             //임시
-            val date = "2022-12-10"
-            val response  = wineService.getDaily(date)
+            val response  = wineService.getDaily()
             withContext(Dispatchers.Main){
                 if(response.isSuccessful){
                     //임시 반환값?
@@ -132,6 +131,23 @@ class MainViewModel :  ViewModel(){
             }
         }
     }
+
+    fun getDailySalesData(){
+        job = CoroutineScope(Dispatchers.IO).launch {
+            //임시
+            val date = "2022-12-10"
+            val response  = wineService.getDailySales(date)
+            withContext(Dispatchers.Main){
+                if(response.isSuccessful){
+                    //임시 반환값?
+                    //_dailySalesList.value= response.body()!!
+                    Log.d("Test" , "코루틴 테스팅 중" +_dailySalesList.value.toString())
+                }
+            }
+        }
+    }
+
+
 
     // 콜백 사용
 //    fun getWineDetail(Wid : Int) {
