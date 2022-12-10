@@ -1,5 +1,6 @@
 package Fragment
 
+import Main.MainActivity
 import Main.MainViewModel
 import Util.CartItem
 import Util.price_format
@@ -68,6 +69,11 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
         binding.closeButton.setOnClickListener {
             dismiss()
         }
+        // 결제 버튼
+        binding.payButton.setOnClickListener {
+            //(activity as MainActivity).replaceTransaction(PayingFragment())
+            loadFragment(PayingFragment())
+        }
         return binding.root
     }
 
@@ -81,7 +87,7 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
     private fun loadFragment(fragment: Fragment){
         Log.d("clickTest","click!->"+fragment.tag)
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        //transaction.replace(R.id.fragment_container,fragment)
+        transaction.replace(R.id.fragment_container,fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }

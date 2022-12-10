@@ -1,0 +1,33 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragment.FinishPayFragment"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/finish_pay"
+            android:scaleType="centerCrop" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/solid_button"
+            android:text="홈으로 이동"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:id="@+id/returnHomeButton"/>
+
+    </LinearLayout>
+
+</FrameLayout>

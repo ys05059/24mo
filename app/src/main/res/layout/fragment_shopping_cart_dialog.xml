@@ -97,18 +97,41 @@
             android:background="#D4D4D3"
             android:layout_marginTop="10dp"/>
 
-        <Button
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/solid_button"
-            android:layout_marginTop="10dp"
-            android:text="닫기"
-            android:textColor="@color/white"
-            android:fontFamily="@font/nanum_gothic_extra_bold"
-            android:textSize="18dp"
-            android:id="@+id/closeButton" />
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
-    </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/solid_button"
+                android:layout_marginTop="10dp"
+                android:text="닫기"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_extra_bold"
+                android:textSize="18dp"
+                android:id="@+id/closeButton" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/solid_button"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="결제하기"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_extra_bold"
+                android:textSize="18dp"
+                android:id="@+id/payButton" />
+
+        </LinearLayout>
+
+        </LinearLayout>
+
     </FrameLayout>
+
 </ScrollView>
