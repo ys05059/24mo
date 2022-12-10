@@ -61,7 +61,7 @@ class HomeFragment : Fragment(){
         }
         // 와인상세검색 버튼
         binding.DetailSearchBtn.setOnClickListener {
-            loadFragment(DetailSearchFragment())
+            (activity as MainActivity).replaceTransaction(Detail_Search_Fragment())
         }
         // 장바구니 버튼
         if(viewModel.shoppingCartList.value == null)
@@ -126,11 +126,4 @@ class HomeFragment : Fragment(){
         alertDialog.show()
     }
 
-    private fun loadFragment(fragment: Fragment){
-        Log.d("clickTest","click!->"+fragment.tag)
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container,fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
 }
