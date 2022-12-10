@@ -1,5 +1,6 @@
 package Main
 
+import Util.AdminDTO
 import Util.CartItem
 import android.util.Log
 import androidx.lifecycle.*
@@ -7,6 +8,7 @@ import Util.WineDTO
 import Util.WineRemoteDataSource
 import android.view.Window
 import kotlinx.coroutines.*
+import java.time.LocalDate
 
 class MainViewModel :  ViewModel(){
     private val  TAG = "MainViewModel"
@@ -106,6 +108,26 @@ class MainViewModel :  ViewModel(){
                 if(response.isSuccessful){
                     _liveWineDetail.value= response.body()!!
                     Log.d("Test" , "코루틴 테스팅 중" +_liveWineDetail.value.toString())
+                }
+            }
+        }
+    }
+
+
+    //admin Data
+    private val _dailyList = MutableLiveData<ArrayList<AdminDTO>>()
+    val dailyList : LiveData<ArrayList<AdminDTO>> get() = _dailyList
+
+    fun getAdminData(){
+        job = CoroutineScope(Dispatchers.IO).launch {
+            //임시
+            val date = "2022-12-10"
+            val response  = wineService.getDaily(date)
+            withContext(Dispatchers.Main){
+                if(response.isSuccessful){
+                    //임시 반환값?
+                    //_dailyList.value= response.body()!!
+                    Log.d("Test" , "코루틴 테스팅 중" +_dailyList.value.toString())
                 }
             }
         }
