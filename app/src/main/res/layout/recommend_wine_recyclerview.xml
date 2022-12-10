@@ -5,11 +5,8 @@
 
     <data>
         <variable
-            name="item"
-            type="Util.CartItem" />
-        <variable
-            name="adapter"
-            type="Fragment.ShoppingCartListAdapter" />
+            name="wine"
+            type="Util.WineDTO" />
     </data>
 
     <LinearLayout
@@ -39,9 +36,9 @@
                 android:fontFamily="@font/nanum_gothic_bold"
                 android:gravity="center"
                 android:padding = "6dp"
-                android:text="3만원 이하"
                 android:textColor="@color/wine"
                 android:textSize="16dp"
+                bindingAdapter_price_range_setting ="@{wine.w_price}"
                 />
 
         </LinearLayout>
@@ -63,51 +60,51 @@
                 android:id="@+id/wineImg"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/wine1" />
+                imageUrl="@{wine.w_image}"/>
 
             <GridLayout
-                android:layout_width="wrap_content"
+                android:layout_width="213dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:columnCount="2">
+                android:columnCount="2"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/wineName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_gothic_bold"
-                    android:text="@{item.wine.w_name}"
+                    android:text="@{wine.w_name}"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
 
                 <GridLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:columnCount="2">
+                    android:columnCount="2"
+                    android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/wineCategory"
                         android:layout_width="83dp"
                         android:layout_height="33dp"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/solid_button"
                         android:fontFamily="@font/nanum_gothic_bold"
+                        android:text="@{wine.w_type +`와인`}"
                         android:textColor="@color/white"
-                        android:text="@{item.wine.w_type +`와인`}"
-                        android:textSize="12dp"
-                        android:layout_marginTop="10dp" />
+                        android:textSize="12dp" />
 
                     <Button
                         android:id="@+id/wineFrom"
                         android:layout_width="83dp"
                         android:layout_height="33dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/stroke_button"
                         android:fontFamily="@font/nanum_gothic_bold"
+                        android:text="@{wine.w_region+`산`}"
                         android:textColor="@color/red"
-                        android:text="@{item.wine.w_region+`산`}"
-                        android:textSize="12dp"
-                        android:layout_marginTop="10dp" />
+                        android:textSize="12dp" />
 
                 </GridLayout>
 
@@ -132,18 +129,19 @@
                             android:textSize="12dp" />
 
                         <Button
-                            android:id="@+id/wineSweet"
+                            android:id="@+id/wineSweetness"
+                            bindingAdapter_feature_setting="@{wine.w_sweetness}"
                             android:layout_width="60dp"
                             android:layout_height="32dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
                             android:background="@drawable/solid_button"
                             android:fontFamily="@font/nanum_gothic_bold"
-                            android:text="@{adapter.feature_fun(item.wine.w_sweetness)}"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
                     </LinearLayout>
+                    <!-- app:feature_setting은 버튼 이름 설정-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -161,14 +159,14 @@
                             android:textSize="12dp" />
 
                         <Button
-                            android:id="@+id/wineSour"
+                            android:id="@+id/wineAcidity"
+                            bindingAdapter_feature_setting="@{wine.w_acidity}"
                             android:layout_width="60dp"
                             android:layout_height="32dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="3dp"
                             android:background="@drawable/solid_button"
                             android:fontFamily="@font/nanum_gothic_bold"
-                            android:text="@{adapter.feature_fun(item.wine.w_acidity)}"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -191,13 +189,13 @@
 
                         <Button
                             android:id="@+id/wineBody"
+                            bindingAdapter_body_setting="@{wine.w_acidity}"
                             android:layout_width="wrap_content"
                             android:layout_height="32dp"
-                            android:layout_marginTop="3dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="3dp"
                             android:background="@drawable/solid_button"
                             android:fontFamily="@font/nanum_gothic_bold"
-                            android:text="@{adapter.body_fun(item.wine.w_body)}"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -220,68 +218,83 @@
 
                         <Button
                             android:id="@+id/wineTanin"
+                            bindingAdapter_feature_setting="@{wine.w_tannin}"
                             android:layout_width="60dp"
                             android:layout_height="32dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="3dp"
                             android:background="@drawable/solid_button"
                             android:fontFamily="@font/nanum_gothic_bold"
-                            android:text="@{adapter.feature_fun(item.wine.w_tannin)}"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:orientation="horizontal">-->
+                    <!--                        <TextView-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginLeft="10dp"-->
+                    <!--                            android:layout_marginTop="10dp"-->
+                    <!--                            android:fontFamily="@font/nanum_gothic"-->
+                    <!--                            android:text="도수"-->
+                    <!--                            android:textColor="@color/black"-->
+                    <!--                            android:textSize="12dp" />-->
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="@font/nanum_gothic"
-                            android:text="도수"
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
+                    <!--                        <TextView-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginLeft="10dp"-->
+                    <!--                            android:layout_marginTop="10dp"-->
+                    <!--                            android:fontFamily="@font/nanum_gothic_bold"-->
+                    <!--                            android:text="@{wine.w_alcohol + `%`}"-->
+                    <!--                            android:textColor="@color/black"-->
+                    <!--                            android:textSize="16dp"-->
+                    <!--                            android:id="@+id/wineAlcohol" />-->
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="@font/nanum_gothic_bold"
-                            android:text="@{item.wine.w_alcohol + `%`}"
-                            android:textColor="@color/black"
-                            android:textSize="16dp"
-                            android:id="@+id/wineAlcohol" />
-
-                    </LinearLayout>
+                    <!--                    </LinearLayout>-->
 
                 </LinearLayout>
 
-            </GridLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="153dp"
-                android:layout_height="match_parent">
-
                 <TextView
-                    android:id = "@+id/winePrice"
+                    android:id="@+id/winePrice"
+                    bindingAdapter_price_format="@{wine.w_price}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="₩0"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/nanum_gothic_bold"
-                    android:textSize = "18dp"
+                    android:textSize="18dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.422"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.995" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </GridLayout>
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="153dp"-->
+<!--                android:layout_height="match_parent">-->
+
+<!--                <TextView-->
+<!--                    android:id = "@+id/winePrice"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/nanum_gothic_bold"-->
+<!--                    android:textSize = "18dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.422"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.995"-->
+<!--                    bindingAdapter_price_format="@{wine.w_price}"-->
+<!--                    />-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
         </LinearLayout>
 
