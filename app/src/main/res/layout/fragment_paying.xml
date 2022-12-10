@@ -2,14 +2,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="Fragment.PayingFragment"
     android:background="@color/white">
 
     <!-- TODO: Update blank fragment layout -->
-    <ImageView
+
+<!--    <ImageView-->
+<!--        android:id="@+id/paying_image"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:src="@drawable/paying_img" />-->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/paying_img"
-        android:layout_gravity="center"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/wine_loading"
+            android:layout_width="188dp"
+            android:layout_height="196dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_speed="1"
+            app:lottie_rawRes="@raw/wine_loading" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="결제가 진행 중입니다\n잠시만 기다려 주세요"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            />
+
+    </LinearLayout>
 
 </FrameLayout>

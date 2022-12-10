@@ -33,7 +33,9 @@
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/solid_button.xml" value="0.366" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/stroke_button.xml" value="0.366" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/white_round.xml" value="0.1955" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_finish_pay.xml" value="0.30055579307396324" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_information.xml" value="0.28802083333333334" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_paying.xml" value="0.30055579307396324" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_shopping_cart_dialog.xml" value="0.18508997429305912" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/home_layout.xml" value="0.14688675302966986" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/recommend_wine_fragment1.xml" value="0.11666666666666667" />

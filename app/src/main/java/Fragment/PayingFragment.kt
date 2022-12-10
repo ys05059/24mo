@@ -13,6 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 
 import com.example.a24mo.databinding.FragmentPayingBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class PayingFragment : Fragment(){
@@ -30,6 +34,16 @@ class PayingFragment : Fragment(){
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        CoroutineScope(Dispatchers.Default).launch {
+            launch {
+                delay(2000)
+                (activity as MainActivity).replaceTransaction(FinishPayFragment())
+            }
+        }
     }
 
     override fun onDestroyView() {

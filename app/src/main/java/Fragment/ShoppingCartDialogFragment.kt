@@ -72,7 +72,8 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
         // 결제 버튼
         binding.payButton.setOnClickListener {
             //(activity as MainActivity).replaceTransaction(PayingFragment())
-            loadFragment(PayingFragment())
+            dismiss()
+            (activity as MainActivity).replaceTransaction(PayingFragment())
         }
         return binding.root
     }
@@ -82,13 +83,5 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
     }
     override fun minusCount(item: CartItem){
         vm.cartItem_count_minus(item)
-    }
-
-    private fun loadFragment(fragment: Fragment){
-        Log.d("clickTest","click!->"+fragment.tag)
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container,fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
     }
 }
