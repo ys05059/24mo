@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <!--    상단바-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Top_bar"
@@ -74,7 +75,7 @@
     <FrameLayout
         android:id="@+id/step_id"
         android:layout_width="match_parent"
-        android:layout_height="583dp"
+        android:layout_height="680dp"
         android:padding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
