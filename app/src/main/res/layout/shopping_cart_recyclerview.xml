@@ -242,57 +242,80 @@
             </GridLayout>
 
         </LinearLayout>
-        <LinearLayout
+
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:columnCount="2">
 
-            <TextView
-                android:id="@+id/wineCount"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:fontFamily="@font/nanum_gothic_extra_bold"
-                android:textColor="@color/black"
-                android:textSize="22dp"
-                android:text="@{item.count + `개`}"
-                />
-            <TextView
-                android:id="@+id/winePrice"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:fontFamily="@font/nanum_gothic_extra_bold"
-                android:textColor="@color/black"
-                android:textSize="22dp"
-                android:text="@{adapter.price_format(item.wine.w_price)}"
-                />
-            <Button
-                android:id="@+id/plusBtn"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+"
-                android:textSize="22dp"
-                />
-            <Button
-                android:id="@+id/minusBtn"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:id="@+id/wineCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:fontFamily="@font/nanum_gothic_extra_bold"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:text="@{item.count + `개`}"
+                    />
+
+                <TextView
+                    android:id="@+id/winePrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:fontFamily="@font/nanum_gothic_extra_bold"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:text="@{adapter.price_format(item.wine.w_price)}"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-"
-                android:textSize="22dp"
-                />
+                android:orientation="horizontal"
+                android:layout_gravity="end"
+                android:layout_marginRight="10dp">
+
+                <Button
+                    android:id="@+id/plusBtn"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:text="+"
+                    android:textSize="22dp"
+                    android:background="@color/light_gray"
+                    />
+                <Button
+                    android:id="@+id/minusBtn"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="-"
+                    android:textSize="22dp"
+                    android:background="@color/light_gray"
+                    />
+
+            </LinearLayout>
+        </GridLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D4D4D3"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
 
         </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#D4D4D3"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
-
-    </LinearLayout>
 </layout>
