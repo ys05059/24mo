@@ -25,7 +25,6 @@ interface WineService {
     @FormUrlEncoded
     @POST("get_daily.php")
     suspend fun getDaily(
-        @Field("date") date: String
     ): Response<AdminDTO>
 
     @FormUrlEncoded
