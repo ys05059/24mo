@@ -57,6 +57,10 @@ class MainViewModel :  ViewModel(){
         Log.d(TAG, shoppingCartList.value.toString())
     }
 
+    fun setWineDetail(wine: WineDTO){
+        _liveWineDetail.value = wine
+    }
+
     // Retrofit 비동기 통신 - Wid로 와인 상세정보 받아오기
     fun getWineDetail(Wid : Int){
         job = CoroutineScope(Dispatchers.IO).launch {

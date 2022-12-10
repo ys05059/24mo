@@ -3,18 +3,21 @@ package Fragment
 import Main.MainActivity
 import Main.MainViewModel
 import Util.CartItem
+import Util.WineDTO
 import Util.price_format
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a24mo.R
 import com.example.a24mo.databinding.RecommendWineFragmentResultBinding
+import kotlinx.coroutines.*
 
 class Recommend_Result_Fragment : Fragment() {
     private  lateinit var vm : MainViewModel
@@ -38,29 +41,40 @@ class Recommend_Result_Fragment : Fragment() {
         val ParentFragment : Recommend_Fragment =
             (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Recommend_Fragment
         ParentFragment.invisible_back_btn(false)
+        lateinit var recommendListAdapter :RecommendListAdapter
 
         binding.recommendRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         vm.recommendList.observe(viewLifecycleOwner,Observer{
             if(!vm.recommendList.value.isNullOrEmpty()){
-                val recommendListAdapter= RecommendListAdapter(vm.recommendList)
+                recommendListAdapter= RecommendListAdapter(vm.recommendList)
                 binding.recommendRecyclerView.adapter = recommendListAdapter
             }
+            // 각 상품 클릭 시 상세 페이지로 이동
+            recommendListAdapter.setItemClickListener(object : RecommendListAdapter.OnItemClickListener {
+                override fun onClick(v: View, position: Int,wineDTO: WineDTO) {
+                    vm.setWineDetail(wineDTO)
+                    val info_frag = InformationFragment()
+                    info_frag.show(childFragmentManager,"Recommend_Result")
+                }
+            })
         })
+
 
         if(vm.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
         {
-            binding.basket.setText("0")
+            binding.recommendCartBtn.setText("0")
+        }else{
+            binding.recommendCartBtn.setText(vm.recommendList.value?.size.toString())
         }
-        else{
-            binding.basket.setText(vm.recommendList.value?.size.toString())
+
+
+
+        binding.recommendAddCartBtn.setOnClickListener {
+            // 추천 리스트에서 체크 완료된 상품들 shopping Cart에 담기
+
         }
 
         return view
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // 추천 리스트 DB로 부터 받아오기
     }
 
     override fun onDestroyView() {

@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Window
 import android.widget.Button
@@ -24,6 +25,9 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import android.view.View
 import com.example.a24mo.R
 import com.example.a24mo.databinding.HomeLayoutBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity(){
 
@@ -65,7 +69,16 @@ class MainActivity : AppCompatActivity(){
 //            return
 //        }
         //back == 1 뒤로가기 /  0== 다음 step으로 가기
-        Recommend_transaction =fragmentManager.beginTransaction()
+        runBlocking {
+            launch {
+                Recommend_transaction =fragmentManager.beginTransaction()
+                Log.d("test","대기 시작")
+                delay(300)
+                Log.d("test","대기 끝")
+
+            }
+        }
+        Log.d("test","코루틴 밖이야")
         when(back){
             0->{
                 Recommend_transaction.setCustomAnimations(

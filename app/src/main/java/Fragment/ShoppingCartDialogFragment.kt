@@ -42,6 +42,7 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
         _binding = FragmentShoppingCartDialogBinding.inflate(inflater,container,false)
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        binding.cartRecyclerView.setHasFixedSize(true)
         Log.d(TAG, vm.shoppingCartList.value.toString())
 
         if(!vm.shoppingCartList.value.isNullOrEmpty()){

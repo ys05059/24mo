@@ -58,9 +58,10 @@ class RecommendListAdapter(private val recommendList:LiveData<ArrayList<WineDTO>
             }
 
         }
-//        holder.itemView.setOnClickListener {
-//            itemClickListener.onClick(it, position)
-//        }
+        // 리스트 아이템 선택시 상세정보 페이지에 데이터 넘겨주기
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position,recommendList.value?.get(position)!!)
+        }
     }
 
 
@@ -69,7 +70,7 @@ class RecommendListAdapter(private val recommendList:LiveData<ArrayList<WineDTO>
     }
 
     interface OnItemClickListener {
-        fun onClick(v: View, position: Int)
+        fun onClick(v: View, position: Int,wineDTO: WineDTO)
     }
     private lateinit var itemClickListener: OnItemClickListener
 

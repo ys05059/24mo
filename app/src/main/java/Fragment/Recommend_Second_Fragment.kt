@@ -16,6 +16,7 @@ import com.example.a24mo.R
 import com.example.a24mo.databinding.HomeLayoutBinding
 import com.example.a24mo.databinding.RecommendWineFragment1Binding
 import com.example.a24mo.databinding.RecommendWineFragment2Binding
+import kotlinx.coroutines.runBlocking
 
 class Recommend_Second_Fragment : Fragment(){
     private  lateinit var vm : MainViewModel

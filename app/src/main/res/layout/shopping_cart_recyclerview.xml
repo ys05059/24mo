@@ -29,16 +29,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_gothic"
-                android:buttonTint="@color/black" />
+<!--            <CheckBox-->
+<!--                android:id="@+id/checkbox"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/nanum_gothic"-->
+<!--                android:buttonTint="@color/black" />-->
 
             <ImageView
                 android:id="@+id/wineImg"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="match_parent"
                 imageUrl="@{item.wine.w_image}" />
 
@@ -208,34 +208,34 @@
                             android:textSize="12dp" />
 
                     </LinearLayout>
+<!--                    도수 부분-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal">-->
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:layout_marginTop="10dp"-->
+<!--                            android:fontFamily="@font/nanum_gothic"-->
+<!--                            android:text="도수"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="12dp" />-->
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="@font/nanum_gothic"
-                            android:text="도수"
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:layout_marginTop="10dp"-->
+<!--                            android:fontFamily="@font/nanum_gothic_bold"-->
+<!--                            android:text="@{item.wine.w_alcohol + `%`}"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="16dp"-->
+<!--                            android:id="@+id/wineAlcohol" />-->
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="@font/nanum_gothic_bold"
-                            android:text="@{item.wine.w_alcohol + `%`}"
-                            android:textColor="@color/black"
-                            android:textSize="16dp"
-                            android:id="@+id/wineAlcohol" />
-
-                    </LinearLayout>
+<!--                    </LinearLayout>-->
 
                 </LinearLayout>
 
@@ -261,20 +261,46 @@
                     android:id="@+id/wineCount"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
+                    android:layout_gravity="left"
+                    android:gravity="left"
                     android:fontFamily="@font/nanum_gothic_extra_bold"
                     android:textColor="@color/black"
                     android:textSize="22dp"
                     android:text="@{item.count + `개`}"
                     />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    >
 
+                    <Button
+                        android:id="@+id/plusBtn"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:text="+"
+                        android:textSize="22dp"
+                        android:background="@color/light_gray"
+                        />
+                    <Button
+                        android:id="@+id/minusBtn"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="-"
+                        android:textSize="22dp"
+                        android:background="@color/light_gray"
+                        />
+
+                </LinearLayout>
                 <TextView
                     android:id="@+id/winePrice"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
+                    android:layout_gravity="right"
+                    android:gravity="right"
                     android:fontFamily="@font/nanum_gothic_extra_bold"
                     android:textColor="@color/black"
                     android:textSize="22dp"
@@ -282,32 +308,7 @@
                     />
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="end"
-                android:layout_marginRight="10dp">
 
-                <Button
-                    android:id="@+id/plusBtn"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:text="+"
-                    android:textSize="22dp"
-                    android:background="@color/light_gray"
-                    />
-                <Button
-                    android:id="@+id/minusBtn"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="-"
-                    android:textSize="22dp"
-                    android:background="@color/light_gray"
-                    />
-
-            </LinearLayout>
         </GridLayout>
 
             <View

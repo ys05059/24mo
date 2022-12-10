@@ -20,6 +20,10 @@ import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.a24mo.R
 import com.example.a24mo.databinding.HomeLayoutBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(){
 
@@ -52,7 +56,12 @@ class HomeFragment : Fragment(){
                 eventWineArray.add(163213)                                                      // 돔페리뇽
                 eventWineArray.add(167176)                                                      // 벨아사이
                 viewModel.getWineDetail(eventWineArray[position])                                // wid 넘기면서 viewmodel에 해당 내용 넣어두기
-                (activity as MainActivity).replaceTransaction(InformationFragment())
+
+                CoroutineScope(Dispatchers.Main).launch{
+                    val info_frag = InformationFragment()
+                    info_frag.show(childFragmentManager,"HomeFragment")
+                    delay(500)
+                }
             }
         })
         // 와인 추천 버튼

@@ -31,14 +31,14 @@
             android:layout_marginRight="8dp"
             android:text="와인 이름" />
 
-        <Button
-            android:id="@+id/HomeBtn"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/black_round"
-            android:text="Home"
-            android:textColor="@color/white"
-            />
+<!--        <Button-->
+<!--            android:id="@+id/HomeBtn"-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:background="@drawable/black_round"-->
+<!--            android:text="Home"-->
+<!--            android:textColor="@color/white"-->
+<!--            />-->
 
     </LinearLayout>
 
@@ -269,12 +269,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <Button
+            android:id="@+id/go_back_btn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/white_round"
+            android:layout_marginRight="30dp"
+            android:visibility="visible"
+            android:text="돌아가기"/>
+        <Button
             android:id="@+id/addCartBtn"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/white_round"
             android:text="담기"/>
+
     </LinearLayout>
 
 
