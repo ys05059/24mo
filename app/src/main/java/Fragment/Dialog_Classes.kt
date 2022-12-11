@@ -63,7 +63,7 @@ class FoodDialog(context: Context){
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) //다이얼로그 테두리 둥글게
 
         var count_Item = 0 //1개만 선택가능
-        var select_index = 0
+        var select_index = -1
         val FoodList  = ArrayList<Button>()
         FoodList.add(dialog.findViewById<Button>(R.id.food_meat))//고기류 0
         FoodList.add(dialog.findViewById<Button>(R.id.food_sea))//해산물 1
@@ -196,3 +196,129 @@ class FoodDialog(context: Context){
 
 
 }
+class TasteDialog(context:Context)
+{
+    private val dialog = Dialog(context)
+    var Sweet_btns = ArrayList<Button>()
+    var Acid_btns = ArrayList<Button>()
+    var Body_btns = ArrayList<Button>()
+    var Tanin_btns = ArrayList<Button>()
+
+    var sweet : Int = 0 //당도  ( 낮음 1 / 보통 2/ 높음 3 / 상관없음 0)
+    var acid : Int = 0 //산도
+    var body : Int = 0 //바디
+    var tanin : Int = 0 //타닌
+
+    fun Show(){
+        dialog.setContentView(R.layout.detail_taste)
+        dialog.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        //당도
+        Sweet_btns.add(dialog.findViewById(R.id.sweet_none))
+        Sweet_btns.add(dialog.findViewById(R.id.sweet_low))
+        Sweet_btns.add(dialog.findViewById(R.id.sweet_medium))
+        Sweet_btns.add(dialog.findViewById(R.id.sweet_high))
+
+        //반복문사용시 에러발생(반복문 종료시 내용이 사라져서 그런듯)
+        Sweet_btns[0].setOnClickListener { taste_OnClick(0,"sweet") }
+        Sweet_btns[1].setOnClickListener { taste_OnClick(1,"sweet") }
+        Sweet_btns[2].setOnClickListener { taste_OnClick(2,"sweet") }
+        Sweet_btns[3].setOnClickListener { taste_OnClick(3,"sweet") }
+
+        //산도
+        Acid_btns.add(dialog.findViewById(R.id.acid_none))
+        Acid_btns.add(dialog.findViewById(R.id.acid_low))
+        Acid_btns.add(dialog.findViewById(R.id.acid_medium))
+        Acid_btns.add(dialog.findViewById(R.id.acid_high))
+
+        Acid_btns[0].setOnClickListener { taste_OnClick(0,"acid") }
+        Acid_btns[1].setOnClickListener { taste_OnClick(1,"acid") }
+        Acid_btns[2].setOnClickListener { taste_OnClick(2,"acid") }
+        Acid_btns[3].setOnClickListener { taste_OnClick(3,"acid") }
+
+        //바디
+        Body_btns.add(dialog.findViewById(R.id.body_none))
+        Body_btns.add(dialog.findViewById(R.id.body_low))
+        Body_btns.add(dialog.findViewById(R.id.body_medium))
+        Body_btns.add(dialog.findViewById(R.id.body_high))
+
+        Body_btns[0].setOnClickListener { taste_OnClick(0,"body") }
+        Body_btns[1].setOnClickListener { taste_OnClick(1,"body") }
+        Body_btns[2].setOnClickListener { taste_OnClick(2,"body") }
+        Body_btns[3].setOnClickListener { taste_OnClick(3,"body") }
+
+        //타닌
+        Tanin_btns.add(dialog.findViewById(R.id.tanin_none))
+        Tanin_btns.add(dialog.findViewById(R.id.tanin_low))
+        Tanin_btns.add(dialog.findViewById(R.id.tanin_medium))
+        Tanin_btns.add(dialog.findViewById(R.id.tanin_high))
+
+        Tanin_btns[0].setOnClickListener { taste_OnClick(0,"tanin") }
+        Tanin_btns[1].setOnClickListener { taste_OnClick(1,"tanin") }
+        Tanin_btns[2].setOnClickListener { taste_OnClick(2,"tanin") }
+        Tanin_btns[3].setOnClickListener { taste_OnClick(3,"tanin") }
+
+
+
+
+        val done = dialog.findViewById<Button>(R.id.done_btn) //입력버튼
+        //입력버튼시 리스너
+        done.setOnClickListener {
+            onClickedListener.onClicked(sweet,acid,body,tanin)
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+    fun taste_OnClick(index : Int, tag:String){
+        var Btns = ArrayList<Button>()
+        //태그를 보고 어떤버튼인지 파악(당도,산도 등등)
+        when(tag)
+        {
+            "sweet" -> Btns.addAll(Sweet_btns)
+            "acid" -> Btns.addAll(Acid_btns)
+            "body" ->Btns.addAll(Body_btns)
+            "tanin" ->Btns.addAll(Tanin_btns)
+        }
+        //몇번째 값을 클릭했는지
+        when(index)
+        {
+            0->Btns[index].setBackgroundResource(R.drawable.taste_btn_nothing_select)
+            1->Btns[index].setBackgroundResource(R.drawable.taste_btn_1)
+            2->Btns[index].setBackgroundResource(R.drawable.taste_btn_2)
+            3->Btns[index].setBackgroundResource(R.drawable.taste_btn_3)
+
+        }
+        //선택안된것들 회색처리
+        for (list in Btns)
+        {
+            if(list != Btns[index])
+            {
+                list.setBackgroundResource(R.drawable.taste_btn_nothing)
+            }
+        }
+        //선택값 설정
+        when(tag)
+        {
+            "sweet"-> sweet = index
+            "acid" ->acid = index
+            "body" ->body = index
+            "tanin" ->tanin = index
+        }
+    }
+
+
+    interface ButtonClickListener{ //3
+        fun onClicked(sweet:Int, acid:Int, body:Int, tanin:Int) //인터페이스를 통해 프래그먼트에서 값을 받을수있음.
+    }
+    private lateinit var onClickedListener: ButtonClickListener //1
+    fun setOnClickedListener(listener: ButtonClickListener) { //2
+        onClickedListener = listener
+    }
+
+
+
+}
+

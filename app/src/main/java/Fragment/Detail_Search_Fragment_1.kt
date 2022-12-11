@@ -38,8 +38,6 @@ class Detail_Search_Fragment_1 : Fragment() {
         val ParentFragment : Detail_Search_Fragment =
             (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Detail_Search_Fragment
         ParentFragment.invisible_back_btn(true)
-
-
         //가격대
         binding.priceRange.setOnClickListener{
             binding.priceRange.setBackgroundResource(R.drawable.button_round_white_red) //선택시 테두리 빨갛게.
@@ -55,7 +53,6 @@ class Detail_Search_Fragment_1 : Fragment() {
                 }
             })
         }
-
 
         //음식
         binding.wineFood.setOnClickListener {
@@ -78,6 +75,32 @@ class Detail_Search_Fragment_1 : Fragment() {
                     vm.Change_font_size(binding.wineFood, "food")
                 }
             })
+        }
+
+        //맛 설정
+        binding.wineOthers.setOnClickListener {
+            binding.wineOthers.setBackgroundResource(R.drawable.button_round_white_red)
+            val dialog = TasteDialog(activity as MainActivity)
+            dialog.Show()
+            dialog.setOnClickedListener(object : TasteDialog.ButtonClickListener{
+                override fun onClicked(sweet:Int, acid:Int, body:Int, tanin:Int) {
+                    //1 : 낮음 / 2: 보통 / 3: 높음 / 0 :상관없음(default)
+                    vm.Detail_Taste_sweet = sweet
+                    vm.Detail_Taste_acid = acid
+                    vm.Detail_Taste_body= body
+                    vm.Detail_Taste_tanin = tanin
+
+                    Log.d("Taste", "${vm.Detail_Taste_sweet}${vm.Detail_Taste_acid}${vm.Detail_Taste_body}${vm.Detail_Taste_tanin}")
+                    vm.Change_font_size(binding.wineOthers, "others")
+                }
+            })
+        }
+
+
+
+        //검색 버튼
+        binding.searchBtn.setOnClickListener {
+            (activity as MainActivity).changeDetailSearchFragment(2, 0)
         }
         return view
     }

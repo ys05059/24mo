@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_round"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "맛 설정"
+        android:textColor="@color/grey_font"
+        android:textSize="40dp"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        />
+
+<!--    당도-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "   당도"
+            android:textSize="30dp"
+            android:textColor="@color/grey_font"
+            android:fontFamily="@font/nanum_gothic_bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:id = "@+id/sweet_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_1"
+                android:text = "낮음"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/sweet_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_2"
+                android:text = "중간"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/sweet_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_3"
+                android:text = "높음"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/sweet_none"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_nothing"
+                android:text = "상관없음"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "   산도"
+            android:textSize="30dp"
+            android:textColor="@color/grey_font"
+            android:fontFamily="@font/nanum_gothic_bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id = "@+id/acid_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_1"
+                android:text = "낮음"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/acid_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_2"
+                android:text = "중간"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/acid_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_3"
+                android:text = "높음"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/acid_none"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_nothing"
+                android:text = "상관없음"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "   바디"
+            android:textSize="30dp"
+            android:textColor="@color/grey_font"
+            android:fontFamily="@font/nanum_gothic_bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id = "@+id/body_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_1"
+                android:text = "가벼움"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/body_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_2"
+                android:text = "중간"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/body_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_3"
+                android:text = "무거움"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/body_none"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_nothing"
+                android:text = "상관없음"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "   타닌"
+            android:textSize="30dp"
+            android:textColor="@color/grey_font"
+            android:fontFamily="@font/nanum_gothic_bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id = "@+id/tanin_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_1"
+                android:text = "가벼움"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/tanin_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_2"
+                android:text = "중간"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/tanin_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_3"
+                android:text = "무거움"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id = "@+id/tanin_none"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/taste_btn_nothing"
+                android:text = "상관없음"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="10dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="70dp"/>
+
+    <Button
+        android:id = "@+id/done_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_round"
+        android:text="완료"
+        android:textSize="35dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        />
+</LinearLayout>
