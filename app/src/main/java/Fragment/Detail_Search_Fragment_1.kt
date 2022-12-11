@@ -17,6 +17,61 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentDetailSearch1Binding
 
+class KindDialog(context: Context){
+    private val dialog = Dialog(context)
+    //레이아웃을 보여줌.
+    fun ShowKind(){
+        dialog.setContentView(R.layout.detail_search_dialog1)
+        dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT)
+
+        val close = dialog.findViewById<Button>(R.id.closeButton) //입력버튼
+        //입력버튼시 리스너
+        close.setOnClickListener {
+//            onClickedListener.onClicked(min_edit.text.toString().toInt(), max_edit.text.toString().toInt())
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+    interface ButtonClickListener{ //3
+        fun onClicked(min_money: Int, max_money:Int) //인터페이스를 통해 프래그먼트에서 값을 받을수있음.
+    }
+    private lateinit var onClickedListener: ButtonClickListener //1
+    fun setOnClickedListener(listener: ButtonClickListener) { //2
+        onClickedListener = listener
+    }
+    //흐름 : 다이얼로그에서 입력 버튼클릭시 -> onClickedListener(1) 변수가 setOnClickedListener함수(2)를 통해 ButtonClickListener(3)로 초기화됨.
+    //이 ButtonClickListener(3) 은 인터페이스 이므로 다시 기존의 프래그먼트(상세검색_1)에서 구현함으로써 프래그먼트에서도 값을 전달받게됨. -> 뷰모델저장
+}
+
+
+class AlcoholDialog(context: Context){
+    private val dialog = Dialog(context)
+    //레이아웃을 보여줌.
+    fun ShowAlcohol(){
+        dialog.setContentView(R.layout.detail_search_dialog2)
+        dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT)
+
+        val close = dialog.findViewById<Button>(R.id.closeButton) //입력버튼
+        //입력버튼시 리스너
+        close.setOnClickListener {
+//            onClickedListener.onClicked(min_edit.text.toString().toInt(), max_edit.text.toString().toInt())
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+    interface ButtonClickListener{ //3
+        fun onClicked(min_money: Int, max_money:Int) //인터페이스를 통해 프래그먼트에서 값을 받을수있음.
+    }
+    private lateinit var onClickedListener: ButtonClickListener //1
+    fun setOnClickedListener(listener: ButtonClickListener) { //2
+        onClickedListener = listener
+    }
+    //흐름 : 다이얼로그에서 입력 버튼클릭시 -> onClickedListener(1) 변수가 setOnClickedListener함수(2)를 통해 ButtonClickListener(3)로 초기화됨.
+    //이 ButtonClickListener(3) 은 인터페이스 이므로 다시 기존의 프래그먼트(상세검색_1)에서 구현함으로써 프래그먼트에서도 값을 전달받게됨. -> 뷰모델저장
+}
+
 //가격대 다이얼로그를 위해 클래스를 만듬
 class PriceDialog(context: Context){
     private val dialog = Dialog(context)
@@ -81,6 +136,19 @@ class Detail_Search_Fragment_1 : Fragment() {
                 }
             })
         }
+
+        binding.wineKind.setOnClickListener {
+            binding.wineKind.setBackgroundResource(R.drawable.button_round_white_red)
+            val dialog = KindDialog(activity as MainActivity)
+            dialog.ShowKind()
+        }
+
+        binding.wineAlcohol.setOnClickListener {
+            binding.wineAlcohol.setBackgroundResource(R.drawable.button_round_white_red)
+            val dialog = AlcoholDialog(activity as MainActivity)
+            dialog.ShowAlcohol()
+        }
+
         return view
     }
     override fun onDestroyView() {
