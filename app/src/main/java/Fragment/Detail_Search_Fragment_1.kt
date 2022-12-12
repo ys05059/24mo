@@ -9,6 +9,8 @@ import android.view.*
 import android.widget.Button
 import android.widget.EditText
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,35 +19,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentDetailSearch1Binding
 
-//가격대 다이얼로그를 위해 클래스를 만듬
-class PriceDialog(context: Context){
-    private val dialog = Dialog(context)
-    //레이아웃을 보여줌.
-    fun Show(){
-        dialog.setContentView(R.layout.select_price_range)
-        dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT)
-
-        val min_edit = dialog.findViewById<EditText>(R.id.minP)//최소금액입력 edittext
-        val max_edit = dialog.findViewById<EditText>(R.id.maxP) //최대금액입력 edittext
-        val done = dialog.findViewById<Button>(R.id.enter) //입력버튼
-        //입력버튼시 리스너
-        done.setOnClickListener {
-            onClickedListener.onClicked(min_edit.text.toString().toInt(), max_edit.text.toString().toInt())
-            dialog.dismiss()
-        }
-        dialog.show()
-    }
-    interface ButtonClickListener{ //3
-        fun onClicked(min_money: Int, max_money:Int) //인터페이스를 통해 프래그먼트에서 값을 받을수있음.
-    }
-    private lateinit var onClickedListener: ButtonClickListener //1
-    fun setOnClickedListener(listener: ButtonClickListener) { //2
-        onClickedListener = listener
-    }
-    //흐름 : 다이얼로그에서 입력 버튼클릭시 -> onClickedListener(1) 변수가 setOnClickedListener함수(2)를 통해 ButtonClickListener(3)로 초기화됨.
-    //이 ButtonClickListener(3) 은 인터페이스 이므로 다시 기존의 프래그먼트(상세검색_1)에서 구현함으로써 프래그먼트에서도 값을 전달받게됨. -> 뷰모델저장
-}
 
 //초창기 프래그먼트
 class Detail_Search_Fragment_1 : Fragment() {
@@ -65,9 +38,7 @@ class Detail_Search_Fragment_1 : Fragment() {
         val ParentFragment : Detail_Search_Fragment =
             (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Detail_Search_Fragment
         ParentFragment.invisible_back_btn(true)
-
-
-
+        //가격대
         binding.priceRange.setOnClickListener{
             binding.priceRange.setBackgroundResource(R.drawable.button_round_white_red) //선택시 테두리 빨갛게.
             val dialog = PriceDialog(activity as MainActivity)
@@ -78,8 +49,58 @@ class Detail_Search_Fragment_1 : Fragment() {
                     vm.minPrice = min_money //최솟값
                     vm.maxPrice = max_money //최댓값
                     Log.d("가격대", "min: ${vm.minPrice} max: ${vm.maxPrice}")
+                    vm.Change_font_size(binding.priceRange,"price")
                 }
             })
+        }
+
+        //음식
+        binding.wineFood.setOnClickListener {
+            binding.wineFood.setBackgroundResource(R.drawable.button_round_white_red)
+            val dialog = FoodDialog(activity as MainActivity)
+
+            dialog.Show()
+            dialog.setOnClickedListener(object : FoodDialog.ButtonClickListener{
+                override fun onClicked(select_index: Int) {
+                    when(select_index){
+                        //뷰모델에 값는것인데 일단 선택된음식 String으로 넘기겠습니다.
+                        0 -> vm.Detail_food = "고기류"
+                        1 ->vm.Detail_food = "해산물"
+                        2 ->vm.Detail_food = "치즈류"
+                        3 ->vm.Detail_food = "과일류"
+                        4 ->vm.Detail_food = "디저트류"
+                        5 ->vm.Detail_food = "기타"
+                    }
+                    Log.d("음식선택", "${vm.Detail_food}")
+                    vm.Change_font_size(binding.wineFood, "food")
+                }
+            })
+        }
+
+        //맛 설정
+        binding.wineOthers.setOnClickListener {
+            binding.wineOthers.setBackgroundResource(R.drawable.button_round_white_red)
+            val dialog = TasteDialog(activity as MainActivity)
+            dialog.Show()
+            dialog.setOnClickedListener(object : TasteDialog.ButtonClickListener{
+                override fun onClicked(sweet:Int, acid:Int, body:Int, tanin:Int) {
+                    //1 : 낮음 / 2: 보통 / 3: 높음 / 0 :상관없음(default)
+                    vm.Detail_Taste_sweet = sweet
+                    vm.Detail_Taste_acid = acid
+                    vm.Detail_Taste_body= body
+                    vm.Detail_Taste_tanin = tanin
+
+                    Log.d("Taste", "${vm.Detail_Taste_sweet}${vm.Detail_Taste_acid}${vm.Detail_Taste_body}${vm.Detail_Taste_tanin}")
+                    vm.Change_font_size(binding.wineOthers, "others")
+                }
+            })
+        }
+
+
+
+        //검색 버튼
+        binding.searchBtn.setOnClickListener {
+            (activity as MainActivity).changeDetailSearchFragment(2, 0)
         }
         return view
     }
@@ -87,6 +108,7 @@ class Detail_Search_Fragment_1 : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 
 }
 

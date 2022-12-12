@@ -5,7 +5,14 @@ import android.util.Log
 import androidx.lifecycle.*
 import Util.WineDTO
 import Util.WineRemoteDataSource
+import android.graphics.Color
+import android.graphics.Typeface
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.view.Window
+import android.widget.Button
 import kotlinx.coroutines.*
 
 class MainViewModel :  ViewModel(){
@@ -30,6 +37,12 @@ class MainViewModel :  ViewModel(){
     var minPrice : Int = 0
     var maxPrice : Int = 0
     var Search_Is_Back : Int = 1
+    var Detail_food : String = "" //음식
+    var Detail_Taste_sweet = -1 //당도
+    var Detail_Taste_acid = -1  //산도
+    var Detail_Taste_body = -1  //바디
+    var Detail_Taste_tanin = -1 //검색
+
 
     // 장바구니 리스트
     private val _shoppingCartList = MutableLiveData<ArrayList<CartItem>>()
@@ -112,6 +125,89 @@ class MainViewModel :  ViewModel(){
             }
         }
         _shoppingCartList.value = cartList!!
+    }
+
+    //특정문자열 글자 크기 바꿈
+    fun Change_font_size(btn : Button, tag: String){
+        //태그만 임의로 설정하셔서 파라미터로 넘기면서 사용하시면 될것같습니다.
+        lateinit var content :String //버튼에 출력할 텍스트내용
+        var start : Int = 0  //특정 문자열을 바꿀 시작위치
+        var temp_taste = arrayOf<String>("","","","")
+
+        if(tag == "others")
+        {
+            when(Detail_Taste_sweet)
+            {
+                0->temp_taste[0] = "상관없음"
+                1->temp_taste[0] = "낮음"
+                2 -> temp_taste[0] = "중간"
+                3 -> temp_taste[0] = "높음"
+            }
+
+            when(Detail_Taste_acid)
+            {
+                0->temp_taste[1] = "상관없음"
+                1->temp_taste[1] = "낮음"
+                2 -> temp_taste[1] = "중간"
+                3 -> temp_taste[1] = "높음"
+            }
+
+            when(Detail_Taste_body)
+            {
+                0->temp_taste[2] = "상관없음"
+                1->temp_taste[2] = "가벼움"
+                2 -> temp_taste[2] = "중간"
+                3 -> temp_taste[2] = "무거움"
+            }
+            when(Detail_Taste_tanin)
+            {
+                0->temp_taste[3] = "상관없음"
+                1->temp_taste[3] = "가벼움"
+                2 -> temp_taste[3] = "중간"
+                3 -> temp_taste[3] = "무거움"
+            }
+        }
+        //텍스트내용 btn.text.toString() 쓰지않는 이유
+        // -> 필터를 설정후, 다시들어가서 설정시 문자열뒤에 계속붙음 (layout의 xml파일의 초기 텍스트로 초기화 필요)
+        when(tag){
+
+            "price"-> content = "      가격대" + "    \t ${minPrice}만원~${maxPrice}만원 사이"
+            "food" -> content = "\n음식"+"\n    ${Detail_food}"
+            "others" ->content = "   당도/산도/바디/타닌" + "\n     ${temp_taste[0]}/${temp_taste[1]}/${temp_taste[2]}/${temp_taste[3]}"
+        }
+        var spanningString : SpannableString = SpannableString(content)
+
+        if(tag == "price") //가격대는 줄바꿈 \n이 아닌  띄어쓰기 \t이므로
+        {
+            start = content.indexOf("\t ")
+        }
+        else if(tag == "others")
+        {
+            start = content.indexOf("\n     ")
+        }
+
+        else
+        {
+            start = content.indexOf(" ")
+        }
+        val end : Int = content.length //끝지점
+        //0.5f ->기존보다 0.5배
+        if(tag == "others")
+        {
+            spanningString.setSpan(RelativeSizeSpan(0.7f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+        else{
+            spanningString.setSpan(RelativeSizeSpan(0.5f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 크기 바꾸기
+        }
+
+
+
+
+
+
+//        spanningString.setSpan(ForegroundColorSpan(Color.parseColor("#000000")),start,end,SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자색상바꾸기
+//        spanningString.setSpan(StyleSpan(Typeface.BOLD), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 스타일바꾸기(굵게, 기울이기등)
+        btn.setText(spanningString)
     }
 
     // 콜백 사용
