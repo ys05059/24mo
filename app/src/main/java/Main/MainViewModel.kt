@@ -1,17 +1,12 @@
 package Main
 
-import Util.CartItem
+import Util.*
 import android.util.Log
 import androidx.lifecycle.*
 import Util.WineDTO
 import Util.WineRemoteDataSource
-import android.graphics.Color
-import android.graphics.Typeface
 import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
-import android.text.style.StyleSpan
-import android.view.Window
 import android.widget.Button
 import kotlinx.coroutines.*
 
@@ -209,6 +204,45 @@ class MainViewModel :  ViewModel(){
 //        spanningString.setSpan(StyleSpan(Typeface.BOLD), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 스타일바꾸기(굵게, 기울이기등)
         btn.setText(spanningString)
     }
+
+
+    //admin Data
+    private val _dailyList = MutableLiveData<ArrayList<AdminDTO>>()
+    val dailyList : LiveData<ArrayList<AdminDTO>> get() = _dailyList
+
+    private val _dailySalesList = MutableLiveData<ArrayList<SalesDTO>>()
+    val dailySalesList : LiveData<ArrayList<SalesDTO>> get() = _dailySalesList
+
+    fun getDailyData(){
+        job = CoroutineScope(Dispatchers.IO).launch {
+            //임시
+            val response  = wineService.getDaily()
+            withContext(Dispatchers.Main){
+                if(response.isSuccessful){
+                    //임시 반환값?
+                    //_dailyList.value= response.body()!!
+                    Log.d("Test" , "코루틴 테스팅 중" +_dailyList.value.toString())
+                }
+            }
+        }
+    }
+
+    fun getDailySalesData(){
+        job = CoroutineScope(Dispatchers.IO).launch {
+            //임시
+            val date = "2022-12-10"
+            val response  = wineService.getDailySales(date)
+            withContext(Dispatchers.Main){
+                if(response.isSuccessful){
+                    //임시 반환값?
+                    //_dailySalesList.value= response.body()!!
+                    Log.d("Test" , "코루틴 테스팅 중" +_dailySalesList.value.toString())
+                }
+            }
+        }
+    }
+
+
 
     // 콜백 사용
 //    fun getWineDetail(Wid : Int) {

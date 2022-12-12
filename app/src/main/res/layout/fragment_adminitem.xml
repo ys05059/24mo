@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="item"
+            type="Util.AdminDTO" />
+        <variable
+            name="adapter"
+            type="Fragment.AdminListAdapter" />
+    </data>
+
+
+    <LinearLayout
+        android:id="@+id/itemroot"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/data1"
+            android:text=""
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/nanum_gothic_bold"/>
+
+        <TextView
+            android:id="@+id/data2"
+            android:text=""
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/nanum_gothic_bold" />
+
+    </LinearLayout>
+</layout>
