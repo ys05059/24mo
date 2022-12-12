@@ -44,4 +44,12 @@ interface WineService {
     suspend fun getMonthly(
         @Field("date") date: String
     ): Response<AdminDTO>
+
+    // 와인 추천 리스트 받기
+    @FormUrlEncoded
+    @POST("get_recommend_wine_list.php")
+    suspend fun getRecommendList(
+        @Field("Tag1") Tag1: String,
+        @Field("Tag2") Tag2: String
+    ): Response<recommendListReturn>
 }

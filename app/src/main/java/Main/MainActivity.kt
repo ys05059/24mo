@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity(){
 
         when(step){
             1 -> Detail_transaction.replace(R.id.searchFragmentArea,Detail_Search_Fragment_1()).commit()
-//            2 -> Detail_transaction.replace(R.id.step_id, Recommend_Second_Fragment()).commit()
+            2 -> Detail_transaction.replace(R.id.searchFragmentArea, Detail_Search_Fragment_result()).commit()
         }
         Detail_transaction.addToBackStack(null)
     }

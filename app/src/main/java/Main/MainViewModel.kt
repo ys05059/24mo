@@ -3,48 +3,41 @@ package Main
 import Util.*
 import android.util.Log
 import androidx.lifecycle.*
-import android.view.Window
+import Util.WineDTO
+import Util.WineRemoteDataSource
+import android.text.SpannableString
+import android.text.style.RelativeSizeSpan
+import android.widget.Button
 import kotlinx.coroutines.*
-import java.time.LocalDate
 
 class MainViewModel :  ViewModel(){
     private val  TAG = "MainViewModel"
-    private var _liveWineDetail = MutableLiveData<WineDTO>()
-    // field를 생성하는 동시에 field의 값을 할당, =로 대입한 변수의 getter는 field의 값을 리턴
-    val wineDetail : MutableLiveData<WineDTO>
-        get() = _liveWineDetail
-
-    //코루틴하면서 생성
     val wineService = WineRemoteDataSource.getWineService()
     var job : Job? = null
 
-    // 추천 관련 data들
+    // 와인 1개 상세정보 받아옴
+    private var _liveWineDetail = MutableLiveData<WineDTO>()
+    val wineDetail : MutableLiveData<WineDTO> get() = _liveWineDetail                                    // field를 생성하는 동시에 field의 값을 할당, =로 대입한 변수의 getter는 field의 값을 리턴
+
+    // 와인 추천 리스트 상세정보 받아옴
+    private  var _liveRecommendList = MutableLiveData<ArrayList<WineDTO>>()
+    val recommendList : LiveData<ArrayList<WineDTO>>  get() = _liveRecommendList
+
+    // 추천 관련 변수들
     var Recommend_First_Tag  :String = ""
     var Recommend_Second_Tag : String = ""
     var Recommend_Is_Back : Int = 1
 
-
+    //상세검색 관련 변수들
+    var minPrice : Int = 0
+    var maxPrice : Int = 0
     var Search_Is_Back : Int = 1
-        //여기
-    private val _RecommendWineList = MutableLiveData<ArrayList<CartItem>>()
-    val RecommendWineList : LiveData<ArrayList<CartItem>> get() = _RecommendWineList
-    fun addWine_RecommendList(wine : WineDTO){
-        var recommendList = _RecommendWineList.value
-        if(recommendList == null){
-            recommendList = ArrayList<CartItem>()
-        }
-        var exist = false
-        recommendList.forEach {
-            if(it.wine.Wid == wine.Wid){
-                it.count++
-                exist= true
-            }
-        }
-        if(!exist){
-            recommendList?.add(CartItem(wine))
-        }
-        _RecommendWineList.value = recommendList!!
-    }
+    var Detail_food : String = "" //음식
+    var Detail_Taste_sweet = -1 //당도
+    var Detail_Taste_acid = -1  //산도
+    var Detail_Taste_body = -1  //바디
+    var Detail_Taste_tanin = -1 //검색
+
 
     // 장바구니 리스트
     private val _shoppingCartList = MutableLiveData<ArrayList<CartItem>>()
@@ -72,7 +65,34 @@ class MainViewModel :  ViewModel(){
         Log.d(TAG, shoppingCartList.value.toString())
     }
 
-    fun count_plus(item:CartItem){
+    // Retrofit 비동기 통신 - Wid로 와인 상세정보 받아오기
+    fun getWineDetail(Wid : Int){
+        job = CoroutineScope(Dispatchers.IO).launch {
+            val response  = wineService.getWineDetail(Wid)
+            withContext(Dispatchers.Main){
+                if(response.isSuccessful){
+                    _liveWineDetail.value= response.body()!!
+                    Log.d(TAG , "getWineDetail 테스트 : " +_liveWineDetail.value.toString())
+                }
+            }
+        }
+    }
+
+    // Retrofit 비동기 통신 - Tag 2개로 추천 와인 리스트 받아오기
+    fun getRecommnedList(Tag1 : String, Tag2 : String){
+        job = CoroutineScope(Dispatchers.IO).launch {
+            val response = wineService.getRecommendList(Tag1,Tag2)
+            withContext(Dispatchers.Main){
+                if(response.isSuccessful){
+                    _liveRecommendList.value = response.body()!!.recommend_list
+                    Log.d(TAG , "getRecommendList 테스트 : " +_liveRecommendList.value.toString())
+                }
+            }
+
+        }
+    }
+
+    fun cartItem_count_plus(item:CartItem){
         var cartList =_shoppingCartList.value
         if( cartList != null){
             cartList.forEach {
@@ -85,7 +105,7 @@ class MainViewModel :  ViewModel(){
         Log.d(TAG,"장바구니의 " + item.wine.Wid + " " + item.wine.W_name + " 가 1개 추가되었습니다" )
     }
 
-    fun count_minus(item:CartItem){
+    fun cartItem_count_minus(item:CartItem){
         var cartList =_shoppingCartList.value
         if( cartList != null){
             cartList.forEach {
@@ -98,16 +118,87 @@ class MainViewModel :  ViewModel(){
         _shoppingCartList.value = cartList!!
     }
 
-    fun getWineDetail(Wid : Int){
-        job = CoroutineScope(Dispatchers.IO).launch {
-            val response  = wineService.getWineDetail(Wid)
-            withContext(Dispatchers.Main){
-                if(response.isSuccessful){
-                    _liveWineDetail.value= response.body()!!
-                    Log.d("Test" , "코루틴 테스팅 중" +_liveWineDetail.value.toString())
-                }
+    //특정문자열 글자 크기 바꿈
+    fun Change_font_size(btn : Button, tag: String){
+        //태그만 임의로 설정하셔서 파라미터로 넘기면서 사용하시면 될것같습니다.
+        lateinit var content :String //버튼에 출력할 텍스트내용
+        var start : Int = 0  //특정 문자열을 바꿀 시작위치
+        var temp_taste = arrayOf<String>("","","","")
+
+        if(tag == "others")
+        {
+            when(Detail_Taste_sweet)
+            {
+                0->temp_taste[0] = "상관없음"
+                1->temp_taste[0] = "낮음"
+                2 -> temp_taste[0] = "중간"
+                3 -> temp_taste[0] = "높음"
+            }
+
+            when(Detail_Taste_acid)
+            {
+                0->temp_taste[1] = "상관없음"
+                1->temp_taste[1] = "낮음"
+                2 -> temp_taste[1] = "중간"
+                3 -> temp_taste[1] = "높음"
+            }
+
+            when(Detail_Taste_body)
+            {
+                0->temp_taste[2] = "상관없음"
+                1->temp_taste[2] = "가벼움"
+                2 -> temp_taste[2] = "중간"
+                3 -> temp_taste[2] = "무거움"
+            }
+            when(Detail_Taste_tanin)
+            {
+                0->temp_taste[3] = "상관없음"
+                1->temp_taste[3] = "가벼움"
+                2 -> temp_taste[3] = "중간"
+                3 -> temp_taste[3] = "무거움"
             }
         }
+        //텍스트내용 btn.text.toString() 쓰지않는 이유
+        // -> 필터를 설정후, 다시들어가서 설정시 문자열뒤에 계속붙음 (layout의 xml파일의 초기 텍스트로 초기화 필요)
+        when(tag){
+
+            "price"-> content = "      가격대" + "    \t ${minPrice}만원~${maxPrice}만원 사이"
+            "food" -> content = "\n음식"+"\n    ${Detail_food}"
+            "others" ->content = "   당도/산도/바디/타닌" + "\n     ${temp_taste[0]}/${temp_taste[1]}/${temp_taste[2]}/${temp_taste[3]}"
+        }
+        var spanningString : SpannableString = SpannableString(content)
+
+        if(tag == "price") //가격대는 줄바꿈 \n이 아닌  띄어쓰기 \t이므로
+        {
+            start = content.indexOf("\t ")
+        }
+        else if(tag == "others")
+        {
+            start = content.indexOf("\n     ")
+        }
+
+        else
+        {
+            start = content.indexOf(" ")
+        }
+        val end : Int = content.length //끝지점
+        //0.5f ->기존보다 0.5배
+        if(tag == "others")
+        {
+            spanningString.setSpan(RelativeSizeSpan(0.7f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+        else{
+            spanningString.setSpan(RelativeSizeSpan(0.5f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 크기 바꾸기
+        }
+
+
+
+
+
+
+//        spanningString.setSpan(ForegroundColorSpan(Color.parseColor("#000000")),start,end,SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자색상바꾸기
+//        spanningString.setSpan(StyleSpan(Typeface.BOLD), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 스타일바꾸기(굵게, 기울이기등)
+        btn.setText(spanningString)
     }
 
 

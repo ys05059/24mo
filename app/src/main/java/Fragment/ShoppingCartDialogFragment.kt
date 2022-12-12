@@ -1,5 +1,6 @@
 package Fragment
 
+import Main.MainActivity
 import Main.MainViewModel
 import Util.CartItem
 import Util.price_format
@@ -40,12 +41,12 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
     ): View? {
         _binding = FragmentShoppingCartDialogBinding.inflate(inflater,container,false)
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         Log.d(TAG, vm.shoppingCartList.value.toString())
 
         if(!vm.shoppingCartList.value.isNullOrEmpty()){
             val adapter = ShoppingCartListAdapter(vm.shoppingCartList,this)
-            binding.recyclerView.adapter = adapter
+            binding.cartRecyclerView.adapter = adapter
 
             // 최종 금액 최신화하기
             var total_price : Int = 0
@@ -68,21 +69,19 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
         binding.closeButton.setOnClickListener {
             dismiss()
         }
+        // 결제 버튼
+        binding.payButton.setOnClickListener {
+            //(activity as MainActivity).replaceTransaction(PayingFragment())
+            dismiss()
+            (activity as MainActivity).replaceTransaction(PayingFragment())
+        }
         return binding.root
     }
 
     override fun plusCount(item: CartItem) {
-        vm.count_plus(item)
+        vm.cartItem_count_plus(item)
     }
     override fun minusCount(item: CartItem){
-        vm.count_minus(item)
-    }
-
-    private fun loadFragment(fragment: Fragment){
-        Log.d("clickTest","click!->"+fragment.tag)
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        //transaction.replace(R.id.fragment_container,fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+        vm.cartItem_count_minus(item)
     }
 }

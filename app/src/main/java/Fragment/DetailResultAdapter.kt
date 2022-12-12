@@ -1,36 +1,29 @@
 package Fragment
 
-import Main.MainActivity
-import Main.MainViewModel
 import Util.CartItem
-import Util.WineDTO
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a24mo.R
-import com.example.a24mo.databinding.RecommendWineRecyclerviewBinding
+import com.example.a24mo.databinding.TempDetailSearchRecyclerBinding
 
-class RecommendListAdapter(private val recommendList:LiveData<ArrayList<WineDTO>>)
+
+class DetailResultAdapter( val resultlist:MutableList<ShoppingCart>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val  TAG = "RecommendListAdapter"
-    private  lateinit var vm : MainViewModel
-    inner class MyViewHolder(val binding: RecommendWineRecyclerviewBinding) :
+
+    class MyViewHolder(val binding: TempDetailSearchRecyclerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(wineDTO: WineDTO) = with(binding){
-                // adapter로 넘어온 데이터 View로 바인딩해주기
-                wine = wineDTO
-            }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyViewHolder(
-            RecommendWineRecyclerviewBinding.inflate(
+            TempDetailSearchRecyclerBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
             )
@@ -40,11 +33,13 @@ class RecommendListAdapter(private val recommendList:LiveData<ArrayList<WineDTO>
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding = (holder as MyViewHolder).binding
-        recommendList.value?.get(position)?.let {
-            (holder as MyViewHolder).bind(it)
-            Log.d(TAG,"onBindViewHolder에서" +it.Wid + " " + it.W_name + "가 확인됨")
-        }
-
+        binding.wineName.text = resultlist[position].name
+        binding.wineImg.setImageResource(R.drawable.wine1)
+        binding.wineCategory.text = resultlist[position].category
+        binding.wineFrom.text = resultlist[position].from
+        binding.wineBody.text = resultlist[position].body
+        binding.wineTanin.text = resultlist[position].tannin
+        binding.winePrice.text = resultlist[position].price
         //체크박스 이벤트 리스너
         binding.checkbox.setOnClickListener {
             var checked: Boolean = binding.checkbox.isChecked
@@ -63,19 +58,17 @@ class RecommendListAdapter(private val recommendList:LiveData<ArrayList<WineDTO>
 //        }
     }
 
-
-    override fun getItemCount(): Int {
-        return recommendList.value?.size!!
-    }
-
     interface OnItemClickListener {
         fun onClick(v: View, position: Int)
     }
-    private lateinit var itemClickListener: OnItemClickListener
 
     fun setItemClickListener(onItemClickListener: OnItemClickListener) {
         this.itemClickListener = onItemClickListener
-
     }
 
+    private lateinit var itemClickListener: OnItemClickListener
+
+    override fun getItemCount(): Int {
+        return resultlist.size
+    }
 }
