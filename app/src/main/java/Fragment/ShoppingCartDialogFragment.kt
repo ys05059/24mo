@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentShoppingCartDialogBinding
+import kotlinx.coroutines.*
 
 
 class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCartBtnClickListener {
@@ -73,8 +74,7 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
         // 결제 버튼
         binding.payButton.setOnClickListener {
             //(activity as MainActivity).replaceTransaction(PayingFragment())
-            dismiss()
-            (activity as MainActivity).replaceTransaction(PayingFragment())
+
         }
         return binding.root
     }

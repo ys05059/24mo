@@ -62,6 +62,18 @@ class MainActivity : AppCompatActivity(){
         transaction.addToBackStack(null)
     }
 
+    fun addTransaction(fragment: Fragment) {
+        if(presentFragment == fragment) {
+            Toast.makeText(this, "이미 해당 Fragment를 보여주고 있습니다.",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
+        transaction = fragmentManager.beginTransaction()
+        transaction.add(R.id.fragment_container, fragment).commit()
+        presentFragment = fragment
+        transaction.addToBackStack(null)
+    }
+
     fun changeRecommendFragment(step : Int, back: Int){
 //        if(Recommend_presentFragment == fragment) {
 //            Toast.makeText((activity as MainActivity), "이미 해당 Fragment를 보여주고 있습니다.",
