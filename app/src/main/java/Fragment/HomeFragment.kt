@@ -63,6 +63,7 @@ class HomeFragment : Fragment(){
         binding.DetailSearchBtn.setOnClickListener {
             (activity as MainActivity).replaceTransaction(Detail_Search_Fragment())
         }
+
         // 장바구니 버튼
         if(viewModel.shoppingCartList.value == null)
         {
@@ -79,9 +80,8 @@ class HomeFragment : Fragment(){
 
         //관리자메뉴
         binding.ManagerBtn.setOnClickListener{
-
+            (activity as MainActivity).replaceTransaction(AdminFragment())
         }
-
         return view
     }
 
