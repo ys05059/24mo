@@ -238,9 +238,18 @@
 <!--                    </LinearLayout>-->
 
                 </LinearLayout>
-
             </GridLayout>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
+            <Button
+                android:id="@+id/deleteBtn"
+                android:layout_width="32dp"
+                android:layout_height="34dp"
+                android:gravity="right|top"
+                android:text="x" />
         </LinearLayout>
 
         <GridLayout
@@ -277,19 +286,20 @@
                     >
 
                     <Button
-                        android:id="@+id/plusBtn"
+                        android:id="@+id/minusBtn"
                         android:layout_width="60dp"
                         android:layout_height="40dp"
-                        android:text="+"
+
+                        android:text="-"
                         android:textSize="22dp"
                         android:background="@color/light_gray"
                         />
                     <Button
-                        android:id="@+id/minusBtn"
+                        android:id="@+id/plusBtn"
                         android:layout_width="60dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
-                        android:text="-"
+                        android:text="+"
                         android:textSize="22dp"
                         android:background="@color/light_gray"
                         />

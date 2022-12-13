@@ -39,7 +39,7 @@ class MainViewModel :  ViewModel(){
 
     // 장바구니 리스트
     private val _shoppingCartList = MutableLiveData<ArrayList<CartItem>>()
-    val shoppingCartList : LiveData<ArrayList<CartItem>> get() = _shoppingCartList
+    val shoppingCartList : MutableLiveData<ArrayList<CartItem>> get() = _shoppingCartList
 
     // 장바구니에 와인 추가
     fun addWine_CartList(wine: WineDTO){
@@ -138,7 +138,17 @@ class MainViewModel :  ViewModel(){
 
         }
     }
-
+    fun get_cartItem_count(): Int {
+        var cartList =_shoppingCartList.value
+        var count = 0
+        if( cartList != null){
+            cartList.forEach {
+                count +=it.count
+            }
+        }
+        Log.d(TAG,"장바구니에 " + count + " 개 담겨있습니다")
+        return count
+    }
     fun cartItem_count_plus(item:CartItem){
         var cartList =_shoppingCartList.value
         if( cartList != null){
@@ -163,6 +173,19 @@ class MainViewModel :  ViewModel(){
             }
         }
         _shoppingCartList.value = cartList!!
+    }
+
+    fun delete_cartItem(item: CartItem){
+        var cartList =_shoppingCartList.value
+        if(cartList != null){
+            cartList.forEach{
+                if(it.wine.Wid == item.wine.Wid) {
+                    cartList.remove(item)
+                }
+            }
+        }
+        _shoppingCartList.value = cartList!!
+        Log.d(TAG,item.wine.W_name +" 가 장바구니에서 삭제되었습니다")
     }
 
     //특정문자열 글자 크기 바꿈

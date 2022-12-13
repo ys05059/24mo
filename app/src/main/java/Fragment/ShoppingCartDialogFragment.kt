@@ -44,7 +44,7 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 //        binding.cartRecyclerView.setHasFixedSize(true)
-        Log.d(TAG, vm.shoppingCartList.value.toString())
+        Log.d(TAG, "장바구니에 " +vm.get_cartItem_count().toString() + "개가 있습니다")
 
         if(!vm.shoppingCartList.value.isNullOrEmpty()){
             val adapter = ShoppingCartListAdapter(vm.shoppingCartList,this)

@@ -60,6 +60,7 @@ class RecommendListAdapter(private val recommendList: LiveData<ArrayList<WineDTO
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position,recommendList.value?.get(position)!!)
         }
+
     }
 
 
@@ -81,6 +82,13 @@ class RecommendListAdapter(private val recommendList: LiveData<ArrayList<WineDTO
     private lateinit var checkBoxClickListener: OnCheckBoxClickListener
     fun setCheckBoxClickListener(onCheckBoxClickListener: OnCheckBoxClickListener){
         this.checkBoxClickListener = onCheckBoxClickListener
+    }
+
+    fun resetAllCheckBox(){
+        for(i in 1..itemCount){
+
+            recommendList.value?.get(i)
+        }
     }
 
 

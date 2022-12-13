@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,7 +42,6 @@ class Detail_Search_Fragment_result : Fragment() {
                 searchListAdapter= RecommendListAdapter(vm.wineList)
                 binding.DetailResultRecyclerView.adapter = searchListAdapter
             }
-            // 각 상품 클릭 시 상세 페이지로 이동
             searchListAdapter.setItemClickListener(object : RecommendListAdapter.OnItemClickListener {
                 override fun onClick(v: View, position: Int,wineDTO: WineDTO) {
                     vm.setWineDetail(wineDTO)                                   // 상세 조회할 와인 정보 넘겨주기
@@ -58,15 +58,18 @@ class Detail_Search_Fragment_result : Fragment() {
             })
         })
 
-        binding.basket.setText("0")
-//        if(vm.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
-//        {
-//            binding.basket.setText("0")
-//        }
-//        else{
-//            binding.basket.setText(vm.recommendList.value?.size.toString())
-//        }
+        vm.shoppingCartList.observe(viewLifecycleOwner,Observer{
+            if(vm.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
+            {
+                binding.basket.setText("0")
+            }
+            else{
+                binding.basket.setText(vm.get_cartItem_count().toString())
+            }
+        })
 
+
+        // 장바구니 버튼 클릭시 액션
         binding.basket.setOnClickListener{
 //            (activity as MainActivity).replaceTransaction(ShoppingCartDialogFragment())
             ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
@@ -75,7 +78,29 @@ class Detail_Search_Fragment_result : Fragment() {
         // 담기 버튼 구현
         binding.addCartBtn.setOnClickListener {
             vm.addWineList_CartList()
-            // check box 끄기
+            binding.DetailResultRecyclerView.removeAllViewsInLayout()
+            // 화면 새로 refresh하기
+            vm.wineList.observe(viewLifecycleOwner, Observer{
+                if(!vm.wineList.value.isNullOrEmpty()){
+                    searchListAdapter= RecommendListAdapter(vm.wineList)
+                    binding.DetailResultRecyclerView.adapter = searchListAdapter
+                }
+                searchListAdapter.setItemClickListener(object : RecommendListAdapter.OnItemClickListener {
+                    override fun onClick(v: View, position: Int,wineDTO: WineDTO) {
+                        vm.setWineDetail(wineDTO)                                   // 상세 조회할 와인 정보 넘겨주기
+                        val info_frag = InformationFragment()                       // 상세조회 페이지로 이동
+                        info_frag.show(childFragmentManager,"Recommend_Result")
+                    }
+                })
+                // 체크박스 눌렀을 때 반응하기
+                searchListAdapter.setCheckBoxClickListener(object :RecommendListAdapter.OnCheckBoxClickListener{
+                    override fun onClick(v: View, position: Int,checked : Boolean) {
+                        vm.wineList.value?.get(position)?.checked = checked
+                        Log.d(TAG,vm.wineList.value?.get(position)?.W_name +" 이 " + vm.wineList.value?.get(position)?.checked +"로 변경되었습니다")
+                    }
+                })
+            })
+
         }
 
         return view
