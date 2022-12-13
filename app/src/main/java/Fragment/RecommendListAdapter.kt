@@ -8,18 +8,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a24mo.R
 import com.example.a24mo.databinding.RecommendWineRecyclerviewBinding
+import retrofit2.http.POST
 
-class RecommendListAdapter(private val recommendList:LiveData<ArrayList<WineDTO>>)
+class RecommendListAdapter(private val recommendList: LiveData<ArrayList<WineDTO>>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val  TAG = "RecommendListAdapter"
-    private  lateinit var vm : MainViewModel
     inner class MyViewHolder(val binding: RecommendWineRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
             fun bind(wineDTO: WineDTO) = with(binding){
@@ -56,8 +53,9 @@ class RecommendListAdapter(private val recommendList:LiveData<ArrayList<WineDTO>
             {
                 binding.WineLists.setBackgroundResource(R.drawable.button_round_white)
             }
-
+            checkBoxClickListener.onClick(it,position,checked)
         }
+
         // 리스트 아이템 선택시 상세정보 페이지에 데이터 넘겨주기
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position,recommendList.value?.get(position)!!)
@@ -76,7 +74,14 @@ class RecommendListAdapter(private val recommendList:LiveData<ArrayList<WineDTO>
 
     fun setItemClickListener(onItemClickListener: OnItemClickListener) {
         this.itemClickListener = onItemClickListener
-
     }
+    interface OnCheckBoxClickListener{
+        fun onClick(v:View,position:Int,checked : Boolean)
+    }
+    private lateinit var checkBoxClickListener: OnCheckBoxClickListener
+    fun setCheckBoxClickListener(onCheckBoxClickListener: OnCheckBoxClickListener){
+        this.checkBoxClickListener = onCheckBoxClickListener
+    }
+
 
 }

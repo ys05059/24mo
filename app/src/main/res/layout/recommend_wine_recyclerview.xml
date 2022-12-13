@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/white"
+        android:layout_marginBottom="5dp"
         android:id="@+id/WineLists">
 
         <View
@@ -59,6 +60,8 @@
                 android:id="@+id/wineImg"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
                 imageUrl="@{wine.w_image}"/>
 
             <GridLayout
@@ -298,12 +301,12 @@
         </LinearLayout>
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#D4D4D3"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="#D4D4D3"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginBottom="10dp" />-->
 
     </LinearLayout>
 </layout>

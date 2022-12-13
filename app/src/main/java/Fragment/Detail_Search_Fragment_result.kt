@@ -2,11 +2,14 @@ package Fragment
 
 import Main.MainActivity
 import Main.MainViewModel
+import Util.WineDTO
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a24mo.R
@@ -16,6 +19,7 @@ class Detail_Search_Fragment_result : Fragment() {
     private lateinit var vm: MainViewModel
     private var _binding: FragmentDetailResultBinding? = null
     private val binding get() = _binding!!
+    private val  TAG = "Search_result_Frag"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,24 +30,33 @@ class Detail_Search_Fragment_result : Fragment() {
         val view = binding.root
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
-        val ParentFragment : Detail_Search_Fragment =
-            (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Detail_Search_Fragment
-        ParentFragment.invisible_back_btn(false)
+        Log.d(TAG, "viewModel로 SearchList 받아오기")
+        vm.getSearchList(vm.Detail_Parameter)
 
         binding.DetailResultRecyclerView.layoutManager= LinearLayoutManager(requireContext())
-        //더미데이터
-        var resultList = mutableListOf<ShoppingCart>()
-        resultList.add(ShoppingCart("와인 이름 들어갈 자리1","R.drawable.wine1","레드와인",
-            "프랑스산", "높음", "낮음", "가벼움", "중간", "\\35,000", "10%"))
+        lateinit var searchListAdapter : RecommendListAdapter
 
-        resultList.add(ShoppingCart("와인 이름 들어갈 자리1","R.drawable.wine1","레드와인",
-            "프랑스산", "높음", "낮음", "가벼움", "중간", "\\35,000", "10%"))
-
-        var resultAdapter = DetailResultAdapter(resultList)
-
-        binding.DetailResultRecyclerView.adapter = resultAdapter
-
-
+        vm.wineList.observe(viewLifecycleOwner, Observer{
+            if(!vm.wineList.value.isNullOrEmpty()){
+                searchListAdapter= RecommendListAdapter(vm.wineList)
+                binding.DetailResultRecyclerView.adapter = searchListAdapter
+            }
+            // 각 상품 클릭 시 상세 페이지로 이동
+            searchListAdapter.setItemClickListener(object : RecommendListAdapter.OnItemClickListener {
+                override fun onClick(v: View, position: Int,wineDTO: WineDTO) {
+                    vm.setWineDetail(wineDTO)                                   // 상세 조회할 와인 정보 넘겨주기
+                    val info_frag = InformationFragment()                       // 상세조회 페이지로 이동
+                    info_frag.show(childFragmentManager,"Recommend_Result")
+                }
+            })
+            // 체크박스 눌렀을 때 반응하기
+            searchListAdapter.setCheckBoxClickListener(object :RecommendListAdapter.OnCheckBoxClickListener{
+                override fun onClick(v: View, position: Int,checked : Boolean) {
+                    vm.wineList.value?.get(position)?.checked = checked
+                    Log.d(TAG,vm.wineList.value?.get(position)?.W_name +" 이 " + vm.wineList.value?.get(position)?.checked +"로 변경되었습니다")
+                }
+            })
+        })
 
         binding.basket.setText("0")
 //        if(vm.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
@@ -54,10 +67,22 @@ class Detail_Search_Fragment_result : Fragment() {
 //            binding.basket.setText(vm.recommendList.value?.size.toString())
 //        }
 
+        binding.basket.setOnClickListener{
+//            (activity as MainActivity).replaceTransaction(ShoppingCartDialogFragment())
+            ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
+        }
+
+        // 담기 버튼 구현
+        binding.addCartBtn.setOnClickListener {
+            vm.addWineList_CartList()
+            // check box 끄기
+        }
+
         return view
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

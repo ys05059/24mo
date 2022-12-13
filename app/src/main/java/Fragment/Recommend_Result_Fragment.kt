@@ -2,22 +2,18 @@ package Fragment
 
 import Main.MainActivity
 import Main.MainViewModel
-import Util.CartItem
 import Util.WineDTO
-import Util.price_format
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a24mo.R
 import com.example.a24mo.databinding.RecommendWineFragmentResultBinding
-import kotlinx.coroutines.*
 
 class Recommend_Result_Fragment : Fragment() {
     private  lateinit var vm : MainViewModel
@@ -35,18 +31,20 @@ class Recommend_Result_Fragment : Fragment() {
         binding.firstTag.text = "#"+vm.Recommend_First_Tag
         binding.secondTag.text ="#"+vm.Recommend_Second_Tag
 
-        Log.d(TAG, "여기요")
+        Log.d(TAG, "viewModel로 RecommendList 받아오기")
         vm.getRecommnedList(vm.Recommend_First_Tag,vm.Recommend_Second_Tag)
 
-        val ParentFragment : Recommend_Fragment =
-            (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Recommend_Fragment
-        ParentFragment.invisible_back_btn(false)
-        lateinit var recommendListAdapter :RecommendListAdapter
+//        상세 조회 페이지에 돌아가기 버튼 보이게 하기
+//        val ParentFragment : Recommend_Fragment =
+//            (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Recommend_Fragment
+//        ParentFragment.invisible_back_btn(false)
 
         binding.recommendRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        vm.recommendList.observe(viewLifecycleOwner,Observer{
-            if(!vm.recommendList.value.isNullOrEmpty()){
-                recommendListAdapter= RecommendListAdapter(vm.recommendList)
+
+        lateinit var recommendListAdapter :RecommendListAdapter
+        vm.wineList.observe(viewLifecycleOwner,Observer{
+            if(!vm.wineList.value.isNullOrEmpty()){
+                recommendListAdapter= RecommendListAdapter(vm.wineList)
                 binding.recommendRecyclerView.adapter = recommendListAdapter
             }
             // 각 상품 클릭 시 상세 페이지로 이동
@@ -64,10 +62,8 @@ class Recommend_Result_Fragment : Fragment() {
         {
             binding.recommendCartBtn.setText("0")
         }else{
-            binding.recommendCartBtn.setText(vm.recommendList.value?.size.toString())
+            binding.recommendCartBtn.setText(vm.wineList.value?.size.toString())
         }
-
-
 
         binding.recommendAddCartBtn.setOnClickListener {
             // 추천 리스트에서 체크 완료된 상품들 shopping Cart에 담기
