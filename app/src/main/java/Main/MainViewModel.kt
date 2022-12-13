@@ -33,7 +33,7 @@ class MainViewModel :  ViewModel(){
     //상세검색 관련 변수들
     var minPrice : Int = 0
     var maxPrice : Int = 0
-    var Search_Is_Back : Int = 1
+    var Search_Is_Back : Int = 0
 
     var Detail_Parameter = SearchWineParmeter() // 와인 검색창에 들어가는 파라미터들 다 class로 묶었음
 
@@ -131,8 +131,13 @@ class MainViewModel :  ViewModel(){
             val response = wineService.getSearchList(swp.name,swp.min_price,swp.max_price,swp.type,swp.region,swp.alcohol,swp.food,swp.sweet,swp.acidity,swp.body,swp.tannin)
             withContext(Dispatchers.Main){
                 if(response.isSuccessful){
-                    _liveWineList.value = response.body()!!.wine_list
-                    Log.d(TAG , "getSearchList 테스트 : " +_liveWineList.value.toString())
+                    // 데이터가 없을 경우
+                    if(response.body()!!.status.equals("404")){
+                        _liveWineList.value = ArrayList<WineDTO>()
+                    }else{
+                        _liveWineList.value = response.body()!!.wine_list
+                    }
+                        Log.d(TAG , "getSearchList 테스트 : " +_liveWineList.value.toString())
                 }
             }
 
@@ -269,12 +274,6 @@ class MainViewModel :  ViewModel(){
         else{
             spanningString.setSpan(RelativeSizeSpan(0.5f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 크기 바꾸기
         }
-
-
-
-
-
-
 //        spanningString.setSpan(ForegroundColorSpan(Color.parseColor("#000000")),start,end,SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자색상바꾸기
 //        spanningString.setSpan(StyleSpan(Typeface.BOLD), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 스타일바꾸기(굵게, 기울이기등)
         btn.setText(spanningString)

@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentDetailResultBinding
+import com.example.a24mo.databinding.ResultErrorPageBinding
 
 class Detail_Search_Fragment_result : Fragment() {
     private lateinit var vm: MainViewModel
@@ -28,34 +31,47 @@ class Detail_Search_Fragment_result : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDetailResultBinding.inflate(inflater, container, false)
-        val view = binding.root
+        var view = binding.root
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+//        val error_binding = ResultErrorPageBinding.inflate(inflater, container, false)
 
         Log.d(TAG, "viewModel로 SearchList 받아오기")
         vm.getSearchList(vm.Detail_Parameter)
 
+        // 뒤로가기 버튼 보이게 하기
+        val ParentFragment : Detail_Search_Fragment =
+            (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Detail_Search_Fragment
+        ParentFragment.invisible_back_btn(false)
+
         binding.DetailResultRecyclerView.layoutManager= LinearLayoutManager(requireContext())
         lateinit var searchListAdapter : RecommendListAdapter
+
 
         vm.wineList.observe(viewLifecycleOwner, Observer{
             if(!vm.wineList.value.isNullOrEmpty()){
                 searchListAdapter= RecommendListAdapter(vm.wineList)
                 binding.DetailResultRecyclerView.adapter = searchListAdapter
+                searchListAdapter.setItemClickListener(object : RecommendListAdapter.OnItemClickListener {
+                    override fun onClick(v: View, position: Int,wineDTO: WineDTO) {
+                        vm.setWineDetail(wineDTO)                                   // 상세 조회할 와인 정보 넘겨주기
+                        val info_frag = InformationFragment()                       // 상세조회 페이지로 이동
+                        info_frag.show(childFragmentManager,"Recommend_Result")
+                    }
+                })
+                // 체크박스 눌렀을 때 반응하기
+                searchListAdapter.setCheckBoxClickListener(object :RecommendListAdapter.OnCheckBoxClickListener{
+                    override fun onClick(v: View, position: Int,checked : Boolean) {
+                        vm.wineList.value?.get(position)?.checked = checked
+                        Log.d(TAG,vm.wineList.value?.get(position)?.W_name +" 이 " + vm.wineList.value?.get(position)?.checked +"로 변경되었습니다")
+                    }
+                })
+            } // 검색 결과가 없을 경우
+            else{
+                Log.d(TAG,"test 중 - 들어왔다" )
+                Toast.makeText((activity as MainActivity), "검색 결과가 없습니다",
+                    Toast.LENGTH_SHORT).show()
+//                view =error_binding.root
             }
-            searchListAdapter.setItemClickListener(object : RecommendListAdapter.OnItemClickListener {
-                override fun onClick(v: View, position: Int,wineDTO: WineDTO) {
-                    vm.setWineDetail(wineDTO)                                   // 상세 조회할 와인 정보 넘겨주기
-                    val info_frag = InformationFragment()                       // 상세조회 페이지로 이동
-                    info_frag.show(childFragmentManager,"Recommend_Result")
-                }
-            })
-            // 체크박스 눌렀을 때 반응하기
-            searchListAdapter.setCheckBoxClickListener(object :RecommendListAdapter.OnCheckBoxClickListener{
-                override fun onClick(v: View, position: Int,checked : Boolean) {
-                    vm.wineList.value?.get(position)?.checked = checked
-                    Log.d(TAG,vm.wineList.value?.get(position)?.W_name +" 이 " + vm.wineList.value?.get(position)?.checked +"로 변경되었습니다")
-                }
-            })
         })
 
         vm.shoppingCartList.observe(viewLifecycleOwner,Observer{

@@ -96,13 +96,9 @@ class MainActivity : AppCompatActivity(){
         runBlocking {
             launch {
                 Recommend_transaction =fragmentManager.beginTransaction()
-                Log.d("test","대기 시작")
                 delay(300)
-                Log.d("test","대기 끝")
-
             }
         }
-        Log.d("test","코루틴 밖이야")
         when(back){
             0->{
                 Recommend_transaction.setCustomAnimations(

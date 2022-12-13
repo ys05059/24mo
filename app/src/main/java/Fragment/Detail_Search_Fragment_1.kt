@@ -125,6 +125,7 @@ class Detail_Search_Fragment_1 : Fragment() {
             Log.d(TAG,vm.Detail_Parameter.toString())
             vm.Detail_Parameter.name = binding.wineNameSearch.text.toString()
             (activity as MainActivity).changeDetailSearchFragment(2, 0)
+            vm.Search_Is_Back++
         }
         return view
     }
