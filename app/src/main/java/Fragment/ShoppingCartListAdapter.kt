@@ -1,6 +1,7 @@
 package Fragment
 
 import Util.CartItem
+import Util.WineDTO
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -61,10 +62,14 @@ class ShoppingCartListAdapter(private var shoppingCart: MutableLiveData<ArrayLis
             Log.d(TAG, "onBindViewHolder에서" + it.wine.Wid + " " + it.wine.W_name + " 가 확인됨")
             (holder as MyViewHolder).deleteSetting(it,position)
         }
+        // 리스트 아이템 선택시 상세정보 페이지에 데이터 넘겨주기
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position,shoppingCart.value?.get(position)!!.wine)
+        }
     }
 
     interface OnItemClickListener {
-        fun onClick(v: View, position: Int)
+        fun onClick(v: View, position: Int,wineDTO: WineDTO)
     }
     fun setItemClickListener(onItemClickListener: OnItemClickListener) {
         this.itemClickListener = onItemClickListener

@@ -7,7 +7,9 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context="Fragment.InformationFragment"
-    android:background="#990C14">
+    android:background="@drawable/information_dialog_round"
+    >
+<!--    android:background="#990C14"-->
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout

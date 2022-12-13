@@ -2,11 +2,14 @@ package Fragment
 
 import Main.MainActivity
 import Main.MainViewModel
+import android.content.Context
+import android.graphics.Point
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
@@ -24,8 +27,7 @@ class BarCode_Fragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NO_TITLE, R.style.dialog_fullscreen)
-
+        setStyle(STYLE_NO_TITLE, R.style.barcode_dialog)
         //false로 설정해 주면 화면 밖 또는 뒤로가기 클릭 시 다이얼로그가 dismiss되지 않음
         isCancelable = true
     }
@@ -52,6 +54,16 @@ class BarCode_Fragment : DialogFragment() {
             }
         }
 
+        val windowManager = (activity as MainActivity).getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val params: ViewGroup.LayoutParams? = dialog?.window?.attributes
+        val deviceWidth = size.x
+        val deviceHeight = size.y
+        params?.width = (deviceWidth * 0.9).toInt()
+        params?.height = (deviceHeight * 0.5).toInt()
+        dialog?.window?.attributes = params as WindowManager.LayoutParams
     }
     override fun onDestroyView() {
         super.onDestroyView()

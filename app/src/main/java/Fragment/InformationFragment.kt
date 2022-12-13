@@ -5,9 +5,6 @@ import Main.MainViewModel
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -18,7 +15,9 @@ import com.example.a24mo.R
 import Util.WineDTO
 import com.example.a24mo.databinding.FragmentInformationBinding
 import Util.imageDTO
-import android.view.Gravity
+import android.content.Context
+import android.graphics.Point
+import android.view.*
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.Toast
 import androidx.core.view.children
@@ -39,7 +38,7 @@ class InformationFragment : DialogFragment() {
         Log.d("InformationFragment", "프래그먼트 전환 완료")
         super.onCreate(savedInstanceState)
         // 풀스크린으로 보기 -> res/values/dialog_fullscreen.xml 참고
-        setStyle(STYLE_NO_TITLE, R.style.dialog_fullscreen)
+        setStyle(STYLE_NO_TITLE, R.style.barcode_dialog)
 
         //false로 설정해 주면 화면 밖 또는 뒤로가기 클릭 시 다이얼로그가 dismiss되지 않음
         isCancelable = true
@@ -158,6 +157,20 @@ class InformationFragment : DialogFragment() {
         }
         vm.wineDetail.observe(viewLifecycleOwner,wnameObserver)
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val windowManager = (activity as MainActivity).getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val params: ViewGroup.LayoutParams? = dialog?.window?.attributes
+        val deviceWidth = size.x
+        val deviceHeight = size.y
+        params?.width = (deviceWidth * 0.9).toInt()
+        params?.height = (deviceHeight * 0.85).toInt()
+        dialog?.window?.attributes = params as WindowManager.LayoutParams
     }
 
     override fun onDestroyView() {

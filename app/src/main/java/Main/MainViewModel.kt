@@ -166,7 +166,7 @@ class MainViewModel :  ViewModel(){
         var cartList =_shoppingCartList.value
         if( cartList != null){
             cartList.forEach {
-                if(it.wine.Wid == item.wine.Wid && it.count>0) {
+                if(it.wine.Wid == item.wine.Wid && it.count>1) {
                     it.count--
                     Log.d(TAG,"장바구니의 " + item.wine.Wid + " " + item.wine.W_name + " 가 1개 삭제되었습니다" )
                 }
