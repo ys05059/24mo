@@ -2,8 +2,7 @@ package Fragment
 
 import Main.MainActivity
 import Main.MainViewModel
-import Util.CartItem
-import Util.price_format
+import Util.WineDTO
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -32,35 +31,87 @@ class Recommend_Result_Fragment : Fragment() {
         binding.firstTag.text = "#"+vm.Recommend_First_Tag
         binding.secondTag.text ="#"+vm.Recommend_Second_Tag
 
-        Log.d(TAG, "여기요")
+        Log.d(TAG, "viewModel로 RecommendList 받아오기")
         vm.getRecommnedList(vm.Recommend_First_Tag,vm.Recommend_Second_Tag)
 
-        val ParentFragment : Recommend_Fragment =
-            (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Recommend_Fragment
-        ParentFragment.invisible_back_btn(false)
+//        상세 조회 페이지에 돌아가기 버튼 보이게 하기
+//        val ParentFragment : Recommend_Fragment =
+//            (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Recommend_Fragment
+//        ParentFragment.invisible_back_btn(false)
 
         binding.recommendRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        vm.recommendList.observe(viewLifecycleOwner,Observer{
-            if(!vm.recommendList.value.isNullOrEmpty()){
-                val recommendListAdapter= RecommendListAdapter(vm.recommendList)
+
+        lateinit var recommendListAdapter :RecommendListAdapter
+        vm.wineList.observe(viewLifecycleOwner, Observer{
+            if(!vm.wineList.value.isNullOrEmpty()){
+                recommendListAdapter= RecommendListAdapter(vm.wineList)
                 binding.recommendRecyclerView.adapter = recommendListAdapter
+            }
+            recommendListAdapter.setItemClickListener(object : RecommendListAdapter.OnItemClickListener {
+                override fun onClick(v: View, position: Int,wineDTO: WineDTO) {
+                    vm.setWineDetail(wineDTO)                                   // 상세 조회할 와인 정보 넘겨주기
+                    val info_frag = InformationFragment()                       // 상세조회 페이지로 이동
+                    info_frag.show(childFragmentManager,"Recommend_Result")
+                }
+            })
+            // 체크박스 눌렀을 때 반응하기
+            recommendListAdapter.setCheckBoxClickListener(object :RecommendListAdapter.OnCheckBoxClickListener{
+                override fun onClick(v: View, position: Int,checked : Boolean) {
+                    vm.wineList.value?.get(position)?.checked = checked
+                    Log.d(TAG,vm.wineList.value?.get(position)?.W_name +" 이 " + vm.wineList.value?.get(position)?.checked +"로 변경되었습니다")
+                }
+            })
+        })
+
+        // 장바구니 item 개수 업데이트
+        vm.shoppingCartList.observe(viewLifecycleOwner,Observer{
+            if(vm.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
+            {
+                binding.CartListBtn.setText("0")
+            }
+            else{
+                binding.CartListBtn.setText(vm.get_cartItem_count().toString())
             }
         })
 
-        if(vm.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
-        {
-            binding.basket.setText("0")
+
+        // 장바구니 버튼 클릭시 액션
+        binding.CartListBtn.setOnClickListener{
+//            (activity as MainActivity).replaceTransaction(ShoppingCartDialogFragment())
+            ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }
-        else{
-            binding.basket.setText(vm.recommendList.value?.size.toString())
+
+        // 담기 버튼 구현
+        binding.recommendAddCartBtn.setOnClickListener {
+            vm.addWineList_CartList()
+            // 체크 됐던 item들 해제
+            vm.reset_WineList_Checked()
+            // 화면 새로 refresh하기
+            binding.recommendRecyclerView.removeAllViewsInLayout()
+            vm.wineList.observe(viewLifecycleOwner, Observer{
+                if(!vm.wineList.value.isNullOrEmpty()){
+                    recommendListAdapter= RecommendListAdapter(vm.wineList)
+                    binding.recommendRecyclerView.adapter = recommendListAdapter
+                }
+                recommendListAdapter.setItemClickListener(object : RecommendListAdapter.OnItemClickListener {
+                    override fun onClick(v: View, position: Int,wineDTO: WineDTO) {
+                        vm.setWineDetail(wineDTO)                                   // 상세 조회할 와인 정보 넘겨주기
+                        val info_frag = InformationFragment()                       // 상세조회 페이지로 이동
+                        info_frag.show(childFragmentManager,"Recommend_Result")
+                    }
+                })
+                // 체크박스 눌렀을 때 반응하기
+                recommendListAdapter.setCheckBoxClickListener(object :RecommendListAdapter.OnCheckBoxClickListener{
+                    override fun onClick(v: View, position: Int,checked : Boolean) {
+                        vm.wineList.value?.get(position)?.checked = checked
+                        Log.d(TAG,vm.wineList.value?.get(position)?.W_name +" 이 " + vm.wineList.value?.get(position)?.checked +"로 변경되었습니다")
+                    }
+                })
+            })
+
         }
 
         return view
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // 추천 리스트 DB로 부터 받아오기
     }
 
     override fun onDestroyView() {

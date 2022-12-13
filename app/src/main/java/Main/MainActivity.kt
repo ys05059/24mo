@@ -25,6 +25,9 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import android.view.View
 import com.example.a24mo.R
 import com.example.a24mo.databinding.HomeLayoutBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity(){
 
@@ -44,7 +47,7 @@ class MainActivity : AppCompatActivity(){
 
         fragmentManager = supportFragmentManager
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        replaceTransaction(HomeFragment())
+        replaceTransaction( HomeFragment(),"HomeFragment")
     }
 
     fun replaceTransaction(fragment: Fragment) {
@@ -59,6 +62,30 @@ class MainActivity : AppCompatActivity(){
         transaction.addToBackStack(null)
     }
 
+    fun replaceTransaction(fragment: Fragment,tag:String) {
+        if(presentFragment == fragment) {
+            Toast.makeText(this, "이미 해당 Fragment를 보여주고 있습니다.",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
+        transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment,tag).commit()
+        presentFragment = fragment
+        transaction.addToBackStack(null)
+    }
+
+    fun addTransaction(fragment: Fragment) {
+        if(presentFragment == fragment) {
+            Toast.makeText(this, "이미 해당 Fragment를 보여주고 있습니다.",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
+        transaction = fragmentManager.beginTransaction()
+        transaction.add(R.id.fragment_container, fragment).commit()
+        presentFragment = fragment
+        transaction.addToBackStack(null)
+    }
+
     fun changeRecommendFragment(step : Int, back: Int){
 //        if(Recommend_presentFragment == fragment) {
 //            Toast.makeText((activity as MainActivity), "이미 해당 Fragment를 보여주고 있습니다.",
@@ -66,7 +93,12 @@ class MainActivity : AppCompatActivity(){
 //            return
 //        }
         //back == 1 뒤로가기 /  0== 다음 step으로 가기
-        Recommend_transaction =fragmentManager.beginTransaction()
+        runBlocking {
+            launch {
+                Recommend_transaction =fragmentManager.beginTransaction()
+                delay(300)
+            }
+        }
         when(back){
             0->{
                 Recommend_transaction.setCustomAnimations(

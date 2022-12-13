@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--information 다이얼로그 모양 잡기-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#990C14" />
+    <corners android:radius="30dp" />
+</shape>

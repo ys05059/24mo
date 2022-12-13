@@ -14,12 +14,14 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.a24mo.R
 import com.example.a24mo.databinding.HomeLayoutBinding
+import kotlinx.coroutines.*
 
 class HomeFragment : Fragment(){
 
@@ -52,7 +54,12 @@ class HomeFragment : Fragment(){
                 eventWineArray.add(163213)                                                      // 돔페리뇽
                 eventWineArray.add(167176)                                                      // 벨아사이
                 viewModel.getWineDetail(eventWineArray[position])                                // wid 넘기면서 viewmodel에 해당 내용 넣어두기
-                (activity as MainActivity).replaceTransaction(InformationFragment())
+
+                CoroutineScope(Dispatchers.Main).launch{
+                    val info_frag = InformationFragment()
+                    info_frag.show(childFragmentManager,"Information")
+                    delay(500)
+                }
             }
         })
         // 와인 추천 버튼
@@ -64,19 +71,26 @@ class HomeFragment : Fragment(){
             (activity as MainActivity).replaceTransaction(Detail_Search_Fragment())
         }
 
-        // 장바구니 버튼
-        if(viewModel.shoppingCartList.value == null)
-        {
-            binding.ShoppingBtn.setText("0")
-        }
-        else{
-            binding.ShoppingBtn.setText(viewModel.shoppingCartList.value?.size.toString())
-        }
-        binding.ShoppingBtn.setOnClickListener {
+        // 장바구니 item 개수 업데이트
+        viewModel.shoppingCartList.observe(viewLifecycleOwner, Observer{
+            if(viewModel.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
+            {
+                binding.CartListBtn.setText("0")
+            }
+            else{
+                binding.CartListBtn.setText(viewModel.get_cartItem_count().toString())
+            }
+        })
+
+        //장바구니 버튼 클릭
+        binding.CartListBtn.setOnClickListener {
             ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }
         // 바코드 버튼
-        binding.BarCord.setOnClickListener{show_Scanner()}
+        binding.BarCord.setOnClickListener{
+//            show_Scanner()
+            BarCode_Fragment().show((activity as MainActivity).fragmentManager,"BarCode")
+        }
 
         //관리자메뉴
         binding.ManagerBtn.setOnClickListener{
@@ -123,7 +137,16 @@ class HomeFragment : Fragment(){
         alertDialog?.setCanceledOnTouchOutside(true)  //바깥 터치시 다이얼로그 사라짐
         alertDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
-        alertDialog.show()
+
+        runBlocking {
+            launch {
+                alertDialog.show()
+            }.join()
+            launch {
+                delay(1000)
+            }.join()
+            PayingFragment().show((activity as MainActivity).fragmentManager,"PayingFragment")
+        }
     }
 
 }

@@ -1,16 +1,18 @@
 package Fragment
 
 import Util.CartItem
+import Util.WineDTO
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a24mo.databinding.ShoppingCartRecyclerviewBinding
 import java.text.DecimalFormat
 
-class ShoppingCartListAdapter(private var shoppingCart:LiveData<ArrayList<CartItem>>,listener : OnCartBtnClickListener)
+class ShoppingCartListAdapter(private var shoppingCart: MutableLiveData<ArrayList<CartItem>>, listener : OnCartBtnClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var recycleViewItems = ArrayList<CartItem>()
     private val  TAG = "ShoppingCartListAdapter"
@@ -34,6 +36,14 @@ class ShoppingCartListAdapter(private var shoppingCart:LiveData<ArrayList<CartIt
                 mCallback_CartBtn.minusCount(cartItem)
             }
         }
+        fun deleteSetting(cartItem: CartItem,position: Int) =with (binding){
+            deleteBtn.setOnClickListener {
+                Log.d(TAG,cartItem.wine.W_name +" 삭제 버튼이 클릭 되었습니다")
+                mCallback_CartBtn.deleteItem(cartItem)
+                notifyDataSetChanged()
+                Log.d(TAG,shoppingCart.value?.size!!.toString() + " 가 장바구니에 남았습니다")
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -50,11 +60,16 @@ class ShoppingCartListAdapter(private var shoppingCart:LiveData<ArrayList<CartIt
             // 데이터 바인딩하기 - inner class 메소드 호출
             (holder as MyViewHolder).bind(it)
             Log.d(TAG, "onBindViewHolder에서" + it.wine.Wid + " " + it.wine.W_name + " 가 확인됨")
+            (holder as MyViewHolder).deleteSetting(it,position)
+        }
+        // 리스트 아이템 선택시 상세정보 페이지에 데이터 넘겨주기
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position,shoppingCart.value?.get(position)!!.wine)
         }
     }
 
     interface OnItemClickListener {
-        fun onClick(v: View, position: Int)
+        fun onClick(v: View, position: Int,wineDTO: WineDTO)
     }
     fun setItemClickListener(onItemClickListener: OnItemClickListener) {
         this.itemClickListener = onItemClickListener
@@ -65,6 +80,7 @@ class ShoppingCartListAdapter(private var shoppingCart:LiveData<ArrayList<CartIt
     interface OnCartBtnClickListener{
         fun plusCount(item : CartItem)
         fun minusCount(item :CartItem)
+        fun deleteItem(item:CartItem)
     }
 
 
@@ -75,6 +91,13 @@ class ShoppingCartListAdapter(private var shoppingCart:LiveData<ArrayList<CartIt
     fun setData(data : ArrayList<CartItem>){
         recycleViewItems = data
         notifyDataSetChanged()
+    }
+
+    fun deleteItem(position: Int){
+        Log.d(TAG,shoppingCart.value?.get(position)!!.wine.W_name+" 의 삭제 액션이 실행 되었습니다")
+        mCallback_CartBtn.deleteItem(shoppingCart.value?.get(position)!!)
+        notifyDataSetChanged()
+        Log.d(TAG,shoppingCart.value?.size!!.toString() + " 가 장바구니에 남았습니다")
     }
 
     fun feature_fun(value : String): String{

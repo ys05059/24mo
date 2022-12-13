@@ -29,21 +29,33 @@
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/layout/string2.xml" value="0.358695652173913" />
         <entry key="..\:/Android_Workspace/24mo/app/src/main/res/xml/network_security_config.xml" value="0.1875" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/button_round_white.xml" value="0.218" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/dialog_round.xml" value="0.206" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/ic_launcher_background.xml" value="0.367" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/information_dialog_round.xml" value="0.206" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/solid_button.xml" value="0.366" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/stroke_button.xml" value="0.366" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/drawable/white_round.xml" value="0.1955" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/activity_main.xml" value="0.1834117144078666" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/barcode_dialog.xml" value="0.1834117144078666" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/detail_food.xml" value="0.21034630183839248" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/detail_taste.xml" value="0.21034630183839248" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_detail_result.xml" value="0.19" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_detail_search.xml" value="0.30055579307396324" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_detail_search1.xml" value="0.30055579307396324" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_finish_pay.xml" value="0.30055579307396324" />
-        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_information.xml" value="0.28802083333333334" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_information.xml" value="0.1" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_paying.xml" value="0.30055579307396324" />
-        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_shopping_cart_dialog.xml" value="0.18508997429305912" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/fragment_shopping_cart_dialog.xml" value="0.18" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/home_layout.xml" value="0.14688675302966986" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/recommend_wine_fragment1.xml" value="0.11666666666666667" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/recommend_wine_fragment2.xml" value="0.1" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/recommend_wine_fragment_result.xml" value="0.18" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/recommend_wine_layout.xml" value="0.1875" />
-        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/recommend_wine_recyclerview.xml" value="0.5" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/recommend_wine_recyclerview.xml" value="0.29444444444444445" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/result_error_page.xml" value="0.1834117144078666" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/select_price_range.xml" value="0.1834117144078666" />
         <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/shopping_cart_recyclerview.xml" value="0.22" />
+        <entry key="..\:/Android_Workspace/24mo_re/app/src/main/res/layout/temp_detail_search_recycler.xml" value="0.30055579307396324" />
       </map>
     </option>
   </component>

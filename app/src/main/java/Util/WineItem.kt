@@ -20,13 +20,15 @@ data class WineDTO(
     @SerializedName("alcohol") val W_alcohol : String,
     @SerializedName("image_url") val W_image : String,
     @SerializedName("aroma_arr") val W_aroma_arr : Array<imageDTO>,
-    @SerializedName("food_arr") val W_food_arr : Array<imageDTO>
+    @SerializedName("food_arr") val W_food_arr : Array<imageDTO>,
+    var checked : Boolean
 ):Serializable {
     constructor() : this(
         "", "", "", "", "", "", "",
         "", "", "", "", "", "", "", "",""
         ,arrayOf(imageDTO())
         ,arrayOf(imageDTO())
+        ,false
     )
 }
 
@@ -38,10 +40,25 @@ data class imageDTO(
     constructor() : this("","")
 }
 
+data class SearchWineParmeter(
+    var name: String,
+    var min_price : Int,
+    var max_price : Int,
+    var type: String,
+    var region: String,
+    var alcohol : Int,
+    var food : String,
+    var sweet : Int,
+    var acidity : Int,
+    var body : Int,
+    var tannin : Int
+){
+    constructor() :this("",0,0,"","",0,"",-1,-1,-1,-1)
+}
 
-data class recommendListReturn(
+data class WineList(
     @SerializedName("status") val status : String,
-    @SerializedName("data") val recommend_list : ArrayList<WineDTO>
+    @SerializedName("data") val wine_list : ArrayList<WineDTO>
 ):Serializable{
     constructor() : this ("", ArrayList<WineDTO>())
 }

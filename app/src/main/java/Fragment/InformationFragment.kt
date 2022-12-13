@@ -5,9 +5,6 @@ import Main.MainViewModel
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -18,23 +15,34 @@ import com.example.a24mo.R
 import Util.WineDTO
 import com.example.a24mo.databinding.FragmentInformationBinding
 import Util.imageDTO
-import android.view.Gravity
+import android.content.Context
+import android.graphics.Point
+import android.view.*
 import android.view.ViewGroup.MarginLayoutParams
+import android.widget.Toast
 import androidx.core.view.children
 import androidx.core.view.marginRight
 import androidx.core.view.setMargins
+import androidx.fragment.app.DialogFragment
+import kotlinx.coroutines.*
 import java.text.DecimalFormat
 
 
-class InformationFragment : Fragment() {
+class InformationFragment : DialogFragment() {
     private  lateinit var vm : MainViewModel
     //view 바인딩을 위한 변수들
     private  var _binding : FragmentInformationBinding? = null
     private val binding get() = _binding!!
-
+    private val TAG ="InformationFragment"
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("InformationFragment", "프래그먼트 전환 완료")
         super.onCreate(savedInstanceState)
+        // 풀스크린으로 보기 -> res/values/dialog_fullscreen.xml 참고
+        setStyle(STYLE_NO_TITLE, R.style.barcode_dialog)
+
+        //false로 설정해 주면 화면 밖 또는 뒤로가기 클릭 시 다이얼로그가 dismiss되지 않음
+        isCancelable = true
+
 //        // 만약 값이 자동으로 바뀌게 하고 싶으면 옵저버 생성해줘야함 -> 이때 mutableLivaData가 바인딩되어있어야할듯
 //        val nameObserver = Observer<String> { new_W_name ->
 //            binding.informationName = new_W_name
@@ -71,7 +79,7 @@ class InformationFragment : Fragment() {
             if (new_WineDetail.W_alcohol == "0"){
                 binding.informationAlcohol.text = "정보없음"
             }else
-                binding.informationAlcohol.text = new_WineDetail.W_alcohol
+                binding.informationAlcohol.text = new_WineDetail.W_alcohol +"%"
 
             // 와인 이미지 추가
             addWineImg(binding.informationImg,new_WineDetail.W_image)
@@ -94,25 +102,87 @@ class InformationFragment : Fragment() {
                 count++
             }
 
+            // 추천 결과에서 불러졌을 때 돌아가기 버튼 활성화
+//            Log.d(TAG ,parentFragment.toString())
+//            if(parentFragment is Recommend_Result_Fragment){
+//                invisible_back_btn(false)
+//            }
+
+
             // 담기 버튼 동작
             binding.addCartBtn.setOnClickListener{
-                vm.wineDetail.value?.let { vm.addWine_CartList(it) }
-                (activity as MainActivity).replaceTransaction(HomeFragment())
+                // 바코드 창 닫기
+                val prev = (activity as MainActivity).fragmentManager.findFragmentByTag("BarCode")
+                prev?.onDestroy()
+
+                // 장바구니에 담기
+                vm.wineDetail.value?.let { vm.addWine_CartList(it)
+                    Toast.makeText((activity as MainActivity),it.W_name+ " 가 장바구니에 담겼습니다",
+                        Toast.LENGTH_SHORT).show()
+                    runBlocking{
+                        launch {
+                            delay(300)
+                        }.join()
+                        dismiss()
+                    }
+                }
+                Log.d("Test",parentFragment.toString())
+//                }// 추천이나 검색 리스트에서 불러졌을 때
+//                else if(parentFragment is Recommend_Result_Fragment || parentFragment is Detail_Search_Fragment_result){
+//
+//                    dismiss()
+//                }
             }
 
-            binding.HomeBtn.setOnClickListener{
-                (activity as MainActivity).replaceTransaction(HomeFragment())
+//            // 홈 버튼
+//            binding.HomeBtn.setOnClickListener{
+//                dismiss()
+//                (activity as MainActivity).replaceTransaction(HomeFragment())
+//            }
 
+            // 돌아가기 버튼
+            binding.goBackBtn.setOnClickListener{
+//                invisible_back_btn(true)
+//                if(parentFragment is BarCode_Fragment){
+                    val prev = (activity as MainActivity).fragmentManager.findFragmentByTag("BarCode")
+                    runBlocking{
+                        val temp = launch {
+                            prev?.onDestroy()
+                            delay(100)
+                        }
+                        temp.join()
+                }
+                dismiss()
             }
         }
         vm.wineDetail.observe(viewLifecycleOwner,wnameObserver)
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        val windowManager = (activity as MainActivity).getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val params: ViewGroup.LayoutParams? = dialog?.window?.attributes
+        val deviceWidth = size.x
+        val deviceHeight = size.y
+        params?.width = (deviceWidth * 0.9).toInt()
+        params?.height = (deviceHeight * 0.85).toInt()
+        dialog?.window?.attributes = params as WindowManager.LayoutParams
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
+
     // 와인 이미지 추가
     fun addWineImg(view: ImageView , url : String){
         val defaultImage = androidx.loader.R.drawable.notification_action_background
@@ -177,5 +247,12 @@ class InformationFragment : Fragment() {
             }
             parent.addView(imgv)
         }
+    }
+
+    fun invisible_back_btn (bool :Boolean){
+        if (bool)
+            binding.goBackBtn.visibility = View.INVISIBLE
+        else
+            binding.goBackBtn.visibility = View.VISIBLE
     }
 }
