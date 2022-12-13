@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(){
 
         fragmentManager = supportFragmentManager
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        replaceTransaction(HomeFragment())
+        replaceTransaction( HomeFragment(),"HomeFragment")
     }
 
     fun replaceTransaction(fragment: Fragment) {
@@ -58,6 +58,18 @@ class MainActivity : AppCompatActivity(){
         }
         transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment).commit()
+        presentFragment = fragment
+        transaction.addToBackStack(null)
+    }
+
+    fun replaceTransaction(fragment: Fragment,tag:String) {
+        if(presentFragment == fragment) {
+            Toast.makeText(this, "이미 해당 Fragment를 보여주고 있습니다.",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
+        transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment,tag).commit()
         presentFragment = fragment
         transaction.addToBackStack(null)
     }

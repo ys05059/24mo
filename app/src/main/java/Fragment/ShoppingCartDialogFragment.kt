@@ -95,10 +95,14 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
         }
         // 결제 버튼
         binding.payButton.setOnClickListener {
-            //(activity as MainActivity).replaceTransaction(PayingFragment())
-
+            PayingFragment().show((activity as MainActivity).fragmentManager,"PayingFragment")
         }
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        dismiss()
     }
 
     override fun plusCount(item: CartItem) {

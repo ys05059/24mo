@@ -3,24 +3,23 @@ package Fragment
 import Main.MainActivity
 import Main.MainViewModel
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
-
+import com.example.a24mo.databinding.BarcodeDialogBinding
 import com.example.a24mo.databinding.FragmentPayingBinding
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-
-class PayingFragment : DialogFragment(){
+class BarCode_Fragment : DialogFragment() {
     private  lateinit var vm : MainViewModel
-    private  var _binding : FragmentPayingBinding? = null
+    private  var _binding : BarcodeDialogBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +34,7 @@ class PayingFragment : DialogFragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentPayingBinding.inflate(inflater, container, false)
+        _binding = BarcodeDialogBinding.inflate(inflater, container, false)
         val view = binding.root
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         return view
@@ -47,7 +46,9 @@ class PayingFragment : DialogFragment(){
             launch {
 //                (activity as MainActivity).replaceTransaction(FinishPayFragment())
                 delay(2000)
-                FinishPayFragment().show((activity as MainActivity).fragmentManager,"FinishPayFragment")
+                vm.getWineDetail(158643)
+                val info_frag = InformationFragment()                       // 상세조회 페이지로 이동
+                info_frag.show((activity as MainActivity).fragmentManager.findFragmentByTag("HomeFragment")!!.childFragmentManager,"Information")
             }
         }
 
@@ -61,5 +62,4 @@ class PayingFragment : DialogFragment(){
         super.onDestroy()
         dismiss()
     }
-
 }

@@ -112,17 +112,22 @@ class InformationFragment : DialogFragment() {
 
             // 담기 버튼 동작
             binding.addCartBtn.setOnClickListener{
-//                if(parentFragment is HomeFragment){
-                    vm.wineDetail.value?.let { vm.addWine_CartList(it)
-                        Toast.makeText((activity as MainActivity),it.W_name+ " 가 장바구니에 담겼습니다",
-                            Toast.LENGTH_SHORT).show()
-                        runBlocking{
-                            launch {
-                                delay(500)
-                            }.join()
-                            dismiss()
-                        }
+                // 바코드 창 닫기
+                val prev = (activity as MainActivity).fragmentManager.findFragmentByTag("BarCode")
+                prev?.onDestroy()
+
+                // 장바구니에 담기
+                vm.wineDetail.value?.let { vm.addWine_CartList(it)
+                    Toast.makeText((activity as MainActivity),it.W_name+ " 가 장바구니에 담겼습니다",
+                        Toast.LENGTH_SHORT).show()
+                    runBlocking{
+                        launch {
+                            delay(300)
+                        }.join()
+                        dismiss()
                     }
+                }
+                Log.d("Test",parentFragment.toString())
 //                }// 추천이나 검색 리스트에서 불러졌을 때
 //                else if(parentFragment is Recommend_Result_Fragment || parentFragment is Detail_Search_Fragment_result){
 //
@@ -138,8 +143,17 @@ class InformationFragment : DialogFragment() {
 
             // 돌아가기 버튼
             binding.goBackBtn.setOnClickListener{
-                dismiss()
 //                invisible_back_btn(true)
+//                if(parentFragment is BarCode_Fragment){
+                    val prev = (activity as MainActivity).fragmentManager.findFragmentByTag("BarCode")
+                    runBlocking{
+                        val temp = launch {
+                            prev?.onDestroy()
+                            delay(100)
+                        }
+                        temp.join()
+                }
+                dismiss()
             }
         }
         vm.wineDetail.observe(viewLifecycleOwner,wnameObserver)
@@ -150,6 +164,12 @@ class InformationFragment : DialogFragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
+
     // 와인 이미지 추가
     fun addWineImg(view: ImageView , url : String){
         val defaultImage = androidx.loader.R.drawable.notification_action_background

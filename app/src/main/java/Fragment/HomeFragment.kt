@@ -21,10 +21,7 @@ import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.a24mo.R
 import com.example.a24mo.databinding.HomeLayoutBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class HomeFragment : Fragment(){
 
@@ -60,7 +57,7 @@ class HomeFragment : Fragment(){
 
                 CoroutineScope(Dispatchers.Main).launch{
                     val info_frag = InformationFragment()
-                    info_frag.show(childFragmentManager,"HomeFragment")
+                    info_frag.show(childFragmentManager,"Information")
                     delay(500)
                 }
             }
@@ -90,7 +87,10 @@ class HomeFragment : Fragment(){
             ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }
         // 바코드 버튼
-        binding.BarCord.setOnClickListener{show_Scanner()}
+        binding.BarCord.setOnClickListener{
+//            show_Scanner()
+            BarCode_Fragment().show((activity as MainActivity).fragmentManager,"BarCode")
+        }
 
         //관리자메뉴
         binding.ManagerBtn.setOnClickListener{
@@ -137,7 +137,16 @@ class HomeFragment : Fragment(){
         alertDialog?.setCanceledOnTouchOutside(true)  //바깥 터치시 다이얼로그 사라짐
         alertDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
-        alertDialog.show()
+
+        runBlocking {
+            launch {
+                alertDialog.show()
+            }.join()
+            launch {
+                delay(1000)
+            }.join()
+            PayingFragment().show((activity as MainActivity).fragmentManager,"PayingFragment")
+        }
     }
 
 }
