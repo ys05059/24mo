@@ -44,7 +44,7 @@ class PriceDialog(context: Context){
             if(max_edit.text.toString().equals("")){
                 max_money =0
             }else{
-                max_money = min_edit.text.toString().toInt()
+                max_money = max_edit.text.toString().toInt()
             }
             onClickedListener.onClicked(min_money, max_money)
             dialog.dismiss()

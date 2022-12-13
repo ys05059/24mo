@@ -240,6 +240,9 @@ class MainViewModel :  ViewModel(){
             "price"-> content = "      가격대" + "    \t ${Detail_Parameter.min_price}원 ~ ${Detail_Parameter.max_price}원"
             "food" -> content = "\n음식"+"\n    ${Detail_Parameter.food}"
             "others" ->content = "   당도/산도/바디/타닌" + "\n     ${temp_taste[0]}/${temp_taste[1]}/${temp_taste[2]}/${temp_taste[3]}"
+            "price_reset" -> content = "      가격대    "
+            "food_reset" ->content = "\n음식\n "
+            "others_reset"->content = "   당도/산도/바디/타닌"
         }
         var spanningString : SpannableString = SpannableString(content)
 
@@ -251,7 +254,6 @@ class MainViewModel :  ViewModel(){
         {
             start = content.indexOf("\n     ")
         }
-
         else
         {
             start = content.indexOf(" ")
@@ -261,6 +263,8 @@ class MainViewModel :  ViewModel(){
         if(tag == "others")
         {
             spanningString.setSpan(RelativeSizeSpan(0.7f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }else if(tag == "price_reset" || tag == "food_reset" || tag == "others_reset"){
+            spanningString.setSpan(RelativeSizeSpan(1.0f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 크기 바꾸기
         }
         else{
             spanningString.setSpan(RelativeSizeSpan(0.5f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 크기 바꾸기
