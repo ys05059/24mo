@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
@@ -73,15 +74,19 @@ class HomeFragment : Fragment(){
             (activity as MainActivity).replaceTransaction(Detail_Search_Fragment())
         }
 
-        // 장바구니 버튼
-        if(viewModel.shoppingCartList.value == null)
-        {
-            binding.ShoppingBtn.setText("0")
-        }
-        else{
-            binding.ShoppingBtn.setText(viewModel.shoppingCartList.value?.size.toString())
-        }
-        binding.ShoppingBtn.setOnClickListener {
+        // 장바구니 item 개수 업데이트
+        viewModel.shoppingCartList.observe(viewLifecycleOwner, Observer{
+            if(viewModel.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
+            {
+                binding.CartListBtn.setText("0")
+            }
+            else{
+                binding.CartListBtn.setText(viewModel.get_cartItem_count().toString())
+            }
+        })
+
+        //장바구니 버튼 클릭
+        binding.CartListBtn.setOnClickListener {
             ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }
         // 바코드 버튼

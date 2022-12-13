@@ -23,124 +23,116 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         >
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cart_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_weight="1" />
+    </ScrollView>
 
-            <!--        <LinearLayout-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_marginLeft="10dp"-->
-            <!--            android:orientation="horizontal">-->
-
-            <!--            <CheckBox android:id="@+id/checkbox_all"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:text="전체선택"-->
-            <!--                android:fontFamily="@font/nanum_gothic"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                android:buttonTint="@color/black"-->
-            <!--                />-->
-
-            <!--        </LinearLayout>-->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/cart_recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
+        <LinearLayout
+            android:id="@+id/bottom_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom">
             <LinearLayout
-                android:id="@+id/bottom_box"
+                android:id="@+id/price_box"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_gravity="bottom">
-                <LinearLayout
-                    android:id="@+id/price_box"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="bottom">
 
-                    <TextView
-                        android:id="@+id/total_price_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:fontFamily="@font/nanum_gothic_extra_bold"
-                        android:gravity="center"
-                        android:padding="15dp"
-                        android:text="최종 금액"
-                        android:textColor="@color/black"
-                        android:textSize="22dp" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/total_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="@font/nanum_gothic_extra_bold"
-                        android:gravity="center"
-                        android:padding="15dp"
-                        android:text="\\0"
-                        android:textColor="@color/black"
-                        android:textSize="22dp" />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#D4D4D3" />
-
-
-                <LinearLayout
-                    android:id="@+id/bottom_btn_box"
+                <TextView
+                    android:id="@+id/total_price_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/nanum_gothic_extra_bold"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="최종 금액"
+                    android:textColor="@color/black"
+                    android:textSize="22dp" />
+                <TextView
+                    android:id="@+id/total_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/nanum_gothic_extra_bold"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="총 0 병"
+                    android:textColor="@color/black"
+                    android:textSize="22dp" />
 
-                    <Button
-                        android:id="@+id/closeButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/solid_button"
-                        android:fontFamily="@font/nanum_gothic_extra_bold"
-                        android:text="닫기"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
-                    <Button
-                        android:id="@+id/payButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/solid_button"
-                        android:fontFamily="@font/nanum_gothic_extra_bold"
-                        android:text="결제하기"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/total_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/nanum_gothic_extra_bold"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="\\0"
+                    android:textColor="@color/black"
+                    android:textSize="22dp" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#D4D4D3" />
 
-                </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bottom_btn_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/closeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/solid_button"
+                    android:fontFamily="@font/nanum_gothic_extra_bold"
+                    android:text="닫기"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+                <Button
+                    android:id="@+id/payButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/solid_button"
+                    android:fontFamily="@font/nanum_gothic_extra_bold"
+                    android:text="결제하기"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
 
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+
 
 </LinearLayout>

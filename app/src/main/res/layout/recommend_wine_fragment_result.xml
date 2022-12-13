@@ -64,7 +64,7 @@
         android:layout_marginBottom="10dp">
 
         <Fragment.CustomBottomButton
-            android:id="@+id/recommend_CartBtn"
+            android:id="@+id/CartListBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

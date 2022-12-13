@@ -43,9 +43,10 @@
                 imageUrl="@{item.wine.w_image}" />
 
             <GridLayout
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_marginTop="10dp"
                 android:columnCount="2">
 
                 <TextView
@@ -248,7 +249,6 @@
                 android:id="@+id/deleteBtn"
                 android:layout_width="32dp"
                 android:layout_height="34dp"
-                android:gravity="right|top"
                 android:text="x" />
         </LinearLayout>
 
@@ -275,7 +275,7 @@
                     android:fontFamily="@font/nanum_gothic_extra_bold"
                     android:textColor="@color/black"
                     android:textSize="22dp"
-                    android:text="@{item.count + `개`}"
+                    android:text="@{item.count + `병`}"
                     />
                 <LinearLayout
                     android:layout_width="wrap_content"

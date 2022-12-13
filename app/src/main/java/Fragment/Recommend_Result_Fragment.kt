@@ -42,31 +42,72 @@ class Recommend_Result_Fragment : Fragment() {
         binding.recommendRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         lateinit var recommendListAdapter :RecommendListAdapter
-        vm.wineList.observe(viewLifecycleOwner,Observer{
+        vm.wineList.observe(viewLifecycleOwner, Observer{
             if(!vm.wineList.value.isNullOrEmpty()){
                 recommendListAdapter= RecommendListAdapter(vm.wineList)
                 binding.recommendRecyclerView.adapter = recommendListAdapter
             }
-            // 각 상품 클릭 시 상세 페이지로 이동
             recommendListAdapter.setItemClickListener(object : RecommendListAdapter.OnItemClickListener {
                 override fun onClick(v: View, position: Int,wineDTO: WineDTO) {
-                    vm.setWineDetail(wineDTO)
-                    val info_frag = InformationFragment()
+                    vm.setWineDetail(wineDTO)                                   // 상세 조회할 와인 정보 넘겨주기
+                    val info_frag = InformationFragment()                       // 상세조회 페이지로 이동
                     info_frag.show(childFragmentManager,"Recommend_Result")
+                }
+            })
+            // 체크박스 눌렀을 때 반응하기
+            recommendListAdapter.setCheckBoxClickListener(object :RecommendListAdapter.OnCheckBoxClickListener{
+                override fun onClick(v: View, position: Int,checked : Boolean) {
+                    vm.wineList.value?.get(position)?.checked = checked
+                    Log.d(TAG,vm.wineList.value?.get(position)?.W_name +" 이 " + vm.wineList.value?.get(position)?.checked +"로 변경되었습니다")
                 }
             })
         })
 
+        // 장바구니 item 개수 업데이트
+        vm.shoppingCartList.observe(viewLifecycleOwner,Observer{
+            if(vm.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
+            {
+                binding.CartListBtn.setText("0")
+            }
+            else{
+                binding.CartListBtn.setText(vm.get_cartItem_count().toString())
+            }
+        })
 
-        if(vm.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
-        {
-            binding.recommendCartBtn.setText("0")
-        }else{
-            binding.recommendCartBtn.setText(vm.wineList.value?.size.toString())
+
+        // 장바구니 버튼 클릭시 액션
+        binding.CartListBtn.setOnClickListener{
+//            (activity as MainActivity).replaceTransaction(ShoppingCartDialogFragment())
+            ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }
 
+        // 담기 버튼 구현
         binding.recommendAddCartBtn.setOnClickListener {
-            // 추천 리스트에서 체크 완료된 상품들 shopping Cart에 담기
+            vm.addWineList_CartList()
+            // 체크 됐던 item들 해제
+            vm.reset_WineList_Checked()
+            // 화면 새로 refresh하기
+            binding.recommendRecyclerView.removeAllViewsInLayout()
+            vm.wineList.observe(viewLifecycleOwner, Observer{
+                if(!vm.wineList.value.isNullOrEmpty()){
+                    recommendListAdapter= RecommendListAdapter(vm.wineList)
+                    binding.recommendRecyclerView.adapter = recommendListAdapter
+                }
+                recommendListAdapter.setItemClickListener(object : RecommendListAdapter.OnItemClickListener {
+                    override fun onClick(v: View, position: Int,wineDTO: WineDTO) {
+                        vm.setWineDetail(wineDTO)                                   // 상세 조회할 와인 정보 넘겨주기
+                        val info_frag = InformationFragment()                       // 상세조회 페이지로 이동
+                        info_frag.show(childFragmentManager,"Recommend_Result")
+                    }
+                })
+                // 체크박스 눌렀을 때 반응하기
+                recommendListAdapter.setCheckBoxClickListener(object :RecommendListAdapter.OnCheckBoxClickListener{
+                    override fun onClick(v: View, position: Int,checked : Boolean) {
+                        vm.wineList.value?.get(position)?.checked = checked
+                        Log.d(TAG,vm.wineList.value?.get(position)?.W_name +" 이 " + vm.wineList.value?.get(position)?.checked +"로 변경되었습니다")
+                    }
+                })
+            })
 
         }
 

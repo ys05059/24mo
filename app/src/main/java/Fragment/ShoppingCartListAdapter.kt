@@ -38,8 +38,9 @@ class ShoppingCartListAdapter(private var shoppingCart: MutableLiveData<ArrayLis
         fun deleteSetting(cartItem: CartItem,position: Int) =with (binding){
             deleteBtn.setOnClickListener {
                 Log.d(TAG,cartItem.wine.W_name +" 삭제 버튼이 클릭 되었습니다")
-                shoppingCart.value?.removeAt(position)
+                mCallback_CartBtn.deleteItem(cartItem)
                 notifyDataSetChanged()
+                Log.d(TAG,shoppingCart.value?.size!!.toString() + " 가 장바구니에 남았습니다")
             }
         }
     }
@@ -74,6 +75,7 @@ class ShoppingCartListAdapter(private var shoppingCart: MutableLiveData<ArrayLis
     interface OnCartBtnClickListener{
         fun plusCount(item : CartItem)
         fun minusCount(item :CartItem)
+        fun deleteItem(item:CartItem)
     }
 
 
@@ -84,6 +86,13 @@ class ShoppingCartListAdapter(private var shoppingCart: MutableLiveData<ArrayLis
     fun setData(data : ArrayList<CartItem>){
         recycleViewItems = data
         notifyDataSetChanged()
+    }
+
+    fun deleteItem(position: Int){
+        Log.d(TAG,shoppingCart.value?.get(position)!!.wine.W_name+" 의 삭제 액션이 실행 되었습니다")
+        mCallback_CartBtn.deleteItem(shoppingCart.value?.get(position)!!)
+        notifyDataSetChanged()
+        Log.d(TAG,shoppingCart.value?.size!!.toString() + " 가 장바구니에 남았습니다")
     }
 
     fun feature_fun(value : String): String{

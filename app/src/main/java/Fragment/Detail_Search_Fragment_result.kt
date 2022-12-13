@@ -61,16 +61,16 @@ class Detail_Search_Fragment_result : Fragment() {
         vm.shoppingCartList.observe(viewLifecycleOwner,Observer{
             if(vm.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
             {
-                binding.basket.setText("0")
+                binding.CartListBtn.setText("0")
             }
             else{
-                binding.basket.setText(vm.get_cartItem_count().toString())
+                binding.CartListBtn.setText(vm.get_cartItem_count().toString())
             }
         })
 
 
         // 장바구니 버튼 클릭시 액션
-        binding.basket.setOnClickListener{
+        binding.CartListBtn.setOnClickListener{
 //            (activity as MainActivity).replaceTransaction(ShoppingCartDialogFragment())
             ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }
@@ -78,8 +78,10 @@ class Detail_Search_Fragment_result : Fragment() {
         // 담기 버튼 구현
         binding.addCartBtn.setOnClickListener {
             vm.addWineList_CartList()
-            binding.DetailResultRecyclerView.removeAllViewsInLayout()
+            // 체크 됐던 item들 해제
+            vm.reset_WineList_Checked()
             // 화면 새로 refresh하기
+            binding.DetailResultRecyclerView.removeAllViewsInLayout()
             vm.wineList.observe(viewLifecycleOwner, Observer{
                 if(!vm.wineList.value.isNullOrEmpty()){
                     searchListAdapter= RecommendListAdapter(vm.wineList)

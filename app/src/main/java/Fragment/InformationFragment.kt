@@ -20,10 +20,12 @@ import com.example.a24mo.databinding.FragmentInformationBinding
 import Util.imageDTO
 import android.view.Gravity
 import android.view.ViewGroup.MarginLayoutParams
+import android.widget.Toast
 import androidx.core.view.children
 import androidx.core.view.marginRight
 import androidx.core.view.setMargins
 import androidx.fragment.app.DialogFragment
+import kotlinx.coroutines.*
 import java.text.DecimalFormat
 
 
@@ -110,8 +112,22 @@ class InformationFragment : DialogFragment() {
 
             // 담기 버튼 동작
             binding.addCartBtn.setOnClickListener{
-                vm.wineDetail.value?.let { vm.addWine_CartList(it) }
-                (activity as MainActivity).replaceTransaction(HomeFragment())
+//                if(parentFragment is HomeFragment){
+                    vm.wineDetail.value?.let { vm.addWine_CartList(it)
+                        Toast.makeText((activity as MainActivity),it.W_name+ " 가 장바구니에 담겼습니다",
+                            Toast.LENGTH_SHORT).show()
+                        runBlocking{
+                            launch {
+                                delay(500)
+                            }.join()
+                            dismiss()
+                        }
+                    }
+//                }// 추천이나 검색 리스트에서 불러졌을 때
+//                else if(parentFragment is Recommend_Result_Fragment || parentFragment is Detail_Search_Fragment_result){
+//
+//                    dismiss()
+//                }
             }
 
 //            // 홈 버튼

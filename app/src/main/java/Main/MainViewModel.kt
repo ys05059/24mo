@@ -188,6 +188,12 @@ class MainViewModel :  ViewModel(){
         Log.d(TAG,item.wine.W_name +" 가 장바구니에서 삭제되었습니다")
     }
 
+    fun reset_WineList_Checked(){
+        wineList.value?.forEach{
+            it.checked = false
+        }
+    }
+
     //특정문자열 글자 크기 바꿈
     fun Change_font_size(btn : Button, tag: String){
         //태그만 임의로 설정하셔서 파라미터로 넘기면서 사용하시면 될것같습니다.

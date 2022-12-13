@@ -13,7 +13,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentShoppingCartDialogBinding
 import kotlinx.coroutines.*
@@ -52,19 +54,39 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
 
             // 최종 금액 최신화하기
             var total_price : Int = 0
+            var total_count :Int
             vm.shoppingCartList.observe(this, Observer{
                 adapter.setData(it)
                 // 선택된 와인들만 최종 금액 계산
                 total_price = 0
+                total_count = 0
                 it.forEach{
                     total_price += it.wine.W_price.toInt() * it.count
+                    total_count += it.count
                     Log.d(TAG,"W_price :  " + it.wine.W_price)
                     Log.d(TAG,"count :  " + it.count)
-
                 }
                 Log.d(TAG,"total_price :  " + total_price)
                 binding.totalPrice.text= price_format(total_price.toString())
+
+                binding.totalCount.text ="총 "+total_count.toString() +" 병"
             })
+        }
+
+        // ItemTouchHelper 구현 (스와이프해서 삭제하기 위함)
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return true
+            }
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                // Adapter에 아이템 삭제 요청
+                (binding.cartRecyclerView.adapter as ShoppingCartListAdapter).deleteItem(viewHolder.adapterPosition)
+//                Log.d(TAG,"check : " +vm.shoppingCartList.value?.get(viewHolder.adapterPosition))
+                Log.d(TAG,"check : " +viewHolder.adapterPosition)
+            }
+        }).apply {
+            // ItemTouchHelper에 RecyclerView 설정
+            attachToRecyclerView(binding.cartRecyclerView)
         }
 
         // 닫기 버튼
@@ -85,4 +107,8 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
     override fun minusCount(item: CartItem){
         vm.cartItem_count_minus(item)
     }
+    override fun deleteItem(item: CartItem) {
+        vm.delete_cartItem(item)
+    }
+
 }
