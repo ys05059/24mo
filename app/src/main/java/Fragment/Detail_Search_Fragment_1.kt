@@ -49,11 +49,16 @@ class Detail_Search_Fragment_1 : Fragment() {
                     override fun onClicked(min_money: Int, max_money: Int) {
                         vm.Detail_Parameter.min_price = min_money   // 최소 가격
                         vm.Detail_Parameter.max_price = max_money   // 최대 가격
-    //                    vm.minPrice = min_money //최솟값
-    //                    vm.maxPrice = max_money //최댓값
+
                         Log.d("가격대", "min: ${vm.Detail_Parameter.min_price} max: ${vm.Detail_Parameter.max_price}")
                         vm.Change_font_size(binding.priceRange,"price")
                         binding.priceRange.setBackgroundResource(R.drawable.button_round_white_red) //선택시 테두리 빨갛게.
+
+
+
+
+
+
                     }
                 })
             }
@@ -118,6 +123,11 @@ class Detail_Search_Fragment_1 : Fragment() {
                 })
             }
 
+        }
+
+        //장바구니
+        binding.basket.setOnClickListener{
+            ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }
 
         //검색 버튼
