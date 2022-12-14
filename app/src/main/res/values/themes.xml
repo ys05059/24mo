@@ -17,4 +17,26 @@
 <!--        위의 시계, 배터리,와이파이등의 바를 없앰-->
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="SliderStyle" parent="@style/Widget.MaterialComponents.Slider">
+        <item name="labelStyle">@style/TooltipStyle</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Slider</item>
+    </style>
+
+    <style name="TooltipStyle" parent="Widget.MaterialComponents.Tooltip">
+        <!-- background color of the Tooltip -->
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:textSize">70dp</item>
+    </style>
+
+    <style name="ThemeOverlay.Slider" parent="">
+        <!-- color used by the text in the Tooltip -->
+        <item name="colorPrimary">@color/wine</item>
+        <item name="colorOnPrimary">@color/wine</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorSurface">@color/wine</item>
+    </style>
+
+
+
 </resources>
