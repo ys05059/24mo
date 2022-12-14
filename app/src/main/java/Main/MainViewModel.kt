@@ -239,13 +239,27 @@ class MainViewModel :  ViewModel(){
         }
         //텍스트내용 btn.text.toString() 쓰지않는 이유
         // -> 필터를 설정후, 다시들어가서 설정시 문자열뒤에 계속붙음 (layout의 xml파일의 초기 텍스트로 초기화 필요)
+
+//        가격: 최댓값이 상관없음일시 오류가 나므로 따로 태그를 빼서처리
+        if(tag == "price")
+        {
+            if(Detail_Parameter.max_price > 200000)
+            {
+                content = "      가격대" + "    \t ${Detail_Parameter.min_price}원 ~ 상관없음"
+            }
+            else{
+                content = "      가격대" + "    \t ${Detail_Parameter.min_price}원 ~ ${Detail_Parameter.max_price}원"
+            }
+        }
         when(tag){
-            "price"-> content = "      가격대" + "    \t ${Detail_Parameter.min_price}원 ~ ${Detail_Parameter.max_price}원"
             "food" -> content = "\n음식"+"\n ${Detail_Parameter.food}"
             "others" ->content = "   당도/산도/바디/타닌" + "\n     ${temp_taste[0]}/${temp_taste[1]}/${temp_taste[2]}/${temp_taste[3]}"
             "price_reset" -> content = "      가격대"
             "food_reset" ->content = "\n음식"
             "others_reset"->content = "   당도/산도/바디/타닌"
+        }
+        if(tag == "price" && Detail_Parameter.max_price>= 200000){
+            content ="     가격대" + "    \t ${Detail_Parameter.min_price}원 ~ 상관없음"
         }
         var spanningString : SpannableString = SpannableString(content)
 
