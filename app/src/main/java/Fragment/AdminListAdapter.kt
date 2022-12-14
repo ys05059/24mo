@@ -1,6 +1,6 @@
 package Fragment
 
-import Util.AdminDTO
+import Util.SalesDTO
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,25 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.a24mo.databinding.FragmentAdminitemBinding
 import java.text.DecimalFormat
 
-class AdminListAdapter(private var adminList:LiveData<ArrayList<AdminDTO>>)
+class AdminListAdapter(private var adminList:LiveData<ArrayList<SalesDTO>>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var recycleViewItems = ArrayList<AdminDTO>()
+    var recycleViewItems = ArrayList<SalesDTO>()
     private val  TAG = "AdminListAdapter"
 
     inner class MyViewHolder(val binding: FragmentAdminitemBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(adminDTO: AdminDTO) = with (binding){
+        fun bind(salesDTO: SalesDTO) = with (binding){
             // adapter로 넘어온 데이터 View로 바인딩해주기
-            item = adminDTO
-            data1.setText(adminDTO.A_date)
-            data2.setText(price_format(adminDTO.A_amount))
+            item = salesDTO
             adapter = this@AdminListAdapter
-
-            // 해당일 클릭시 -> 매출 상세 (wid, quantity)
-            itemroot.setOnClickListener {
-                Log.d(TAG, adminDTO.A_date + " 아이템 클릭")
-
-            }
         }
     }
 
@@ -45,7 +37,6 @@ class AdminListAdapter(private var adminList:LiveData<ArrayList<AdminDTO>>)
         adminList.value?.get(position)?.let {
             // 데이터 바인딩하기 - inner class 메소드 호출
             (holder as MyViewHolder).bind(it)
-            Log.d(TAG, "onBindViewHolder에서" + it.A_date + " " + it.A_amount + " 가 확인됨")
         }
     }
 
@@ -62,7 +53,7 @@ class AdminListAdapter(private var adminList:LiveData<ArrayList<AdminDTO>>)
         return adminList.value?.size!!
     }
 
-    fun setData(data : ArrayList<AdminDTO>){
+    fun setData(data : ArrayList<SalesDTO>){
         recycleViewItems = data
         notifyDataSetChanged()
     }
@@ -71,5 +62,4 @@ class AdminListAdapter(private var adminList:LiveData<ArrayList<AdminDTO>>)
         val formatter  = DecimalFormat("#,###,###")
         return "\\" +formatter.format(price.toInt()) + "원"
     }
-
 }

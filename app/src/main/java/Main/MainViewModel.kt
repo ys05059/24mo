@@ -280,8 +280,8 @@ class MainViewModel :  ViewModel(){
 
 
     //admin Data
-    private val _dailyList = MutableLiveData<ArrayList<AdminDTO>>()
-    val dailyList : LiveData<ArrayList<AdminDTO>> get() = _dailyList
+    private val _dailyList = MutableLiveData<ArrayList<DailyDTO>>()
+    val dailyList : LiveData<ArrayList<DailyDTO>> get() = _dailyList
 
     private val _dailySalesList = MutableLiveData<ArrayList<SalesDTO>>()
     val dailySalesList : LiveData<ArrayList<SalesDTO>> get() = _dailySalesList
@@ -300,10 +300,9 @@ class MainViewModel :  ViewModel(){
         }
     }
 
-    fun getDailySalesData(){
+    fun getDailySalesData(date: String){
         job = CoroutineScope(Dispatchers.IO).launch {
             //임시
-            val date = "2022-12-10"
             val response  = wineService.getDailySales(date)
             withContext(Dispatchers.Main){
                 if(response.isSuccessful){
