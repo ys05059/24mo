@@ -1,29 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="@drawable/dialog_round">
 
-
-    <EditText
-        android:id="@+id/minP"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "가격대 설정"
+        android:textColor="@color/grey_font"
+        android:textSize="40dp"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        ></TextView>
+    <TextView
+        android:id="@+id/priceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="27dp"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp">
+    </TextView>
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/price_range_bar"
+        style="@style/SliderStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint ="최소금액 입력"></EditText>
-    <EditText
-        android:id="@+id/maxP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint ="최대금액 입력"></EditText>
+        app:values="@array/initial_slider_values"
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_round"
         android:id = "@+id/enter"
         android:text = "입력"
         android:textSize = "25dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
         ></Button>
 
 

@@ -15,8 +15,14 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
+import com.google.android.material.slider.RangeSlider
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 //가격대 다이얼로그
 class PriceDialog(context: Context){
@@ -27,26 +33,44 @@ class PriceDialog(context: Context){
         dialog.window!!.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT)
-        val min_edit = dialog.findViewById<EditText>(R.id.minP)//최소금액입력 edittext
-        val max_edit = dialog.findViewById<EditText>(R.id.maxP) //최대금액입력 edittext
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        //가격설정바 부분
+        var rangeSlider = dialog.findViewById<com.google.android.material.slider.RangeSlider>(R.id.price_range_bar)
+        rangeSlider.valueFrom = 0f
+        rangeSlider.valueTo = 200000f
+        rangeSlider.stepSize = 10000f
+        rangeSlider.trackHeight=50 //높이
+        rangeSlider.setThumbStrokeColorResource(R.color.white)
+
+        //가격 텍스트
+        var priceText = dialog.findViewById<TextView>(R.id.priceText)
+
+        var min__ = 0
+        var max__ = 0
+        if(min__ == 0 && max__ == 0)
+        {
+            priceText.text = "가격을 설정해주세요"
+        }
+        rangeSlider.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener{
+
+            override fun onStartTrackingTouch(slider: RangeSlider) {
+                //바를 건드리기 시작할때
+                priceText.visibility = View.INVISIBLE
+            }
+            override fun onStopTrackingTouch(slider: RangeSlider) {
+                //바에서 손놓을때
+
+                priceText.visibility = View.VISIBLE
+                min__ = rangeSlider.values.get(0).toInt()
+                max__ = rangeSlider.values.get(1).toInt()
+                priceText.text = "\\${DecimalFormat("#,###").format(min__)} ~ \\${DecimalFormat("#,###").format(max__)}"
+            }
+        })
+
         val done = dialog.findViewById<Button>(R.id.enter) //입력버튼
         //입력버튼시 리스너
         done.setOnClickListener {
-            // 입력값 없을 때 처리
-            val min_money : Int
-            val max_money : Int
-
-            if(min_edit.text.toString().equals("")){
-                min_money =0
-            }else{
-                min_money = min_edit.text.toString().toInt()
-            }
-            if(max_edit.text.toString().equals("")){
-                max_money =0
-            }else{
-                max_money = max_edit.text.toString().toInt()
-            }
-            onClickedListener.onClicked(min_money, max_money)
+            onClickedListener.onClicked(min__,max__)
             dialog.dismiss()
         }
         dialog.show()
@@ -58,6 +82,9 @@ class PriceDialog(context: Context){
     fun setOnClickedListener(listener: ButtonClickListener) { //2
         onClickedListener = listener
     }
+
+
+
     //흐름 : 다이얼로그에서 입력 버튼클릭시 -> onClickedListener(1) 변수가 setOnClickedListener함수(2)를 통해 ButtonClickListener(3)로 초기화됨.
     //이 ButtonClickListener(3) 은 인터페이스 이므로 다시 기존의 프래그먼트(상세검색_1)에서 구현함으로써 프래그먼트에서도 값을 전달받게됨. -> 뷰모델저장
 }

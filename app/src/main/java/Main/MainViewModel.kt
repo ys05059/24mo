@@ -31,8 +31,6 @@ class MainViewModel :  ViewModel(){
     var Recommend_Is_Back : Int = 1
 
     //상세검색 관련 변수들
-    var minPrice : Int = 0
-    var maxPrice : Int = 0
     var Search_Is_Back : Int = 0
 
     var Detail_Parameter = SearchWineParmeter() // 와인 검색창에 들어가는 파라미터들 다 class로 묶었음
@@ -243,10 +241,10 @@ class MainViewModel :  ViewModel(){
         // -> 필터를 설정후, 다시들어가서 설정시 문자열뒤에 계속붙음 (layout의 xml파일의 초기 텍스트로 초기화 필요)
         when(tag){
             "price"-> content = "      가격대" + "    \t ${Detail_Parameter.min_price}원 ~ ${Detail_Parameter.max_price}원"
-            "food" -> content = "\n음식"+"\n    ${Detail_Parameter.food}"
+            "food" -> content = "\n음식"+"\n ${Detail_Parameter.food}"
             "others" ->content = "   당도/산도/바디/타닌" + "\n     ${temp_taste[0]}/${temp_taste[1]}/${temp_taste[2]}/${temp_taste[3]}"
-            "price_reset" -> content = "      가격대    "
-            "food_reset" ->content = "\n음식\n "
+            "price_reset" -> content = "      가격대"
+            "food_reset" ->content = "\n음식"
             "others_reset"->content = "   당도/산도/바디/타닌"
         }
         var spanningString : SpannableString = SpannableString(content)
@@ -261,7 +259,7 @@ class MainViewModel :  ViewModel(){
         }
         else
         {
-            start = content.indexOf(" ")
+            start = content.indexOf("\n ")
         }
         val end : Int = content.length //끝지점
         //0.5f ->기존보다 0.5배
@@ -269,7 +267,8 @@ class MainViewModel :  ViewModel(){
         {
             spanningString.setSpan(RelativeSizeSpan(0.7f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
         }else if(tag == "price_reset" || tag == "food_reset" || tag == "others_reset"){
-            spanningString.setSpan(RelativeSizeSpan(1.0f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 크기 바꾸기
+//            spanningString.setSpan(RelativeSizeSpan(1.0f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 크기 바꾸기
+            btn.text = content
         }
         else{
             spanningString.setSpan(RelativeSizeSpan(0.5f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 크기 바꾸기
