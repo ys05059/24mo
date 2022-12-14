@@ -8,7 +8,7 @@
     //POST 값을 읽어온다, Tag가 비어있을 경우 '레드'로 설정
 
     $Tag1 = isset($_POST['Tag1']) ? $_POST['Tag1'] : '로제';
-    $Tag2 = isset($_POST['Tag2']) ? $_POST['Tag2'] : '도수가 낮은';
+    $Tag2 = isset($_POST['Tag2']) ? $_POST['Tag2'] : '가장 많이 팔리는';
 
     // echo 'Tag1 : '.$Tag1.'<br>';
     // echo 'Tag2 : '.$Tag2.'<br>';
@@ -73,9 +73,10 @@
                 break;
 
             case '가장 많이 팔리는':
+                $data = chooseThree_TopSelling($pdo,$Tag1);
                 break;
             default :
-                echo 'Tag1가 잘못 선택 되었습니다';
+                // echo 'Tag1가 잘못 선택 되었습니다';
                 break;
         }
         // echo 'data : '.json_encode($data).'<br>';
@@ -147,5 +148,25 @@
             }
             return $result;
         }
+    }
+
+    function chooseThree_TopSelling($pdo,$Tag1){
+        $sql = <<<EOT
+                SELECT W.WID
+                FROM WINE W ,SALES S
+                WHERE W.WID  = S.WID
+                AND W.`type` = '$Tag1'
+                ORDER BY S.QUANTITY DESC
+                LIMIT 3
+                EOT;
+        $result = array();
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
+            array_push($result,$WID);
+        }
+        return $result;
     }
 ?>

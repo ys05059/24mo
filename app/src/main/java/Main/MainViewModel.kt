@@ -115,7 +115,7 @@ class MainViewModel :  ViewModel(){
             cartList.forEach {
                 Log.d(TAG," date :" + date + " wid : " + it.wine.Wid.toInt() + " count: "+ it.count)
                 job = CoroutineScope(Dispatchers.IO).launch {
-                    val response  = wineService.insertSales("2022-12-13",it.wine.Wid.toInt(),it.count)
+                    val response  = wineService.insertSales(date,it.wine.Wid.toInt(),it.count)
                     withContext(Dispatchers.Main){
                         if(response.isSuccessful){
                             Log.d(TAG , "saveSales 테스트 : "+ it.wine.W_name +" 의 insert "+response.body()!!.status)
