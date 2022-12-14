@@ -5,12 +5,18 @@ import android.util.Log
 import androidx.lifecycle.*
 import Util.WineDTO
 import Util.WineRemoteDataSource
-import android.content.Context
+import android.os.Build
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import kotlinx.coroutines.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainViewModel :  ViewModel(){
     private val  TAG = "MainViewModel"
@@ -36,7 +42,7 @@ class MainViewModel :  ViewModel(){
     var Detail_Parameter = SearchWineParmeter() // 와인 검색창에 들어가는 파라미터들 다 class로 묶었음
 
     // 장바구니 리스트
-    private val _shoppingCartList = MutableLiveData<ArrayList<CartItem>>()
+    private var _shoppingCartList = MutableLiveData<ArrayList<CartItem>>()
     val shoppingCartList : MutableLiveData<ArrayList<CartItem>> get() = _shoppingCartList
 
     // 장바구니에 와인 추가
@@ -97,6 +103,29 @@ class MainViewModel :  ViewModel(){
     fun setWineDetail(wine: WineDTO){
         _liveWineDetail.value = wine
     }
+    // LocalDate 사용을 위해 버전 맞춰주기. 지금 최소버전 21인데 LocalDate는 26부터 가능
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun saveSales(){
+        var cartList =_shoppingCartList.value
+        val date : String =LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+//        val format = SimpleDateFormat("y-m-d")
+//        val date :String = format.format(now)
+        if( cartList != null){
+            cartList.forEach {
+                Log.d(TAG," date :" + date + " wid : " + it.wine.Wid.toInt() + " count: "+ it.count)
+                job = CoroutineScope(Dispatchers.IO).launch {
+                    val response  = wineService.insertSales(date,it.wine.Wid.toInt(),it.count)
+                    withContext(Dispatchers.Main){
+                        if(response.isSuccessful){
+                            Log.d(TAG , "saveSales 테스트 : "+ it.wine.W_name +" 의 insert "+response.body()!!.status)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     // Retrofit 비동기 통신 - Wid로 와인 상세정보 받아오기
     fun getWineDetail(Wid : Int){
@@ -152,6 +181,7 @@ class MainViewModel :  ViewModel(){
         Log.d(TAG,"장바구니에 " + count + " 개 담겨있습니다")
         return count
     }
+
     fun cartItem_count_plus(item:CartItem){
         var cartList =_shoppingCartList.value
         if( cartList != null){
@@ -278,43 +308,9 @@ class MainViewModel :  ViewModel(){
         btn.setText(spanningString)
     }
 
-
-    //admin Data
-    private val _dailyList = MutableLiveData<ArrayList<DailyDTO>>()
-    val dailyList : LiveData<ArrayList<DailyDTO>> get() = _dailyList
-
-    private val _dailySalesList = MutableLiveData<ArrayList<SalesDTO>>()
-    val dailySalesList : LiveData<ArrayList<SalesDTO>> get() = _dailySalesList
-
-    fun getDailyData(){
-        job = CoroutineScope(Dispatchers.IO).launch {
-            //임시
-            val response  = wineService.getDaily()
-            withContext(Dispatchers.Main){
-                if(response.isSuccessful){
-                    //임시 반환값?
-                    //_dailyList.value= response.body()!!
-                    Log.d("Test" , "코루틴 테스팅 중" +_dailyList.value.toString())
-                }
-            }
-        }
+    fun resetShoppingCartList(){
+        _shoppingCartList = MutableLiveData(ArrayList())
     }
-
-    fun getDailySalesData(date: String){
-        job = CoroutineScope(Dispatchers.IO).launch {
-            //임시
-            val response  = wineService.getDailySales(date)
-            withContext(Dispatchers.Main){
-                if(response.isSuccessful){
-                    //임시 반환값?
-                    //_dailySalesList.value= response.body()!!
-                    Log.d("Test" , "코루틴 테스팅 중" +_dailySalesList.value.toString())
-                }
-            }
-        }
-    }
-
-
 
     // 콜백 사용
 //    fun getWineDetail(Wid : Int) {

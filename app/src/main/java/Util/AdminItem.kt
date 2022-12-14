@@ -3,17 +3,38 @@ package Util
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class DailyDTO(
+data class DailySumDTO(
     @SerializedName("date") val A_date : String,
     @SerializedName("amount") val A_amount : String,
 ): Serializable {
     constructor() : this("", "")
 }
 
+data class DailySumListDTO(
+    @SerializedName("status") val status : String,
+    @SerializedName("data") val dailySumList : ArrayList<DailySumDTO>
+): Serializable {
+    constructor() : this("", ArrayList())
+}
+
+
 data class SalesDTO(
     @SerializedName("date") val s_date : String,
-    @SerializedName("wname") val s_wname : String,
-    @SerializedName("quantity") val s_quantity : String,
+    @SerializedName("wid") val s_wid : Int,
+    @SerializedName("quantity") val s_quantity : Int,
 ): Serializable {
-    constructor() : this("", "","")
+    constructor() : this("", 0,0)
+}
+
+data class SalesListDTO(
+    @SerializedName("status") val status : String,
+    @SerializedName("data") val salesList : ArrayList<SalesDTO>
+): Serializable {
+    constructor() : this("", ArrayList())
+}
+
+data class InsertResult(
+    @SerializedName("status") val status : String
+): Serializable{
+    constructor() : this("")
 }

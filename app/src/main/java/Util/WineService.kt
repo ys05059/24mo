@@ -3,7 +3,9 @@ package Util
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
+import java.time.LocalDate
 
 interface WineService {
     // 와인 id로 상세정보 검색
@@ -39,23 +41,23 @@ interface WineService {
         @Field("tannin") tannin : Int
     ): Response<WineList>
 
-    //일매출 총합, 일 매출 상세
-    @FormUrlEncoded
-    @POST("get_daily.php")
-    suspend fun getDaily(
-    ): Response<DailyDTO>
+    // 최근 7일 일 매출합 조회
+    @GET("get_daily_sum_list.php")
+    suspend fun getDailySumList(): Response<DailySumListDTO>
 
+    // 매출 상세 조회
     @FormUrlEncoded
-    @POST("get_daily_sales.php")
-    suspend fun getDailySales(
+    @POST("get_sales_list.php")
+    suspend fun getSalesList(
         @Field("date") date: String
-    ): Response<SalesDTO>
+    ): Response<SalesListDTO>
 
-//    @FormUrlEncoded
-//    @POST("get_wine_by_wid.php")
-//    fun getWineDetail(
-//        @Field("Wid") Wid: Int
-//    ): Call<WineDTO>
-//
+    @FormUrlEncoded
+    @POST("insert_sales.php")
+    suspend fun insertSales(
+        @Field("date") date: String,
+        @Field("wid") wid:Int,
+        @Field("quantity") quantity: Int
+    ): Response<InsertResult>
 
 }
