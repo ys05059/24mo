@@ -32,3 +32,9 @@ data class SalesListDTO(
 ): Serializable {
     constructor() : this("", ArrayList())
 }
+
+data class InsertResult(
+    @SerializedName("status") val status : String
+): Serializable{
+    constructor() : this("")
+}

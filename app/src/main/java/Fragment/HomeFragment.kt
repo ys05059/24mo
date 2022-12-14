@@ -64,16 +64,16 @@ class HomeFragment : Fragment(){
         })
         // 와인 추천 버튼
         binding.RecommendWineBtn.setOnClickListener {
-            (activity as MainActivity).replaceTransaction(Recommend_Fragment())
+            (activity as MainActivity).replaceTransaction(Recommend_Fragment(),"recommend_fragment")
         }
         // 와인상세검색 버튼
         binding.DetailSearchBtn.setOnClickListener {
-            (activity as MainActivity).replaceTransaction(Detail_Search_Fragment())
+            (activity as MainActivity).replaceTransaction(Detail_Search_Fragment(),"detail_fragment")
         }
 
         // 장바구니 item 개수 업데이트
         viewModel.shoppingCartList.observe(viewLifecycleOwner, Observer{
-            if(viewModel.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
+            if(viewModel.shoppingCartList.value.isNullOrEmpty()) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
             {
                 binding.CartListBtn.setText("0")
             }

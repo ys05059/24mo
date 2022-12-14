@@ -5,6 +5,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import java.time.LocalDate
 
 interface WineService {
     // 와인 id로 상세정보 검색
@@ -50,5 +51,13 @@ interface WineService {
     suspend fun getSalesList(
         @Field("date") date: String
     ): Response<SalesListDTO>
+
+    @FormUrlEncoded
+    @POST("insert_sales.php")
+    suspend fun insertSales(
+        @Field("date") date: String,
+        @Field("wid") wid:Int,
+        @Field("quantity") quantity: Int
+    ): Response<InsertResult>
 
 }
