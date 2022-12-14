@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_round">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "도수 설정"
+        android:textColor="@color/grey_font"
+        android:textSize="40dp"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        />
+
+    <Button
+        android:id="@+id/nonalcohol"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@drawable/button_less_round_white"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:gravity="center"
+        android:text="무알콜"
+        android:textColor="@color/grey_font"
+        android:textSize="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp">
+    </Button>
+
+    <Button
+        android:id="@+id/lowAlcohol"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@drawable/button_less_round_white"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:gravity="center"
+        android:text="도수 낮음"
+        android:textColor="@color/grey_font"
+        android:textSize="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp">
+    </Button>
+
+    <Button
+        android:id="@+id/mid_alcohol"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@drawable/button_less_round_white"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:gravity="center"
+        android:text="도수 중간"
+        android:textColor="@color/grey_font"
+        android:textSize="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp">
+    </Button>
+
+    <Button
+        android:id="@+id/high_alcohol"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@drawable/button_less_round_white"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:gravity="center"
+        android:text="도수 높음"
+        android:textColor="@color/grey_font"
+        android:textSize="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp">
+    </Button>
+
+    <Button
+        android:id = "@+id/done_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_round"
+        android:text="완료"
+        android:textSize="35dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        />
+</LinearLayout>
