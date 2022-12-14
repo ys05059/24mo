@@ -12,7 +12,7 @@ data class DailyDTO(
 
 data class SalesDTO(
     @SerializedName("date") val s_date : String,
-    @SerializedName("Wid") val s_wid : String,
+    @SerializedName("wname") val s_wname : String,
     @SerializedName("quantity") val s_quantity : String,
 ): Serializable {
     constructor() : this("", "","")
