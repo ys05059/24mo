@@ -4,9 +4,6 @@
         <variable
             name="item"
             type="Util.SalesDTO" />
-        <variable
-            name="adapter"
-            type="Fragment.AdminListAdapter" />
     </data>
 
 
@@ -27,7 +24,7 @@
 
         <TextView
             android:id="@+id/data2"
-            android:text="@{item.s_wname}"
+            android:text="@{Integer.toString(item.s_wid)}"
             android:textSize="20dp"
             android:gravity="center"
             android:layout_width="120dp"
@@ -37,8 +34,9 @@
 
         <TextView
             android:id="@+id/data3"
-            android:text="@{item.s_quantity}"
+            android:text="@{Integer.toString(item.s_quantity)}"
             android:textSize="20dp"
+            android:layout_marginLeft="30dp"
             android:gravity="center"
             android:layout_width="50dp"
             android:layout_height="50dp"

@@ -1,8 +1,8 @@
 package Fragment
 
+import Main.AdminViewModel
 import Main.MainActivity
-import Main.MainViewModel
-import Util.DailyDTO
+import Util.DailySumDTO
 import Util.SalesDTO
 import android.graphics.Color
 import android.os.Bundle
@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a24mo.databinding.FragmentAdminBinding
@@ -24,20 +25,18 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import com.github.mikephil.charting.renderer.XAxisRenderer
-import com.github.mikephil.charting.utils.MPPointF
 
 
 class AdminFragment : Fragment(){
-    private  lateinit var vm : MainViewModel
+    private  lateinit var avm : AdminViewModel
     //view 바인딩을 위한 변수들
     private  var _binding : FragmentAdminBinding? = null
     private val binding get() = _binding!!
+    private val  TAG = "AdminFragment : "
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,40 +51,34 @@ class AdminFragment : Fragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        avm = ViewModelProvider(requireActivity()).get(AdminViewModel::class.java)
         _binding = FragmentAdminBinding.inflate(inflater,container,false)
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-
-        //test
-        val tmpData = ArrayList<SalesDTO>()
-        tmpData.add(0, SalesDTO("2022-12-01", "171277","2"))
-        tmpData.add(1, SalesDTO("2022-12-02", "172277","1"))
-        tmpData.add(2, SalesDTO("2022-12-03", "111277","2"))
-        tmpData.add(3, SalesDTO("2022-12-04", "141277","3"))
-        tmpData.add(4, SalesDTO("2022-12-05", "131277","1"))
-        tmpData.add(5, SalesDTO("2022-12-06", "161277","1"))
-        _tmpList.value = tmpData
-
-        val tmpDaily = ArrayList<DailyDTO>()
-        tmpDaily.add(DailyDTO("2022-12-01", "2900000"))
-        tmpDaily.add(DailyDTO("2022-12-02", "2900000"))
-        tmpDaily.add(DailyDTO("2022-12-03", "4900000"))
-        tmpDaily.add(DailyDTO("2022-12-04", "3900000"))
-        tmpDaily.add(DailyDTO("2022-12-05", "1200000"))
-        tmpDaily.add(DailyDTO("2022-12-06", "4200000"))
-        tmpDaily.add(DailyDTO("2022-12-07", "1100000"))
-        tmpDaily.add(DailyDTO("2022-12-08", "900000"))
-
         //chart
-        initBarChart(binding.chart, tmpDaily)
-        setData(binding.chart, tmpDaily)
+        avm.getDailySumList()
+        avm.dailySumList.observe(viewLifecycleOwner,Observer{
+            initBarChart(binding.chart, avm.dailySumList.value!!)
+            setData(binding.chart,  avm.dailySumList.value!!)
+
+        })
 
 
         binding.chart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
             override fun onValueSelected(e: Entry, h: Highlight) {
                 // Handle the selected bar chart value
-                val sales_adapter = AdminListAdapter(tmpList)
+
+                // X축으로 선택한 날짜 넘기는 수 밖에 없을 듯
+                val xAxisLabel = e.x.let{
+                    binding.chart.xAxis.valueFormatter.getAxisLabel(it, binding.chart.xAxis)
+                }
+                Log.d(TAG,"e.x : "+ e.x +" e.y : " + e.y + " e.data : " + e.data + " x 값 :" + xAxisLabel )
+
+                avm.getSalesList(xAxisLabel)
+                val sales_adapter = AdminListAdapter()
                 binding.recyclerView.adapter = sales_adapter
+                avm.SalesList.observe(viewLifecycleOwner,Observer{
+                    sales_adapter.setData(avm.SalesList.value!!)
+                })
             }
 
             override fun onNothingSelected() {
@@ -102,7 +95,7 @@ class AdminFragment : Fragment(){
         return view
     }
 
-    fun initBarChart(barChart: BarChart, values: ArrayList<DailyDTO>) {
+    fun initBarChart(barChart: BarChart, values: ArrayList<DailySumDTO>) {
         barChart.getDescription().setEnabled(false);
         // X, Y 바의 애니메이션 효과
         barChart.animateY(1000)
@@ -110,7 +103,8 @@ class AdminFragment : Fragment(){
 
         val labels = ArrayList<String>()
         for (i in 0 until values.count()){
-            labels.add(values[i].A_date.split("-")[2]+"일")
+            labels.add(values[i].A_date)
+//                .split("-")[2]+"일")
         }
 
 
@@ -135,31 +129,30 @@ class AdminFragment : Fragment(){
         //leftAxis.textColor = Color.BLUE
 
         barChart.axisRight.isEnabled = false
-
         // 바차트의 타이틀
         val legend: Legend = barChart.legend
         // 범례 모양 설정 (default = 정사각형)
         legend.form = Legend.LegendForm.LINE
         // 타이틀 텍스트 사이즈 설정
-        legend.textSize = 20f
+        legend.textSize = 10f
         // 타이틀 텍스트 컬러 설정
         //legend.textColor = Color.BLACK
         // 범례 위치 설정
-        legend.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
-        legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
+        legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+        legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
         // 범례 방향 설정
         legend.orientation = Legend.LegendOrientation.HORIZONTAL
         // 차트 내부 범례 위치하게 함 (default = false)
-        legend.setDrawInside(false)
+        legend.setDrawInside(true)
 
     }
 
-    fun setData(barChart: BarChart, values: ArrayList<DailyDTO>) {
+    fun setData(barChart: BarChart, values: ArrayList<DailySumDTO>) {
         barChart.setScaleEnabled(false)
 
         val valueList = ArrayList<BarEntry>()
         val labels = ArrayList<String>()
-        val title = "일 매출"
+        val title = "일 매출 (원)"
 
         val xAxis: XAxis = barChart.xAxis
         // 임의 데이터
