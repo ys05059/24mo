@@ -62,6 +62,8 @@ class AdminFragment : Fragment(){
 
         })
 
+        val sales_adapter = AdminListAdapter()
+        binding.recyclerView.adapter = sales_adapter
 
         binding.chart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
             override fun onValueSelected(e: Entry, h: Highlight) {
@@ -74,8 +76,6 @@ class AdminFragment : Fragment(){
                 Log.d(TAG,"e.x : "+ e.x +" e.y : " + e.y + " e.data : " + e.data + " x 값 :" + xAxisLabel )
 
                 avm.getSalesList(xAxisLabel)
-                val sales_adapter = AdminListAdapter()
-                binding.recyclerView.adapter = sales_adapter
                 avm.SalesList.observe(viewLifecycleOwner,Observer{
                     sales_adapter.setData(avm.SalesList.value!!)
                 })
