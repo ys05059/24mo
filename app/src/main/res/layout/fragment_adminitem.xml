@@ -3,7 +3,7 @@
     <data>
         <variable
             name="item"
-            type="Util.AdminDTO" />
+            type="Util.SalesDTO" />
         <variable
             name="adapter"
             type="Fragment.AdminListAdapter" />
@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/data1"
-            android:text=""
+            android:text="@{item.s_date}"
             android:textSize="20dp"
             android:gravity="center"
             android:layout_width="150dp"
@@ -27,10 +27,20 @@
 
         <TextView
             android:id="@+id/data2"
-            android:text=""
+            android:text="@{item.s_wid}"
             android:textSize="20dp"
             android:gravity="center"
-            android:layout_width="150dp"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/nanum_gothic_bold" />
+
+        <TextView
+            android:id="@+id/data3"
+            android:text="@{item.s_quantity}"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:fontFamily="@font/nanum_gothic_bold" />
 

@@ -81,4 +81,7 @@ dependencies {
     // 로티 (로딩 스피너)
     def lottieVersion = "5.2.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    // 차트 (관리자 페이지)
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
