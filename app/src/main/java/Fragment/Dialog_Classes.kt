@@ -18,13 +18,11 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
-import com.google.android.material.slider.LabelFormatter
 import com.google.android.material.slider.RangeSlider
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.roundToInt
 
 //가격대 다이얼로그
 class PriceDialog(context: Context){
@@ -39,19 +37,10 @@ class PriceDialog(context: Context){
         //가격설정바 부분
         var rangeSlider = dialog.findViewById<com.google.android.material.slider.RangeSlider>(R.id.price_range_bar)
         rangeSlider.valueFrom = 0f
-        rangeSlider.valueTo = 210000f
+        rangeSlider.valueTo = 200000f
         rangeSlider.stepSize = 10000f
         rangeSlider.trackHeight=50 //높이
-
-        //값이 20만원이상시 상관없음.
-        rangeSlider.setLabelFormatter{value:Float ->
-            if(value > 200000f)
-            {
-                return@setLabelFormatter "상관없음"
-            }
-            return@setLabelFormatter "${value.toInt()}"
-        }
-
+        rangeSlider.setThumbStrokeColorResource(R.color.white)
 
         //가격 텍스트
         var priceText = dialog.findViewById<TextView>(R.id.priceText)
@@ -62,7 +51,6 @@ class PriceDialog(context: Context){
         {
             priceText.text = "가격을 설정해주세요"
         }
-
         rangeSlider.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener{
 
             override fun onStartTrackingTouch(slider: RangeSlider) {
@@ -75,13 +63,7 @@ class PriceDialog(context: Context){
                 priceText.visibility = View.VISIBLE
                 min__ = rangeSlider.values.get(0).toInt()
                 max__ = rangeSlider.values.get(1).toInt()
-                if(max__ > 200000)
-                {
-                    max__ = 1000000  //20만 이상일시 100만원설정
-                    priceText.text = "\\${DecimalFormat("#,###").format(min__)} ~ 상관없음"
-                }
-                else{priceText.text = "\\${DecimalFormat("#,###").format(min__)} ~ \\${DecimalFormat("#,###").format(max__)}"}
-
+                priceText.text = "\\${DecimalFormat("#,###").format(min__)} ~ \\${DecimalFormat("#,###").format(max__)}"
             }
         })
 

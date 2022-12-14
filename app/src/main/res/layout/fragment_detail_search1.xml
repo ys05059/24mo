@@ -9,54 +9,42 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        >
+        android:layout_height="wrap_content">
         <EditText
             android:id="@+id/wine_name_search"
             android:layout_width="357dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_gray"
-            android:elevation="3dp"
-            android:hint="와인 이름을 검색하세요"
+            android:hint="     와인 이름을 검색하세요"
             android:textColor="@color/grey_font"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
-
+            android:layout_marginTop="10dp"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        >
+        android:layout_height="85dp">
         <Button
             android:id="@+id/priceRange"
             android:layout_width="357dp"
             android:layout_height="70dp"
             android:background="@drawable/button_less_round_white"
-            android:elevation="30dp"
+            android:elevation="20dp"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center_vertical"
             android:text="      가격대"
             android:textColor="@color/grey_font"
             android:textSize="30dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
         </Button>
     </LinearLayout>
 
-    <GridLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rowCount="2"
-        android:columnCount="2"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        >
+        android:orientation="horizontal">
         <Button
             android:id="@+id/wineKind"
             android:layout_width="160dp"
@@ -67,6 +55,7 @@
             android:text="\n종류"
             android:textColor="@color/grey_font"
             android:textSize="30dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             />
@@ -85,6 +74,11 @@
             android:layout_marginBottom="10dp"
             android:layout_marginRight="5dp">
         </Button>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/wineAlcohol"
             android:layout_width="160dp"
@@ -95,6 +89,7 @@
             android:text="\n도수"
             android:textColor="@color/grey_font"
             android:textSize="30dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             />
@@ -113,13 +108,11 @@
             android:layout_marginBottom="5dp"
             android:layout_marginRight="5dp">
         </Button>
-    </GridLayout>
-
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
-        android:gravity="center"
         >
 
         <Button
@@ -134,8 +127,8 @@
             android:textColor="@color/grey_font"
             android:textSize="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp">
 
         </Button>
     </LinearLayout>
@@ -149,18 +142,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
-        android:layout_marginBottom="50dp"
-        android:background="#ffffff"
-        android:gravity="center"
+        android:layout_marginBottom="10dp"
         >
 
         <Fragment.CustomBottomButton
             android:id="@+id/basket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
             app:customText="0"
             app:customTextColor="@color/wine"
             />
@@ -174,8 +163,6 @@
             android:fontFamily="@font/lineseed_bd"
             android:gravity="center"
             android:padding="0dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
             android:text="검색"
             android:textColor="@color/white"
             android:textSize="31dp"
