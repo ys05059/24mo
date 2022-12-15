@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="Fragment.CardFragment"
-    android:background="@color/white">
+    android:background="@drawable/pay_dialog_round"
+    >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,6 +20,7 @@
             android:fontFamily="@font/nanum_gothic_extra_bold"
             android:textSize="35dp"
             android:text="카드 인식"
+            android:gravity="center"
             android:textColor="@color/wine"
            />
 
@@ -28,6 +30,7 @@
             android:fontFamily="@font/nanum_gothic_extra_bold"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:gravity="center"
             android:text="카드를 그림과 같이 꽂은 후 결제 버튼을 눌러주세요"/>
 
             <ImageView
@@ -42,6 +45,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <Button
