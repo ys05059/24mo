@@ -399,6 +399,7 @@ class CountryDialog(context: Context){
         CountryList[0].setOnClickListener {
             if(count_Item == 0)
             {
+                dialog
                 CountryList[0].setBackgroundResource(R.drawable.button_round_white_red)
                 count_Item++
 
@@ -530,7 +531,6 @@ class AlcoholDialog(context: Context){
         var count_Item = 0 //1개만 선택가능
         var select_index = -1
         val AlcoholList  = ArrayList<Button>()
-        AlcoholList.add(dialog.findViewById<Button>(R.id.nonalcohol))//고기류 0
         AlcoholList.add(dialog.findViewById<Button>(R.id.lowAlcohol))//해산물 1
         AlcoholList.add(dialog.findViewById<Button>(R.id.mid_alcohol)) //치즈류 2
         AlcoholList.add(dialog.findViewById<Button>(R.id.high_alcohol))//과일류 3
@@ -585,20 +585,8 @@ class AlcoholDialog(context: Context){
             select_index = 2
         }
 
-        AlcoholList[3].setOnClickListener {
-            if(count_Item == 0)
-            {
-                AlcoholList[3].setBackgroundResource(R.drawable.button_round_white_red)
-                count_Item++
 
-            }
-            else{
-                AlcoholList[select_index].setBackgroundResource(R.drawable.button_round_white)
-                AlcoholList[3].setBackgroundResource(R.drawable.button_round_white_red)
 
-            }
-            select_index = 3
-        }
 
         //완료버튼시 리스너
         done.setOnClickListener {
