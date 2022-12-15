@@ -91,13 +91,13 @@ class InformationFragment : DialogFragment() {
 
             // 동적 ImageView 추가
             for (image in new_WineDetail.W_aroma_arr){
-                if(count >3) break
+                if(count >2) break
                 addListImg(binding.informationAroma,image)
                 count++
             }
             count =0
             for (image in new_WineDetail.W_food_arr){
-                if(count >3) break
+                if(count >2) break
                 addListImg(binding.informationFood,image)
                 count++
             }
