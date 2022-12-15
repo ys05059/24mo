@@ -12,11 +12,21 @@
         android:orientation="vertical"
         android:layout_gravity="center">
 
-        <ImageView
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/finish_pay"
-            android:scaleType="centerCrop" />
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:fontFamily="@font/nanum_gothic_extra_bold"
+            android:text="결제 완료"
+            android:layout_gravity="center" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="80dp"
+            android:src="@drawable/ic_baseline_check_circle_outline_24"
+            android:layout_gravity="center" />
 
         <Button
             android:layout_width="wrap_content"
