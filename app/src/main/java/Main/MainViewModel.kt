@@ -213,12 +213,14 @@ class MainViewModel :  ViewModel(){
 
     fun delete_cartItem(item: CartItem){
         var cartList =_shoppingCartList.value
+        var temp :CartItem = CartItem()
         if(cartList != null){
             cartList.forEach{
                 if(it.wine.Wid == item.wine.Wid) {
-                    cartList.remove(item)
+                    temp = it
                 }
             }
+            cartList.remove(temp)
         }
         _shoppingCartList.value = cartList!!
         Log.d(TAG,item.wine.W_name +" 가 장바구니에서 삭제되었습니다")
