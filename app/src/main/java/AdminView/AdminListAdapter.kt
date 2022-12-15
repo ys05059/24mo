@@ -1,4 +1,4 @@
-package Admin
+package AdminView
 
 import Model.SalesDTO
 import android.view.LayoutInflater
