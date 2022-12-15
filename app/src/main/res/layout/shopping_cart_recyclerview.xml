@@ -246,6 +246,7 @@
                 android:layout_weight="1"/>
 
             <Button
+                android:layout_marginRight="10dp"
                 android:id="@+id/deleteBtn"
                 android:layout_width="32dp"
                 android:layout_height="34dp"
@@ -256,6 +257,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:gravity="center"
             android:columnCount="2">
 
             <LinearLayout
@@ -270,8 +275,9 @@
                     android:id="@+id/wineCount"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_gravity="left"
-                    android:gravity="left"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
                     android:fontFamily="@font/nanum_gothic_extra_bold"
                     android:textColor="@color/black"
                     android:textSize="22dp"
@@ -282,26 +288,28 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:layout_marginRight="10dp"
                     >
 
                     <Button
                         android:id="@+id/minusBtn"
-                        android:layout_width="60dp"
-                        android:layout_height="40dp"
-
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
                         android:text="-"
+                        android:textColor="@color/red"
                         android:textSize="22dp"
-                        android:background="@color/light_gray"
+                        android:background="@drawable/stroke_button"
                         />
                     <Button
                         android:id="@+id/plusBtn"
-                        android:layout_width="60dp"
-                        android:layout_height="40dp"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
                         android:text="+"
+                        android:textColor="@color/red"
                         android:textSize="22dp"
-                        android:background="@color/light_gray"
+                        android:background="@drawable/stroke_button"
                         />
 
                 </LinearLayout>
@@ -309,8 +317,9 @@
                     android:id="@+id/winePrice"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="right"
-                    android:gravity="right"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+                    android:layout_marginLeft="150dp"
                     android:fontFamily="@font/nanum_gothic_extra_bold"
                     android:textColor="@color/black"
                     android:textSize="22dp"

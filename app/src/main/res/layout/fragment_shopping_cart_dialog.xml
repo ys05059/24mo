@@ -50,9 +50,8 @@
                     android:id="@+id/total_price_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:fontFamily="@font/nanum_gothic_extra_bold"
                     android:gravity="center"
@@ -64,9 +63,8 @@
                     android:id="@+id/total_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:fontFamily="@font/nanum_gothic_extra_bold"
                     android:gravity="center"
@@ -105,6 +103,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
                 android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <Button
