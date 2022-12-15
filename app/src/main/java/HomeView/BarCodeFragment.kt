@@ -48,13 +48,15 @@ class BarCodeFragment : DialogFragment() {
 //                (activity as MainActivity).replaceTransaction(FinishPayFragment())
                 delay(2000)
                 vm.getWineDetail(158643)
+            }.join()
+            launch {
                 val info_frag = InformationFragment()                       // 상세조회 페이지로 이동
                 if (activity != null){
-                    info_frag.show((activity as MainActivity).fragmentManager.findFragmentByTag("HomeFragment")!!.childFragmentManager,"Information")
+//                    info_frag.show((activity as MainActivity).fragmentManager.findFragmentByTag("HomeFragment")!!.childFragmentManager,"Information")
+                    info_frag.show((activity as MainActivity).fragmentManager,"Informtaion")
                 }
             }.join()
         }
-
         val windowManager = (activity as MainActivity).getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val display = windowManager.defaultDisplay
         val size = Point()

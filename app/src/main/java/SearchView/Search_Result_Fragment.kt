@@ -68,8 +68,8 @@ class Search_Result_Fragment : Fragment() {
             } // 검색 결과가 없을 경우
             else{
                 Log.d(TAG,"test 중 - 들어왔다" )
-                Toast.makeText((activity as MainActivity), "검색 결과가 없습니다",
-                    Toast.LENGTH_SHORT).show()
+//                Toast.makeText((activity as MainActivity), "검색 결과가 없습니다",
+//                    Toast.LENGTH_SHORT).show()
 //                view =error_binding.root
             }
         })
