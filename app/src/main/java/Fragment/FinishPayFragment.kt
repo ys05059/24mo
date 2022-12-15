@@ -2,6 +2,8 @@ package Fragment
 
 import Main.MainActivity
 import Main.MainViewModel
+import android.content.Context
+import android.graphics.Point
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +12,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 
@@ -47,16 +50,34 @@ class FinishPayFragment : DialogFragment(){
             // 장바구니 비우기
             vm.resetShoppingCartList()
             // 이전 다이얼로그 프래그먼트들 닫기
-            val prev = (activity as MainActivity).fragmentManager.findFragmentByTag("PayingFragment")
-            val pprev = (activity as MainActivity).fragmentManager.findFragmentByTag("CardFragment")
-            val ppprev = (activity as MainActivity).fragmentManager.findFragmentByTag("shoppingCart")
-            prev?.onDestroy()
-            pprev?.onDestroy()
-            ppprev?.onDestroy()
-            (activity as MainActivity).replaceTransaction(HomeFragment())
-            dismiss()
+            runBlocking {
+                launch {
+                    val prev = (activity as MainActivity).fragmentManager.findFragmentByTag("PayingFragment")
+                    val pprev = (activity as MainActivity).fragmentManager.findFragmentByTag("CardFragment")
+                    val ppprev = (activity as MainActivity).fragmentManager.findFragmentByTag("shoppingCart")
+                    prev?.onDestroy()
+                    pprev?.onDestroy()
+                    ppprev?.onDestroy()
+                }.join()
+                (activity as MainActivity).replaceTransaction(HomeFragment())
+                dismiss()
+            }
+
         }
         return view
+    }
+    override fun onResume() {
+        super.onResume()
+        val windowManager = (activity as MainActivity).getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val params: ViewGroup.LayoutParams? = dialog?.window?.attributes
+        val deviceWidth = size.x
+        val deviceHeight = size.y
+        params?.width = (deviceWidth * 0.85).toInt()
+        params?.height = (deviceHeight * 0.65).toInt()
+        dialog?.window?.attributes = params as WindowManager.LayoutParams
     }
 
     override fun onDestroyView() {
