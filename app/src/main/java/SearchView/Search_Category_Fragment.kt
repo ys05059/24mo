@@ -14,8 +14,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentDetailSearch1Binding
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 
 //초창기 프래그먼트
@@ -58,6 +56,12 @@ class Search_Category_Fragment : Fragment() {
                         Log.d("가격대", "min: ${vm.Detail_Parameter.min_price} max: ${vm.Detail_Parameter.max_price}")
                         vm.Change_font_size(binding.priceRange,"price")
                         binding.priceRange.setBackgroundResource(R.drawable.button_round_white_red) //선택시 테두리 빨갛게.
+
+
+
+
+
+
                     }
                 })
             }
@@ -230,22 +234,8 @@ class Search_Category_Fragment : Fragment() {
         binding.searchBtn.setOnClickListener {
             Log.d(TAG,vm.Detail_Parameter.toString())
             vm.Detail_Parameter.name = binding.wineNameSearch.text.toString()
-            runBlocking {
-                launch {
-                    launch {
-                        Log.d(TAG, "viewModel로 SearchList 받아오기")
-                        vm.getSearchList(vm.Detail_Parameter)
-                    }.join()
-                    launch {
-                        if (vm.wineList.value.isNullOrEmpty()){
-                            (activity as MainActivity).changeDetailSearchFragment(3, 0)
-                        }else{
-                            (activity as MainActivity).changeDetailSearchFragment(2, 0)
-                        }
-                        vm.Search_Is_Back++
-                    }
-                }
-            }
+            (activity as MainActivity).changeDetailSearchFragment(2, 0)
+            vm.Search_Is_Back++
         }
         return view
     }

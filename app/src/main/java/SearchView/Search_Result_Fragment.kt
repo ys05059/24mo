@@ -18,9 +18,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentDetailResultBinding
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class Search_Result_Fragment : Fragment() {
     private lateinit var vm: MainViewModel
@@ -38,10 +35,8 @@ class Search_Result_Fragment : Fragment() {
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 //        val error_binding = ResultErrorPageBinding.inflate(inflater, container, false)
 
-//        Log.d(TAG, "viewModel로 SearchList 받아오기")
-//        vm.getSearchList(vm.Detail_Parameter)
-
-
+        Log.d(TAG, "viewModel로 SearchList 받아오기")
+        vm.getSearchList(vm.Detail_Parameter)
 
         // 뒤로가기 버튼 보이게 하기
         val ParentFragment : Search_Main_Fragment =
