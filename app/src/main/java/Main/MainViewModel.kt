@@ -285,6 +285,7 @@ class MainViewModel :  ViewModel(){
         {
             when(Detail_Parameter.alcohol)
             {
+                0 -> content = "\n도수"
                 1-> content = "\n도수" + "\n 도수낮음"
                 2->content = "\n도수" + "\n 도수중간"
                 3->content = "\n도수" + "\n 도수높음"
@@ -333,7 +334,13 @@ class MainViewModel :  ViewModel(){
             btn.text = content
         }
         else{
-            spanningString.setSpan(RelativeSizeSpan(0.5f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 크기 바꾸기
+            if(tag == "alcohol" && Detail_Parameter.alcohol == 0)
+            {
+                btn.text = "\n도수"
+            }
+            else{
+                spanningString.setSpan(RelativeSizeSpan(0.4f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 크기 바꾸기
+            }
         }
 //        spanningString.setSpan(ForegroundColorSpan(Color.parseColor("#000000")),start,end,SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자색상바꾸기
 //        spanningString.setSpan(StyleSpan(Typeface.BOLD), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 스타일바꾸기(굵게, 기울이기등)
