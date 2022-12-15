@@ -1,8 +1,8 @@
 package Main
 
-import Util.DailySumDTO
-import Util.SalesDTO
-import Util.WineRemoteDataSource
+import Model.DailySumDTO
+import Model.SalesDTO
+import Model.WineRemoteDataSource
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

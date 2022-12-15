@@ -3,7 +3,7 @@
     <data>
         <variable
             name="item"
-            type="Util.SalesDTO" />
+            type="Model.SalesDTO" />
     </data>
 
 

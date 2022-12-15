@@ -1,4 +1,4 @@
-package Fragment
+package Recommend
 
 import Main.MainActivity
 import Main.MainViewModel
@@ -8,15 +8,11 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
-import com.example.a24mo.databinding.HomeLayoutBinding
-import com.example.a24mo.databinding.RecommendWineFragment1Binding
 import com.example.a24mo.databinding.RecommendWineFragment2Binding
-import kotlinx.coroutines.runBlocking
 
 class Recommend_Second_Fragment : Fragment(){
     private  lateinit var vm : MainViewModel
@@ -34,8 +30,8 @@ class Recommend_Second_Fragment : Fragment(){
         if(!vm.Recommend_Second_Tag.equals("")){
             find_view_byName(vm.Recommend_Second_Tag)?.setBackgroundResource(R.drawable.button_round_white_red)
         }
-        val ParentFragment : Recommend_Fragment =
-            (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Recommend_Fragment
+        val ParentFragment : Recommend_Main_Fragment =
+            (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Recommend_Main_Fragment
         ParentFragment.invisible_back_btn(false)
 
         val listener = object : View.OnClickListener {

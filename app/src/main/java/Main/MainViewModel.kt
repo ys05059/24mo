@@ -1,21 +1,19 @@
 package Main
 
-import Util.*
+import Model.SearchWineParmeter
+import Model.CartItem
 import android.util.Log
 import androidx.lifecycle.*
-import Util.WineDTO
-import Util.WineRemoteDataSource
+import Model.WineDTO
+import Model.WineRemoteDataSource
 import android.os.Build
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.widget.Button
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import kotlinx.coroutines.*
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlin.collections.ArrayList
 
 class MainViewModel :  ViewModel(){
@@ -153,7 +151,7 @@ class MainViewModel :  ViewModel(){
 
         }
     }
-    fun getSearchList(swp :SearchWineParmeter){
+    fun getSearchList(swp : SearchWineParmeter){
         job = CoroutineScope(Dispatchers.IO).launch {
             val response = wineService.getSearchList(swp.name,swp.min_price,swp.max_price,swp.type,swp.region,swp.alcohol,swp.food,swp.sweet,swp.acidity,swp.body,swp.tannin)
             withContext(Dispatchers.Main){
@@ -182,7 +180,7 @@ class MainViewModel :  ViewModel(){
         return count
     }
 
-    fun cartItem_count_plus(item:CartItem){
+    fun cartItem_count_plus(item: CartItem){
         var cartList =_shoppingCartList.value
         if( cartList != null){
             cartList.forEach {
@@ -195,7 +193,7 @@ class MainViewModel :  ViewModel(){
         Log.d(TAG,"장바구니의 " + item.wine.Wid + " " + item.wine.W_name + " 가 1개 추가되었습니다" )
     }
 
-    fun cartItem_count_minus(item:CartItem){
+    fun cartItem_count_minus(item: CartItem){
         var cartList =_shoppingCartList.value
         if( cartList != null){
             cartList.forEach {

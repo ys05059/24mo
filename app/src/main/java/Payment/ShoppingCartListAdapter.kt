@@ -1,12 +1,11 @@
-package Fragment
+package Payment
 
-import Util.CartItem
-import Util.WineDTO
+import Model.CartItem
+import Model.WineDTO
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a24mo.databinding.ShoppingCartRecyclerviewBinding
@@ -36,7 +35,7 @@ class ShoppingCartListAdapter(private var shoppingCart: MutableLiveData<ArrayLis
                 mCallback_CartBtn.minusCount(cartItem)
             }
         }
-        fun deleteSetting(cartItem: CartItem,position: Int) =with (binding){
+        fun deleteSetting(cartItem: CartItem, position: Int) =with (binding){
             deleteBtn.setOnClickListener {
                 Log.d(TAG,cartItem.wine.W_name +" 삭제 버튼이 클릭 되었습니다")
                 mCallback_CartBtn.deleteItem(cartItem)
@@ -79,8 +78,8 @@ class ShoppingCartListAdapter(private var shoppingCart: MutableLiveData<ArrayLis
     // + 버튼 클릭 했을 때를 위한 인터페이스
     interface OnCartBtnClickListener{
         fun plusCount(item : CartItem)
-        fun minusCount(item :CartItem)
-        fun deleteItem(item:CartItem)
+        fun minusCount(item : CartItem)
+        fun deleteItem(item: CartItem)
     }
 
 

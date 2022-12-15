@@ -6,7 +6,7 @@
     <data>
         <variable
             name="wine"
-            type="Util.WineDTO" />
+            type="Model.WineDTO" />
     </data>
 
     <LinearLayout
