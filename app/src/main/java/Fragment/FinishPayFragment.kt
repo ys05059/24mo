@@ -48,9 +48,11 @@ class FinishPayFragment : DialogFragment(){
             vm.resetShoppingCartList()
             // 이전 다이얼로그 프래그먼트들 닫기
             val prev = (activity as MainActivity).fragmentManager.findFragmentByTag("PayingFragment")
-            val pprev = (activity as MainActivity).fragmentManager.findFragmentByTag("shoppingCart")
+            val pprev = (activity as MainActivity).fragmentManager.findFragmentByTag("CardFragment")
+            val ppprev = (activity as MainActivity).fragmentManager.findFragmentByTag("shoppingCart")
             prev?.onDestroy()
             pprev?.onDestroy()
+            ppprev?.onDestroy()
             (activity as MainActivity).replaceTransaction(HomeFragment())
             dismiss()
         }
