@@ -1,17 +1,18 @@
-package Fragment
-
+package Home
+import Admin.AdminFragment
 import Main.MainActivity
 import Main.MainViewModel
+import Payment.PayingFragment
+import Payment.ShoppingCartDialogFragment
+import Recommend.Recommend_Main_Fragment
+import Search.Search_Main_Fragment
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Button
-import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,7 +21,6 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.a24mo.R
-import com.example.a24mo.databinding.HomeLayoutBinding
 import com.example.a24mo.databinding.TempHomeBinding
 import kotlinx.coroutines.*
 
@@ -65,11 +65,11 @@ class HomeFragment : Fragment(){
         })
         // 와인 추천 버튼
         binding.RecommendWineBtn.setOnClickListener {
-            (activity as MainActivity).replaceTransaction(Recommend_Fragment(),"recommend_fragment")
+            (activity as MainActivity).replaceTransaction(Recommend_Main_Fragment(),"recommend_fragment")
         }
         // 와인상세검색 버튼
         binding.DetailSearchBtn.setOnClickListener {
-            (activity as MainActivity).replaceTransaction(Detail_Search_Fragment(),"detail_fragment")
+            (activity as MainActivity).replaceTransaction(Search_Main_Fragment(),"detail_fragment")
         }
 
         // 장바구니 item 개수 업데이트
@@ -90,7 +90,7 @@ class HomeFragment : Fragment(){
         // 바코드 버튼
         binding.BarCord.setOnClickListener{
 //            show_Scanner()
-            BarCode_Fragment().show((activity as MainActivity).fragmentManager,"BarCode")
+            BarCodeFragment().show((activity as MainActivity).fragmentManager,"BarCode")
         }
 
         //관리자메뉴

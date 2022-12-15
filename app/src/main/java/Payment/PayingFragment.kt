@@ -1,34 +1,31 @@
-package Fragment
+package Payment
 
 import Main.MainActivity
 import Main.MainViewModel
 import android.content.Context
 import android.graphics.Point
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
+
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
-import com.example.a24mo.databinding.FragmentCardBinding
+
 import com.example.a24mo.databinding.FragmentPayingBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 
-class CardFragment : DialogFragment() {
+class PayingFragment : DialogFragment(){
     private  lateinit var vm : MainViewModel
-    private  var _binding : FragmentCardBinding? = null
+    private  var _binding : FragmentPayingBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NO_TITLE, R.style.barcode_dialog)
+        setStyle(STYLE_NO_TITLE, R.style.dialog_fullscreen)
 
         //false로 설정해 주면 화면 밖 또는 뒤로가기 클릭 시 다이얼로그가 dismiss되지 않음
         isCancelable = true
@@ -38,21 +35,12 @@ class CardFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCardBinding.inflate(inflater, container, false)
+        _binding = FragmentPayingBinding.inflate(inflater, container, false)
         val view = binding.root
         vm = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-
-
-        binding.closeButton.setOnClickListener {
-            dismiss()
-        }
-        binding.payButton.setOnClickListener {
-            PayingFragment().show((activity as MainActivity).fragmentManager,"PayingFragment")
-        }
-
-
         return view
     }
+
     override fun onResume() {
         super.onResume()
         val windowManager = (activity as MainActivity).getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -65,6 +53,13 @@ class CardFragment : DialogFragment() {
         params?.width = (deviceWidth * 0.85).toInt()
         params?.height = (deviceHeight * 0.65).toInt()
         dialog?.window?.attributes = params as WindowManager.LayoutParams
+        CoroutineScope(Dispatchers.Default).launch {
+            launch {
+//                (activity as MainActivity).replaceTransaction(FinishPayFragment())
+                delay(2000)
+                FinishPayFragment().show((activity as MainActivity).fragmentManager,"FinishPayFragment")
+            }
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()
