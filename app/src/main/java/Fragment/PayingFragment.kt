@@ -2,12 +2,15 @@ package Fragment
 
 import Main.MainActivity
 import Main.MainViewModel
+import android.content.Context
+import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 
 import androidx.fragment.app.Fragment
@@ -43,6 +46,16 @@ class PayingFragment : DialogFragment(){
 
     override fun onResume() {
         super.onResume()
+        val windowManager = (activity as MainActivity).getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val params: ViewGroup.LayoutParams? = dialog?.window?.attributes
+        val deviceWidth = size.x
+        val deviceHeight = size.y
+        params?.width = (deviceWidth * 0.85).toInt()
+        params?.height = (deviceHeight * 0.65).toInt()
+        dialog?.window?.attributes = params as WindowManager.LayoutParams
         CoroutineScope(Dispatchers.Default).launch {
             launch {
 //                (activity as MainActivity).replaceTransaction(FinishPayFragment())
@@ -50,7 +63,6 @@ class PayingFragment : DialogFragment(){
                 FinishPayFragment().show((activity as MainActivity).fragmentManager,"FinishPayFragment")
             }
         }
-
     }
     override fun onDestroyView() {
         super.onDestroyView()

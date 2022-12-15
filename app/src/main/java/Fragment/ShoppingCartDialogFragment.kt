@@ -103,7 +103,8 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
         }
         // 결제 버튼
         binding.payButton.setOnClickListener {
-            PayingFragment().show((activity as MainActivity).fragmentManager,"PayingFragment")
+            //PayingFragment().show((activity as MainActivity).fragmentManager,"PayingFragment")
+            CardFragment().show((activity as MainActivity).fragmentManager,"CardFragment")
         }
         return binding.root
     }
