@@ -40,8 +40,8 @@
         <Button
             android:id="@+id/addCartBtn"
             android:layout_marginLeft="10dp"
-            android:layout_width="188dp"
-            android:layout_height="74dp"
+            android:layout_width="220dp"
+            android:layout_height="90dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/lineseed_bd"
             android:gravity="center"

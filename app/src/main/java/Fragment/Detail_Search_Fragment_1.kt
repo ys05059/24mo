@@ -129,7 +129,6 @@ class Detail_Search_Fragment_1 : Fragment() {
         binding.basket.setOnClickListener{
             ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }
-
         //검색 버튼
         binding.searchBtn.setOnClickListener {
             Log.d(TAG,vm.Detail_Parameter.toString())

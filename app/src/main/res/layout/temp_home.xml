@@ -53,31 +53,33 @@
         android:columnCount="2"
         android:layout_gravity="center"
         android:layout_marginTop="70dp"
+        android:orientation="horizontal"
         >
         <!--와인추천버튼-->
         <Button
             android:id="@+id/Recommend_Wine_btn"
-            android:layout_width="188dp"
-            android:layout_height="74dp"
+            android:layout_width="220dp"
+            android:layout_height="90dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/nanum_gothic_extra_bold"
             android:text="와인 추천"
             android:textColor="@color/white"
             android:textSize="34dp"
-            android:layout_marginLeft="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
             />
         <!--상세검색 버튼-->
         <Button
             android:id="@+id/Detail_Search_btn"
-            android:layout_width="188dp"
-            android:layout_height="74dp"
+            android:layout_width="220dp"
+            android:layout_height="90dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/nanum_gothic_extra_bold"
             android:gravity="center"
             android:text="상세 검색"
             android:textColor="@color/white"
             android:textSize="34dp"
-            android:layout_marginLeft="15dp"
+            android:layout_gravity="center"
             />
         <!--바코드 검색버튼-->
 
@@ -86,22 +88,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="0dp"
-            android:layout_marginLeft="30dp"
+            android:layout_gravity="center"
             android:layout_marginTop="25dp"
+            android:layout_marginLeft="10dp"
             app:customText="0"
             app:customTextColor="@color/wine" />
 
         <Button
             android:id="@+id/BarCord"
-            android:layout_width="188dp"
-            android:layout_height="74dp"
+            android:layout_width="220dp"
+            android:layout_height="90dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/nanum_gothic_extra_bold"
             android:text="바코드 검색"
             android:textColor="@color/white"
             android:textSize="34dp"
-            android:layout_marginLeft="15dp"
+            android:layout_gravity="center"
             android:layout_marginTop="25dp"
+
 
             />
     </GridLayout>

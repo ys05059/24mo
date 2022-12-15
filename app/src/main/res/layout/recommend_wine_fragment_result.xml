@@ -10,35 +10,35 @@
     >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="120dp"
         android:background="@color/wine"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/first_tag"
-            android:layout_width="160dp"
-            android:layout_height="55dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="180dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="45dp"
             android:background="@drawable/button_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
             android:text=" "
             android:textColor="@color/wine"
-            android:textSize="17dp" />
+            android:textSize="21dp" />
 
         <TextView
             android:id="@+id/second_tag"
-            android:layout_width="160dp"
-            android:layout_height="55dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="180dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
             android:background="@drawable/button_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
             android:text=" "
             android:textColor="@color/wine"
-            android:textSize="17dp" />
+            android:textSize="21dp" />
     </LinearLayout>
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -75,14 +75,14 @@
         <Button
             android:id="@+id/recommend_addCartBtn"
             android:layout_marginLeft="10dp"
-            android:layout_width="188dp"
-            android:layout_height="74dp"
+            android:layout_width="220dp"
+            android:layout_height="90dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/lineseed_bd"
             android:gravity="center"
             android:padding="0dp"
             android:text="담기"
             android:textColor="@color/white"
-            android:textSize="31dp" />
+            android:textSize="34dp" />
     </LinearLayout>
 </LinearLayout>

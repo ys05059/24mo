@@ -21,19 +21,20 @@ import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.a24mo.R
 import com.example.a24mo.databinding.HomeLayoutBinding
+import com.example.a24mo.databinding.TempHomeBinding
 import kotlinx.coroutines.*
 
 class HomeFragment : Fragment(){
 
     private  lateinit var viewModel : MainViewModel
-    private  var _binding : HomeLayoutBinding? = null
+    private  var _binding : TempHomeBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = HomeLayoutBinding.inflate(inflater, container, false)
+        _binding = TempHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         // 이미지 슬라이더

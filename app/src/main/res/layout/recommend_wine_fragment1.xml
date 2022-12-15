@@ -1,144 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <!--    상단바-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/middle_bar"
+<!--    상단바-->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="120dp"
         android:background="@color/wine"
-        android:elevation="20dp"
-        android:padding="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:elevation="20dp">
 
         <TextView
             android:id="@+id/what_question_label"
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:fontFamily="@font/lineseed_bd"
+            android:layout_gravity="center"
             android:gravity="center"
             android:text="Step 1. 태그를 설정해주세요"
             android:textColor="@color/white"
-            android:textSize="23dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:textSize="28dp"
+            />
 
-    <!--태그버튼들의 레이아웃-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="358dp"
-        android:layout_height="540dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/middle_bar"
-        app:layout_constraintVertical_bias="0.16">
+    </LinearLayout>
 
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="4"
+        android:orientation="vertical"
+        android:layout_marginTop="60dp"
+
+        >
         <Button
             android:id="@+id/tag1"
-            android:layout_width="340dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="78dp"
+            android:layout_width="380dp"
+            android:layout_height="100dp"
             android:background="@drawable/button_less_round_white"
             android:elevation="20dp"
-            android:fontFamily="@font/lineseed_rg"
+            android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
+            android:layout_gravity="center"
             android:text="#레드"
             android:textColor="@color/grey_font"
             android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tag2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
+            />
         <Button
             android:id="@+id/tag2"
-            android:layout_width="340dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="170dp"
+            android:layout_width="380dp"
+            android:layout_height="100dp"
             android:background="@drawable/button_less_round_white"
             android:elevation="20dp"
-            android:fontFamily="@font/lineseed_rg"
+            android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
             android:text="#로제"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tag3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/tag3"
-            android:layout_width="340dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="260dp"
+            android:layout_width="380dp"
+            android:layout_height="100dp"
             android:background="@drawable/button_less_round_white"
             android:elevation="20dp"
-            android:fontFamily="@font/lineseed_rg"
+            android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
             android:text="#화이트"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tag4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            android:textSize="30dp"  />
 
         <Button
             android:id="@+id/tag4"
-            android:layout_width="340dp"
-            android:layout_height="80dp"
+            android:layout_width="380dp"
+            android:layout_height="100dp"
             android:background="@drawable/button_less_round_white"
             android:elevation="20dp"
-            android:fontFamily="@font/lineseed_rg"
+            android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
+            android:layout_gravity="center"
             android:text="#스파클링"
+            android:layout_marginTop="25dp"
             android:textColor="@color/grey_font"
             android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.769" />
-
-        <ImageView
-            android:layout_width="87dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="43dp"
-            android:padding="0dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/page_view_1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.876" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginBottom="20dp"
+            />
 
 
+    </GridLayout>
 
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="45dp"
+        android:padding="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/page_view_1"
+        android:layout_gravity="center"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        />
+</LinearLayout>
+
