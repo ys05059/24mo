@@ -141,10 +141,15 @@ class MainViewModel :  ViewModel(){
     // Retrofit 비동기 통신 - Tag 2개로 추천 와인 리스트 받아오기
     fun getRecommnedList(Tag1 : String, Tag2 : String){
         job = CoroutineScope(Dispatchers.IO).launch {
+            Log.d(TAG,Tag1 + " "+Tag2 )
             val response = wineService.getRecommendList(Tag1,Tag2)
             withContext(Dispatchers.Main){
                 if(response.isSuccessful){
-                    _liveWineList.value = response.body()!!.wine_list
+                    if(response.body()!!.status.equals("404")){
+                        _liveWineList.value = ArrayList<WineDTO>()
+                    }else{
+                        _liveWineList.value = response.body()!!.wine_list
+                    }
                     Log.d(TAG , "getRecommendList 테스트 : " +_liveWineList.value.toString())
                 }
             }
@@ -208,12 +213,14 @@ class MainViewModel :  ViewModel(){
 
     fun delete_cartItem(item: CartItem){
         var cartList =_shoppingCartList.value
+        var temp :CartItem = CartItem()
         if(cartList != null){
             cartList.forEach{
                 if(it.wine.Wid == item.wine.Wid) {
-                    cartList.remove(item)
+                    temp = it
                 }
             }
+            cartList.remove(temp)
         }
         _shoppingCartList.value = cartList!!
         Log.d(TAG,item.wine.W_name +" 가 장바구니에서 삭제되었습니다")

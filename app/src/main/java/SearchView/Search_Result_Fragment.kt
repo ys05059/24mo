@@ -36,7 +36,7 @@ class Search_Result_Fragment : Fragment() {
 //        val error_binding = ResultErrorPageBinding.inflate(inflater, container, false)
 
         Log.d(TAG, "viewModel로 SearchList 받아오기")
-        vm.getSearchList(vm.Detail_Parameter)
+//        vm.getSearchList(vm.Detail_Parameter)
 
         // 뒤로가기 버튼 보이게 하기
         val ParentFragment : Search_Main_Fragment =
@@ -68,8 +68,8 @@ class Search_Result_Fragment : Fragment() {
             } // 검색 결과가 없을 경우
             else{
                 Log.d(TAG,"test 중 - 들어왔다" )
-                Toast.makeText((activity as MainActivity), "검색 결과가 없습니다",
-                    Toast.LENGTH_SHORT).show()
+//                Toast.makeText((activity as MainActivity), "검색 결과가 없습니다",
+//                    Toast.LENGTH_SHORT).show()
 //                view =error_binding.root
             }
         })
