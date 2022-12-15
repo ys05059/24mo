@@ -1,6 +1,6 @@
-package Payment
+package PaymentView
 
-import Home.InformationFragment
+import HomeView.InformationFragment
 import Main.MainActivity
 import Main.MainViewModel
 import Model.CartItem

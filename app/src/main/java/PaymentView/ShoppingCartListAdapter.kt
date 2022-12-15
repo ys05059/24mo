@@ -1,4 +1,4 @@
-package Payment
+package PaymentView
 
 import Model.CartItem
 import Model.WineDTO

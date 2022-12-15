@@ -1,4 +1,4 @@
-package Home
+package HomeView
 
 import Main.MainActivity
 import Main.MainViewModel

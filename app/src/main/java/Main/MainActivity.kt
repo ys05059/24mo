@@ -1,10 +1,10 @@
 package Main
 
-import Recommend.Recommend_First_Fragment
-import Recommend.Recommend_Result_Fragment
-import Recommend.Recommend_Second_Fragment
-import Search.Search_Category_Fragment
-import Search.Search_Result_Fragment
+import RecommendView.Recommend_First_Fragment
+import RecommendView.Recommend_Result_Fragment
+import RecommendView.Recommend_Second_Fragment
+import SearchView.Search_Category_Fragment
+import SearchView.Search_Result_Fragment
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(){
 
         fragmentManager = supportFragmentManager
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        replaceTransaction(Home.HomeFragment(),"HomeFragment")
+        replaceTransaction(HomeView.HomeFragment(),"HomeFragment")
     }
 
     fun replaceTransaction(fragment: Fragment) {

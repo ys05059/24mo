@@ -1,6 +1,6 @@
-package Admin
+package AdminView
 
-import Home.HomeFragment
+import HomeView.HomeFragment
 import Main.AdminViewModel
 import Main.MainActivity
 import Model.DailySumDTO

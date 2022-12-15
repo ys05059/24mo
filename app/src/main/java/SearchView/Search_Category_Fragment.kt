@@ -1,9 +1,9 @@
-package Search
+package SearchView
 
 import Fragment.*
 import Main.MainActivity
 import Main.MainViewModel
-import Payment.ShoppingCartDialogFragment
+import PaymentView.ShoppingCartDialogFragment
 import android.util.Log
 import android.os.Bundle
 import android.view.LayoutInflater

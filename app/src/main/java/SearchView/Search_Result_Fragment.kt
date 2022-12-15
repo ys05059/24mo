@@ -1,10 +1,10 @@
-package Search
+package SearchView
 
-import Home.InformationFragment
+import HomeView.InformationFragment
 import Main.MainActivity
 import Main.MainViewModel
-import Payment.ShoppingCartDialogFragment
-import Recommend.RecommendListAdapter
+import PaymentView.ShoppingCartDialogFragment
+import RecommendView.RecommendListAdapter
 import Model.WineDTO
 import android.os.Bundle
 import android.util.Log

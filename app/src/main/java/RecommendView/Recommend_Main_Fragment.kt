@@ -1,6 +1,6 @@
-package Recommend
+package RecommendView
 
-import Home.HomeFragment
+import HomeView.HomeFragment
 import Main.MainActivity
 import Main.MainViewModel
 import android.os.Bundle

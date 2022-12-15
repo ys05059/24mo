@@ -1,4 +1,4 @@
-package Recommend
+package RecommendView
 
 import Model.WineDTO
 import android.util.Log
