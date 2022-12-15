@@ -111,19 +111,19 @@ class HomeFragment : Fragment(){
         //scaleType = FIT, CENTER_CROP ,CENTER_INSIDE
         //행사 와인 이미지 넣기
         image_list.add(
-            SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0156000/W0156713.jpg",
+            SlideModel(R.drawable.event_wine_1,
                 ScaleTypes.CENTER_INSIDE)
         )          // 케이머스
         image_list.add(
-            SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0168000/W0168882.png",
+            SlideModel(R.drawable.event_wine_2,
                 ScaleTypes.CENTER_INSIDE)
         )          // 디코이
         image_list.add(
-            SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0161000/W0161502.jpg",
+            SlideModel(R.drawable.event_wine_3,
                 ScaleTypes.CENTER_INSIDE)
         )          // 몬테스 알파
-        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/IMAGE/0163000/T0163213_001.png", ScaleTypes.CENTER_INSIDE))         // 돔페리뇽
-        image_list.add(SlideModel("https://wine21.speedgabia.com/WINE_MST/TITLE/0167000/W0167176.png", ScaleTypes.CENTER_INSIDE))         // 벨 아사이
+        image_list.add(SlideModel(R.drawable.event_wine_4, ScaleTypes.CENTER_INSIDE))         // 돔페리뇽
+        image_list.add(SlideModel(R.drawable.event_wine_5, ScaleTypes.CENTER_INSIDE))         // 벨 아사이
         return image_list
     }
 
