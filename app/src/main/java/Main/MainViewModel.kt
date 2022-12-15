@@ -157,21 +157,22 @@ class MainViewModel :  ViewModel(){
         }
     }
     fun getSearchList(swp : SearchWineParmeter){
-        job = CoroutineScope(Dispatchers.IO).launch {
-            val response = wineService.getSearchList(swp.name,swp.min_price,swp.max_price,swp.type,swp.region,swp.alcohol,swp.food,swp.sweet,swp.acidity,swp.body,swp.tannin)
-            withContext(Dispatchers.Main){
-                if(response.isSuccessful){
-                    // 데이터가 없을 경우
-                    if(response.body()!!.status.equals("404")){
-                        _liveWineList.value = ArrayList<WineDTO>()
-                    }else{
-                        _liveWineList.value = response.body()!!.wine_list
+//            CoroutineScope(Dispatchers.IO).launch {
+            runBlocking {
+                val response = wineService.getSearchList(swp.name,swp.min_price,swp.max_price,swp.type,swp.region,swp.alcohol,swp.food,swp.sweet,swp.acidity,swp.body,swp.tannin)
+                withContext(Dispatchers.Main){
+                    if(response.isSuccessful){
+                        // 데이터가 없을 경우
+                            if(response.body()!!.status.equals("404")){
+                                _liveWineList.value = ArrayList<WineDTO>()
+                            }else{
+                                _liveWineList.value = response.body()!!.wine_list
+                            }
+                                Log.d(TAG , "getSearchList 테스트 : " +_liveWineList.value.toString())
+                        }
                     }
-                        Log.d(TAG , "getSearchList 테스트 : " +_liveWineList.value.toString())
                 }
-            }
-
-        }
+//            }
     }
     fun get_cartItem_count(): Int {
         var cartList =_shoppingCartList.value

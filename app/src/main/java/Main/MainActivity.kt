@@ -4,6 +4,7 @@ import RecommendView.Recommend_First_Fragment
 import RecommendView.Recommend_Result_Fragment
 import RecommendView.Recommend_Second_Fragment
 import SearchView.Search_Category_Fragment
+import SearchView.Search_ResultError_Fragment
 import SearchView.Search_Result_Fragment
 import android.os.Bundle
 import android.widget.Toast
@@ -142,6 +143,7 @@ class MainActivity : AppCompatActivity(){
         when(step){
             1 -> Detail_transaction.replace(R.id.searchFragmentArea, Search_Category_Fragment()).commit()
             2 -> Detail_transaction.replace(R.id.searchFragmentArea, Search_Result_Fragment()).commit()
+            3 -> Detail_transaction.replace(R.id.searchFragmentArea, Search_ResultError_Fragment()).commit()
         }
         Detail_transaction.addToBackStack(null)
     }
