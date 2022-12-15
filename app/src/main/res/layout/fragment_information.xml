@@ -83,7 +83,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
         android:layout_width="300dp"
         android:orientation="vertical"
         android:gravity="center"
@@ -93,6 +93,7 @@
             android:id="@+id/information_img"
             android:layout_width="160dp"
             android:layout_height="200dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"/>
 
         <LinearLayout
@@ -227,9 +228,11 @@
 
         <!--아로마-->
         <LinearLayout
-            android:layout_width="240dp"
+            android:layout_width="270dp"
             android:layout_height="60dp"
-            android:id="@+id/information_aroma">
+            android:id="@+id/information_aroma"
+            android:layout_marginTop="20dp"
+            >
 
             <TextView
                 android:layout_width="60dp"
@@ -247,8 +250,9 @@
 
         <!--음식 매칭-->
         <LinearLayout
-            android:layout_width="240dp"
+            android:layout_width="270dp"
             android:layout_height="60dp"
+            android:layout_marginBottom="20dp"
             android:id="@+id/information_food">
 
             <TextView

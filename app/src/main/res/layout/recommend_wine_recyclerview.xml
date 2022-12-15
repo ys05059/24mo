@@ -65,10 +65,13 @@
                 imageUrl="@{wine.w_image}"/>
 
             <GridLayout
-                android:layout_width="213dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:columnCount="2"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginRight="20dp"
+                >
+
 
                 <TextView
                     android:id="@+id/wineName"

@@ -167,6 +167,7 @@ class Detail_Search_Fragment_1 : Fragment() {
                 dialog.Show()
                 dialog.setOnClickedListener(object : AlcoholDialog.ButtonClickListener {
                     override fun onClicked(select_index: Int) {
+                        vm.Detail_Parameter.alcohol =0
                         when (select_index) {
                             //뷰모델에 값는것인데 일단 선택된음식 String으로 넘기겠습니다.
                             0 -> vm.Detail_Parameter.alcohol = 1
