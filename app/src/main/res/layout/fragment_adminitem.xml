@@ -18,8 +18,9 @@
             android:text="@{item.s_date}"
             android:textSize="20dp"
             android:gravity="center"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="50dp"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/nanum_gothic_bold"/>
 
         <TextView
@@ -27,7 +28,7 @@
             android:text="@{Integer.toString(item.s_wid)}"
             android:textSize="20dp"
             android:gravity="center"
-            android:layout_width="120dp"
+            android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/nanum_gothic_bold" />
@@ -36,9 +37,8 @@
             android:id="@+id/data3"
             android:text="@{Integer.toString(item.s_quantity)}"
             android:textSize="20dp"
-            android:layout_marginLeft="30dp"
             android:gravity="center"
-            android:layout_width="50dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:fontFamily="@font/nanum_gothic_bold" />
 

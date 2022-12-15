@@ -21,7 +21,7 @@
             android:fontFamily="@font/lineseed_bd"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Step 1. 태그를 설정해주세요"
+            android:text="Step 1. 타입을 설정해주세요"
             android:textColor="@color/white"
             android:textSize="28dp"
             />
