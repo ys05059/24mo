@@ -24,8 +24,8 @@
     <!--이미지슬라이드 레이아웃-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/image_layer"
-        android:layout_width="430dp"
-        android:layout_height="406dp"
+        android:layout_width= "match_parent"
+        android:layout_height="550dp"
         android:background="@drawable/bold"
         android:padding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +38,7 @@
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/image_slider"
             android:layout_width="397dp"
-            android:layout_height="379dp"
+            android:layout_height="500dp"
             android:padding="0dp"
             app:iss_auto_cycle="true"
             app:iss_delay="0"

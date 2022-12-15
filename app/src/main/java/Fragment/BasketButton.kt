@@ -42,6 +42,7 @@ class CustomBottomButton(context: Context, attrs: AttributeSet) : ConstraintLayo
         customText.setTextColor(color)
     }
 
+
     private fun onRefresh() {
         invalidate()
         requestLayout()
