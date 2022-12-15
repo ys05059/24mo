@@ -1,9 +1,10 @@
-package Fragment
+package Payment
 
+import Home.InformationFragment
 import Main.MainActivity
 import Main.MainViewModel
-import Util.CartItem
-import Util.WineDTO
+import Model.CartItem
+import Model.WineDTO
 import Util.price_format
 import android.os.Bundle
 import android.util.Log
@@ -18,10 +19,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentShoppingCartDialogBinding
-import kotlinx.coroutines.*
 
 
-class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCartBtnClickListener {
+class ShoppingCartDialogFragment : DialogFragment(),
+    ShoppingCartListAdapter.OnCartBtnClickListener {
     private val  TAG = "SC_DialogFragment"
     private  lateinit var vm : MainViewModel
     private var _binding: FragmentShoppingCartDialogBinding? = null
@@ -72,7 +73,8 @@ class ShoppingCartDialogFragment : DialogFragment(),ShoppingCartListAdapter.OnCa
                 binding.totalCount.text ="총 "+total_count.toString() +" 병"
             })
 
-            shoppingCartListAdapter.setItemClickListener(object : ShoppingCartListAdapter.OnItemClickListener {
+            shoppingCartListAdapter.setItemClickListener(object :
+                ShoppingCartListAdapter.OnItemClickListener {
                 override fun onClick(v: View, position: Int,wineDTO: WineDTO) {
                     vm.setWineDetail(wineDTO)                                   // 상세 조회할 와인 정보 넘겨주기
                     val info_frag = InformationFragment()                       // 상세조회 페이지로 이동

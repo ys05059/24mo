@@ -1,9 +1,6 @@
-package Fragment
+package Recommend
 
-import Main.MainActivity
-import Main.MainViewModel
-import Util.CartItem
-import Util.WineDTO
+import Model.WineDTO
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +9,6 @@ import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a24mo.R
 import com.example.a24mo.databinding.RecommendWineRecyclerviewBinding
-import retrofit2.http.POST
 
 class RecommendListAdapter(private val recommendList: LiveData<ArrayList<WineDTO>>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

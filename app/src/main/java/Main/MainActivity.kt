@@ -1,10 +1,11 @@
 package Main
 
-import Fragment.*
+import Recommend.Recommend_First_Fragment
+import Recommend.Recommend_Result_Fragment
+import Recommend.Recommend_Second_Fragment
+import Search.Search_Category_Fragment
+import Search.Search_Result_Fragment
 import android.os.Bundle
-import android.util.DisplayMetrics
-import android.util.Log
-import android.view.Display
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity(){
 
         fragmentManager = supportFragmentManager
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        replaceTransaction( HomeFragment(),"HomeFragment")
+        replaceTransaction(Home.HomeFragment(),"HomeFragment")
     }
 
     fun replaceTransaction(fragment: Fragment) {
@@ -106,7 +107,7 @@ class MainActivity : AppCompatActivity(){
         }
 
         when(step){
-            1 -> Recommend_transaction.replace(R.id.step_id,Recommend_First_Fragment()).commit()
+            1 -> Recommend_transaction.replace(R.id.step_id, Recommend_First_Fragment()).commit()
             2 -> Recommend_transaction.replace(R.id.step_id, Recommend_Second_Fragment()).commit()
             3 -> Recommend_transaction.replace(R.id.step_id, Recommend_Result_Fragment()).commit()
         }
@@ -139,8 +140,8 @@ class MainActivity : AppCompatActivity(){
         }
 
         when(step){
-            1 -> Detail_transaction.replace(R.id.searchFragmentArea,Detail_Search_Fragment_1()).commit()
-            2 -> Detail_transaction.replace(R.id.searchFragmentArea, Detail_Search_Fragment_result()).commit()
+            1 -> Detail_transaction.replace(R.id.searchFragmentArea, Search_Category_Fragment()).commit()
+            2 -> Detail_transaction.replace(R.id.searchFragmentArea, Search_Result_Fragment()).commit()
         }
         Detail_transaction.addToBackStack(null)
     }

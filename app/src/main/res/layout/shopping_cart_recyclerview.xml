@@ -6,10 +6,10 @@
     <data>
         <variable
             name="item"
-            type="Util.CartItem" />
+            type="Model.CartItem" />
         <variable
             name="adapter"
-            type="Fragment.ShoppingCartListAdapter" />
+            type="Payment.ShoppingCartListAdapter" />
     </data>
 
     <LinearLayout
