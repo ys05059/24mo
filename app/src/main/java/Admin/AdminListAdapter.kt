@@ -1,15 +1,11 @@
-package Fragment
+package Admin
 
-import Util.CartItem
-import Util.SalesDTO
-import android.util.Log
+import Model.SalesDTO
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a24mo.databinding.FragmentAdminitemBinding
-import java.text.DecimalFormat
 
 class AdminListAdapter()
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

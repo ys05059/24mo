@@ -1,5 +1,6 @@
-package Fragment
+package Search
 
+import Home.HomeFragment
 import Main.MainActivity
 import Main.MainViewModel
 import android.os.Bundle
@@ -10,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.databinding.FragmentDetailSearchBinding
 
-class Detail_Search_Fragment : Fragment() {
+class Search_Main_Fragment : Fragment() {
 
     private lateinit var vm: MainViewModel
     private var _binding: FragmentDetailSearchBinding? = null

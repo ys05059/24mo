@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="Fragment.InformationFragment"
+    tools:context="Home.InformationFragment"
     android:background="@drawable/information_dialog_round"
     >
 <!--    android:background="#990C14"-->

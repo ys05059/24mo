@@ -1,11 +1,10 @@
-package Util
+package Model
 
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
-import java.time.LocalDate
 
 interface WineService {
     // 와인 id로 상세정보 검색

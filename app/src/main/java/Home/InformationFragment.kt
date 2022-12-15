@@ -1,10 +1,9 @@
-package Fragment
+package Home
 
 import Main.MainActivity
 import Main.MainViewModel
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -12,17 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import Util.GlideApp
 import com.example.a24mo.R
-import Util.WineDTO
+import Model.WineDTO
 import com.example.a24mo.databinding.FragmentInformationBinding
-import Util.imageDTO
+import Model.imageDTO
 import android.content.Context
 import android.graphics.Point
 import android.view.*
-import android.view.ViewGroup.MarginLayoutParams
 import android.widget.Toast
-import androidx.core.view.children
-import androidx.core.view.marginRight
-import androidx.core.view.setMargins
 import androidx.fragment.app.DialogFragment
 import kotlinx.coroutines.*
 import java.text.DecimalFormat

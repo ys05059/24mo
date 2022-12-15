@@ -1,7 +1,9 @@
-package Fragment
+package Search
 
+import Fragment.*
 import Main.MainActivity
 import Main.MainViewModel
+import Payment.ShoppingCartDialogFragment
 import android.util.Log
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +16,7 @@ import com.example.a24mo.databinding.FragmentDetailSearch1Binding
 
 
 //초창기 프래그먼트
-class Detail_Search_Fragment_1 : Fragment() {
+class Search_Category_Fragment : Fragment() {
 
     private  lateinit var vm : MainViewModel
     private  var _binding : FragmentDetailSearch1Binding? = null
@@ -29,8 +31,8 @@ class Detail_Search_Fragment_1 : Fragment() {
 
 
         //뒤로가기
-        val ParentFragment : Detail_Search_Fragment =
-            (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Detail_Search_Fragment
+        val ParentFragment : Search_Main_Fragment =
+            (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Search_Main_Fragment
         ParentFragment.invisible_back_btn(true)
         //가격대
         binding.priceRange.setOnClickListener{
@@ -45,7 +47,7 @@ class Detail_Search_Fragment_1 : Fragment() {
                 val dialog = PriceDialog(activity as MainActivity)
                 dialog.Show()
                 //뷰모델에 값을 전달하기위함.
-                dialog.setOnClickedListener(object : PriceDialog.ButtonClickListener{
+                dialog.setOnClickedListener(object : PriceDialog.ButtonClickListener {
                     override fun onClicked(min_money: Int, max_money: Int) {
                         vm.Detail_Parameter.min_price = min_money   // 최소 가격
                         vm.Detail_Parameter.max_price = max_money   // 최대 가격
@@ -196,7 +198,7 @@ class Detail_Search_Fragment_1 : Fragment() {
             }else{
                 val dialog = TasteDialog(activity as MainActivity)
                 dialog.Show()
-                dialog.setOnClickedListener(object : TasteDialog.ButtonClickListener{
+                dialog.setOnClickedListener(object : TasteDialog.ButtonClickListener {
                     override fun onClicked(sweet:Int, acid:Int, body:Int, tanin:Int) {
                         //1 : 낮음 / 2: 보통 / 3: 높음 / 0 :상관없음(default)
                         vm.Detail_Parameter.sweet = sweet

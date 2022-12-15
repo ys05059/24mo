@@ -1,14 +1,12 @@
-package Fragment
+package Payment
 
+import Home.HomeFragment
 import Main.MainActivity
 import Main.MainViewModel
 import android.content.Context
 import android.graphics.Point
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,11 +14,9 @@ import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentFinishPayBinding
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
