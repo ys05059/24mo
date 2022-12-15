@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.databinding.FragmentDetailSearchBinding
 
@@ -39,7 +40,6 @@ class Search_Main_Fragment : Fragment() {
         }
 
         (activity as MainActivity).changeDetailSearchFragment(1, 2)//초기 상세검색화면
-
         return view
     }
 

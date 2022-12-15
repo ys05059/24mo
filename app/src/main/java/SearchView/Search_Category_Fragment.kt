@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.a24mo.R
 import com.example.a24mo.databinding.FragmentDetailSearch1Binding
@@ -219,6 +220,16 @@ class Search_Category_Fragment : Fragment() {
         binding.basket.setOnClickListener{
             ShoppingCartDialogFragment().show((activity as MainActivity).fragmentManager,"shoppingCart")
         }
+
+        vm.shoppingCartList.observe(viewLifecycleOwner, Observer{
+            if(vm.shoppingCartList.value == null) //장바구니가 비어있으면 0 (안할시 null인 n으로 표시됨)
+            {
+                binding.basket.setText("0")
+            }
+            else{
+                binding.basket.setText(vm.get_cartItem_count().toString())
+            }
+        })
         //검색 버튼
         binding.searchBtn.setOnClickListener {
             Log.d(TAG,vm.Detail_Parameter.toString())
