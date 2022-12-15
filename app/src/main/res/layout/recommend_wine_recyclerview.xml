@@ -270,6 +270,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
+                    android:layout_marginBottom="20dp"
                     android:fontFamily="@font/nanum_gothic_bold"
                     android:textSize="18dp"
                     app:layout_constraintBottom_toBottomOf="parent"

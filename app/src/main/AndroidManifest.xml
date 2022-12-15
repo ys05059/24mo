@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.a24mo">
+    package="com.example.a24mo"
+    android:installLocation="preferExternal">
 
     <!-- url 이미지 불러오기 위해 추가 -->
     <uses-permission android:name="android.permission.INTERNET" />
