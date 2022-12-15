@@ -49,8 +49,8 @@ class HomeFragment : Fragment(){
                 //선택한 이미지 = position(ex. 첫번재사진  -> 0 / 두번째사진 -> 1 ...)
                 // 행사 상품 id 저장
                 val eventWineArray =  mutableListOf<Int>()
-                eventWineArray.add(156713)                                                      // 케이머스
                 eventWineArray.add(168882)                                                      // 디코이
+                eventWineArray.add(156713)                                                      // 케이머스
                 eventWineArray.add(161502)                                                      // 몬테스
                 eventWineArray.add(163213)                                                      // 돔페리뇽
                 eventWineArray.add(167176)                                                      // 벨아사이
@@ -112,13 +112,13 @@ class HomeFragment : Fragment(){
         //scaleType = FIT, CENTER_CROP ,CENTER_INSIDE
         //행사 와인 이미지 넣기
         image_list.add(
-            SlideModel(R.drawable.event_wine_1,
-                ScaleTypes.CENTER_INSIDE)
-        )          // 케이머스
-        image_list.add(
             SlideModel(R.drawable.event_wine_2,
                 ScaleTypes.CENTER_INSIDE)
         )          // 디코이
+        image_list.add(
+            SlideModel(R.drawable.event_wine_1,
+                ScaleTypes.CENTER_INSIDE)
+        )          // 케이머스
         image_list.add(
             SlideModel(R.drawable.event_wine_3,
                 ScaleTypes.CENTER_INSIDE)
