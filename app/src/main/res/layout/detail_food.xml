@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/dialog_round"
+
     >
     
     
@@ -18,12 +19,15 @@
        android:layout_gravity="center"
        />
 
-
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            android:orientation="horizontal"
+            android:rowCount="3"
+            android:columnCount="2"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            >
             <Button
                 android:id= "@+id/food_meat"
                 android:layout_width="160dp"
@@ -54,81 +58,70 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="5dp">
             </Button>
-        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <Button
-            android:id= "@+id/food_cheeze"
-            android:layout_width="160dp"
-            android:layout_height="120dp"
-            android:background="@drawable/button_less_round_white"
-            android:fontFamily="@font/nanum_gothic_bold"
-            android:gravity="center_horizontal"
-            android:text="\n치즈\n 블루치즈/브리치즈/퐁듀"
-            android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            />
+            <Button
+                android:id= "@+id/food_cheeze"
+                android:layout_width="160dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_less_round_white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:gravity="center_horizontal"
+                android:text="\n치즈\n 블루치즈/브리치즈/퐁듀"
+                android:textColor="@color/grey_font"
+                android:textSize="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
 
-        <Button
-            android:id="@+id/food_fruit"
-            android:layout_width="160dp"
-            android:layout_height="120dp"
-            android:background="@drawable/button_less_round_white"
-            android:fontFamily="@font/nanum_gothic_bold"
-            android:gravity="center_horizontal"
-            android:text="\n과일\n 사과/딸기/포도"
-            android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="5dp">
-        </Button>
-    </LinearLayout>
+            <Button
+                android:id="@+id/food_fruit"
+                android:layout_width="160dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_less_round_white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:gravity="center_horizontal"
+                android:text="\n과일\n 사과/딸기/포도"
+                android:textColor="@color/grey_font"
+                android:textSize="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="5dp">
+            </Button>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <Button
+                android:id= "@+id/food_dessert"
+                android:layout_width="160dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_less_round_white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:gravity="center_horizontal"
+                android:text="\n디저트\n 케이크/초콜릿/요거트"
+                android:textColor="@color/grey_font"
+                android:textSize="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
 
-        <Button
-            android:id= "@+id/food_dessert"
-            android:layout_width="160dp"
-            android:layout_height="120dp"
-            android:background="@drawable/button_less_round_white"
-            android:fontFamily="@font/nanum_gothic_bold"
-            android:gravity="center_horizontal"
-            android:text="\n디저트\n 케이크/초콜릿/요거트"
-            android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            />
+            <Button
+                android:id="@+id/food_others"
+                android:layout_width="160dp"
+                android:layout_height="120dp"
+                android:background="@drawable/button_less_round_white"
+                android:fontFamily="@font/nanum_gothic_bold"
+                android:gravity="center_horizontal"
+                android:text="\n기타\n 견과류/아보카도 등"
+                android:textColor="@color/grey_font"
+                android:textSize="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="5dp"/>
 
-        <Button
-            android:id="@+id/food_others"
-            android:layout_width="160dp"
-            android:layout_height="120dp"
-            android:background="@drawable/button_less_round_white"
-            android:fontFamily="@font/nanum_gothic_bold"
-            android:gravity="center_horizontal"
-            android:text="\n기타\n 견과류/아보카도 등"
-            android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="5dp">
-        </Button>
-    </LinearLayout>
+        </GridLayout>
 
     <Button
         android:id = "@+id/done_btn"

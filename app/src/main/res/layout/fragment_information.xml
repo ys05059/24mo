@@ -31,7 +31,9 @@
             android:textAlignment="center"
             android:textStyle="bold"
             android:layout_marginRight="8dp"
-            android:text="와인 이름" />
+            android:text="와인 이름"
+            android:fontFamily="@font/nanum_gothic_bold"
+            />
 
 <!--        <Button-->
 <!--            android:id="@+id/HomeBtn"-->
@@ -59,7 +61,9 @@
             android:layout_marginEnd="10dp"
             android:padding="3dp"
             android:textStyle="bold"
-            android:text="#와인타입"/>
+            android:text="#와인타입"
+            android:fontFamily="@font/nanum_gothic_bold"
+            />
         <TextView
             android:id="@+id/information_region"
             android:layout_width="wrap_content"
@@ -69,7 +73,9 @@
             android:layout_marginEnd="10dp"
             android:padding="3dp"
             android:textStyle="bold"
-            android:text="#region1"/>
+            android:text="#region1"
+            android:fontFamily="@font/nanum_gothic_bold"
+            />
         <TextView
             android:id="@+id/information_region2"
             android:layout_width="wrap_content"
@@ -78,7 +84,9 @@
             android:textColor="#990C14"
             android:padding="3dp"
             android:textStyle="bold"
-            android:text="#region2"/>
+            android:text="#region2"
+            android:fontFamily="@font/nanum_gothic_bold"
+            />
 
     </LinearLayout>
 
@@ -106,7 +114,9 @@
                 android:textColor="@color/red"
                 android:textSize="24dp"
                 android:layout_marginRight="4dp"
-                android:text="가격"/>
+                android:text="가격"
+                android:fontFamily="@font/nanum_gothic_bold"
+                />
 
             <TextView
                 android:id="@+id/information_capacity"
@@ -116,7 +126,9 @@
                 android:background="@drawable/red_round"
                 android:padding="2dp"
                 android:textSize="14dp"
-                android:text="용량"/>
+                android:text="용량"
+                android:fontFamily="@font/nanum_gothic_bold"
+                />
 
         </LinearLayout>
 
@@ -124,7 +136,9 @@
             android:id="@+id/information_variety"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="품종"/>
+            android:text="품종"
+            android:fontFamily="@font/nanum_gothic_bold"
+            />
 
         <!--당도, 산도-->
         <LinearLayout
@@ -141,7 +155,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dp"
-                    android:text="당도" />
+                    android:text="당도"
+                    android:fontFamily="@font/nanum_gothic_bold"
+                    />
 
             </LinearLayout>
 
@@ -155,7 +171,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dp"
-                    android:text="산도" />
+                    android:text="산도"
+                    android:fontFamily="@font/nanum_gothic_bold"
+                    />
             </LinearLayout>
         </LinearLayout>
 
@@ -174,7 +192,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dp"
-                    android:text="바디" />
+                    android:text="바디"
+                    android:fontFamily="@font/nanum_gothic_bold"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -187,7 +207,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dp"
-                    android:text="타닌" />
+                    android:text="타닌"
+                    android:fontFamily="@font/nanum_gothic_bold"
+                    />
 
             </LinearLayout>
         </LinearLayout>
@@ -200,7 +222,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="3dp"
-                android:text="알코올"/>
+                android:text="알코올"
+                android:fontFamily="@font/nanum_gothic_bold"
+                />
             <TextView
                 android:id="@+id/information_alcohol"
                 android:layout_width="wrap_content"
@@ -208,13 +232,17 @@
                 android:textColor="@color/red"
                 android:textStyle="bold"
                 android:layout_marginRight="10dp"
-                android:text="알코올"/>
+                android:text="알코올"
+                android:fontFamily="@font/nanum_gothic_bold"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="3dp"
-                android:text="음용온도"/>
+                android:text="음용온도"
+                android:fontFamily="@font/nanum_gothic_bold"
+                />
             <TextView
                 android:id="@+id/information_temperature"
                 android:layout_width="wrap_content"
@@ -222,7 +250,9 @@
                 android:textColor="@color/red"
                 android:textStyle="bold"
                 android:layout_marginRight="10dp"
-                android:text="음용온도"/>
+                android:text="음용온도"
+                android:fontFamily="@font/nanum_gothic_bold"
+                />
         </LinearLayout>
 
         <!--아로마-->
@@ -241,7 +271,9 @@
 
                 android:layout_gravity="center"
                 android:layout_marginRight="12dp"
-                android:text="아로마"/>
+                android:text="아로마"
+                android:fontFamily="@font/nanum_gothic_bold"
+                />
 
         </LinearLayout>
 
@@ -260,7 +292,9 @@
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:layout_marginRight="12dp"
-                android:text="음식매칭"/>
+                android:text="음식매칭"
+                android:fontFamily="@font/nanum_gothic_bold"
+                />
 
         </LinearLayout>
 
@@ -278,14 +312,20 @@
             android:background="@drawable/white_round"
             android:layout_marginRight="30dp"
             android:visibility="visible"
-            android:text="돌아가기"/>
+            android:text="돌아가기"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:textSize="18dp"
+            />
         <Button
             android:id="@+id/addCartBtn"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/white_round"
-            android:text="담기"/>
+            android:text="담기"
+            android:fontFamily="@font/nanum_gothic_bold"
+            android:textSize="18dp"
+            />
 
     </LinearLayout>
 
