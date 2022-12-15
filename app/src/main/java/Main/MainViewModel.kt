@@ -280,12 +280,31 @@ class MainViewModel :  ViewModel(){
                 content = "     가격대" + "    \t ${Detail_Parameter.min_price}원 ~ ${Detail_Parameter.max_price}원"
             }
         }
+
+        if(tag == "alcohol")
+        {
+            when(Detail_Parameter.alcohol)
+            {
+                1-> content = "\n도수" + "\n 도수낮음"
+                2->content = "\n도수" + "\n 도수중간"
+                3->content = "\n도수" + "\n 도수높음"
+            }
+        }
         when(tag){
+            "country" -> content = "\n생산지"+"\n ${Detail_Parameter.region}"
+            "country_reset" ->content = "\n생산지"
+
             "food" -> content = "\n음식"+"\n ${Detail_Parameter.food}"
-            "others" ->content = "   당도/산도/바디/타닌" + "\n     ${temp_taste[0]}/${temp_taste[1]}/${temp_taste[2]}/${temp_taste[3]}"
-            "price_reset" -> content = "      가격대"
             "food_reset" ->content = "\n음식"
+            "others" ->content = "   당도/산도/바디/타닌" + "\n     ${temp_taste[0]}/${temp_taste[1]}/${temp_taste[2]}/${temp_taste[3]}"
             "others_reset"->content = "   당도/산도/바디/타닌"
+
+            "price_reset" -> content = "      가격대"
+            "alcohol_reset" -> content ="\n도수"
+
+            "kind"-> content ="\n종류" + "\n ${Detail_Parameter.type}"
+            "kind_reset" -> content = "\n종류"
+
         }
         if(tag == "price" && Detail_Parameter.max_price>= 200000){
             content ="     가격대" + "    \t ${Detail_Parameter.min_price}원 ~ 상관없음"
@@ -309,7 +328,7 @@ class MainViewModel :  ViewModel(){
         if(tag == "others")
         {
             spanningString.setSpan(RelativeSizeSpan(0.7f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
-        }else if(tag == "price_reset" || tag == "food_reset" || tag == "others_reset"){
+        }else if(tag == "price_reset" || tag == "food_reset" || tag == "others_reset" || tag=="country_reset"|| tag=="alcohol_reset"||tag =="kind_reset"){
 //            spanningString.setSpan(RelativeSizeSpan(1.0f),start,end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE) //글자 크기 바꾸기
             btn.text = content
         }

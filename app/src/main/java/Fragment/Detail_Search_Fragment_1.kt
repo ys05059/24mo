@@ -94,14 +94,14 @@ class Detail_Search_Fragment_1 : Fragment() {
             }
         }
 
-        //생산지
+        //종류
         binding.wineKind.setOnClickListener {
             // 이미 설정된 음식이 있을 경우
-            if(!vm.Detail_Parameter.food.equals("")){
+            if(!vm.Detail_Parameter.type.equals("")){
                 // 테두리 빼기
                 binding.wineKind.setBackgroundResource(R.drawable.button_less_round_white)
-                vm.Detail_Parameter.food = ""
-                //vm.Change_font_size(binding.wineFood,"food_reset")
+                vm.Detail_Parameter.type = ""
+                vm.Change_font_size(binding.wineKind,"kind_reset")
             }else {
                 val dialog = kindDialog(activity as MainActivity)
                 dialog.Show()
@@ -109,14 +109,14 @@ class Detail_Search_Fragment_1 : Fragment() {
                     override fun onClicked(select_index: Int) {
                         when (select_index) {
                             //뷰모델에 값는것인데 일단 선택된음식 String으로 넘기겠습니다.
-                            0 -> vm.Detail_Parameter.food = "고기"
-                            1 -> vm.Detail_Parameter.food = "해산물"
-                            2 -> vm.Detail_Parameter.food = "치즈"
-                            3 -> vm.Detail_Parameter.food = "과일"
-                            4 -> vm.Detail_Parameter.food = "디저트"
+                            0 -> vm.Detail_Parameter.type = "레드"
+                            1 -> vm.Detail_Parameter.type = "화이트"
+                            2 -> vm.Detail_Parameter.type = "로제"
+                            3 -> vm.Detail_Parameter.type = "스파클링"
+                            4 -> vm.Detail_Parameter.type = "주정강화"
                         }
                         //Log.d("음식선택", "${vm.Detail_Parameter.food}")
-                        vm.Change_font_size(binding.wineKind, "food")
+                        vm.Change_font_size(binding.wineKind, "kind")
                         binding.wineKind.setBackgroundResource(R.drawable.button_round_white_red)
                     }
                 })
@@ -127,11 +127,11 @@ class Detail_Search_Fragment_1 : Fragment() {
         //생산지
         binding.wineCountry.setOnClickListener {
             // 이미 설정된 음식이 있을 경우
-            if(!vm.Detail_Parameter.food.equals("")){
+            if(!vm.Detail_Parameter.region.equals("")){
                 // 테두리 빼기
                 binding.wineCountry.setBackgroundResource(R.drawable.button_less_round_white)
-                vm.Detail_Parameter.food = ""
-                //vm.Change_font_size(binding.wineFood,"food_reset")
+                vm.Detail_Parameter.region = ""
+                vm.Change_font_size(binding.wineCountry,"country_reset")
             }else {
                 val dialog = CountryDialog(activity as MainActivity)
                 dialog.Show()
@@ -139,15 +139,15 @@ class Detail_Search_Fragment_1 : Fragment() {
                     override fun onClicked(select_index: Int) {
                         when (select_index) {
                             //뷰모델에 값는것인데 일단 선택된음식 String으로 넘기겠습니다.
-                            0 -> vm.Detail_Parameter.food = "고기"
-                            1 -> vm.Detail_Parameter.food = "해산물"
-                            2 -> vm.Detail_Parameter.food = "치즈"
-                            3 -> vm.Detail_Parameter.food = "과일"
-                            4 -> vm.Detail_Parameter.food = "디저트"
-                            5 -> vm.Detail_Parameter.food = "기타"
+                            0 -> vm.Detail_Parameter.region = "프랑스"
+                            1 -> vm.Detail_Parameter.region = "이탈리아"
+                            2 -> vm.Detail_Parameter.region = "스페인"
+                            3 -> vm.Detail_Parameter.region = "미국"
+                            4 -> vm.Detail_Parameter.region = "칠레"
+                            5 -> vm.Detail_Parameter.region = "기타"
                         }
                         //Log.d("음식선택", "${vm.Detail_Parameter.food}")
-                        vm.Change_font_size(binding.wineCountry, "food")
+                        vm.Change_font_size(binding.wineCountry, "country")
                         binding.wineCountry.setBackgroundResource(R.drawable.button_round_white_red)
                     }
                 })
@@ -157,11 +157,11 @@ class Detail_Search_Fragment_1 : Fragment() {
         //도수
         binding.wineAlcohol.setOnClickListener {
             // 이미 설정된 음식이 있을 경우
-            if(!vm.Detail_Parameter.food.equals("")){
+            if(vm.Detail_Parameter.alcohol != 0){
                 // 테두리 빼기
                 binding.wineAlcohol.setBackgroundResource(R.drawable.button_less_round_white)
-                vm.Detail_Parameter.food = ""
-                //vm.Change_font_size(binding.wineFood,"food_reset")
+                vm.Detail_Parameter.alcohol = 0
+                vm.Change_font_size(binding.wineAlcohol,"alcohol_reset")
             }else {
                 val dialog = AlcoholDialog(activity as MainActivity)
                 dialog.Show()
@@ -169,13 +169,12 @@ class Detail_Search_Fragment_1 : Fragment() {
                     override fun onClicked(select_index: Int) {
                         when (select_index) {
                             //뷰모델에 값는것인데 일단 선택된음식 String으로 넘기겠습니다.
-                            0 -> vm.Detail_Parameter.food = "고기"
-                            1 -> vm.Detail_Parameter.food = "해산물"
-                            2 -> vm.Detail_Parameter.food = "치즈"
-                            3 -> vm.Detail_Parameter.food = "과일"
+                            0 -> vm.Detail_Parameter.alcohol = 1
+                            1 -> vm.Detail_Parameter.alcohol = 2
+                            2 -> vm.Detail_Parameter.alcohol = 3
                         }
                         //Log.d("음식선택", "${vm.Detail_Parameter.food}")
-                        vm.Change_font_size(binding.wineAlcohol, "food")
+                        vm.Change_font_size(binding.wineAlcohol, "alcohol")
                         binding.wineAlcohol.setBackgroundResource(R.drawable.button_round_white_red)
                     }
                 })
