@@ -1,11 +1,11 @@
-package Home
-import Admin.AdminFragment
+package HomeView
+import AdminView.AdminFragment
 import Main.MainActivity
 import Main.MainViewModel
-import Payment.PayingFragment
-import Payment.ShoppingCartDialogFragment
-import Recommend.Recommend_Main_Fragment
-import Search.Search_Main_Fragment
+import PaymentView.PayingFragment
+import PaymentView.ShoppingCartDialogFragment
+import RecommendView.Recommend_Main_Fragment
+import SearchView.Search_Main_Fragment
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle

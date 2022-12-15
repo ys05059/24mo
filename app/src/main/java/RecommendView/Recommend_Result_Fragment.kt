@@ -1,7 +1,7 @@
-package Recommend
+package RecommendView
 
-import Home.InformationFragment
-import Payment.ShoppingCartDialogFragment
+import HomeView.InformationFragment
+import PaymentView.ShoppingCartDialogFragment
 import Main.MainActivity
 import Main.MainViewModel
 import Model.WineDTO

@@ -9,7 +9,7 @@
             type="Model.CartItem" />
         <variable
             name="adapter"
-            type="Payment.ShoppingCartListAdapter" />
+            type="PaymentView.ShoppingCartListAdapter" />
     </data>
 
     <LinearLayout

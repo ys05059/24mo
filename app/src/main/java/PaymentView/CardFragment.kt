@@ -1,4 +1,4 @@
-package Payment
+package PaymentView
 
 import Main.MainActivity
 import Main.MainViewModel

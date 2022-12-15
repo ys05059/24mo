@@ -1,6 +1,6 @@
-package Search
+package SearchView
 
-import Home.HomeFragment
+import HomeView.HomeFragment
 import Main.MainActivity
 import Main.MainViewModel
 import android.os.Bundle
