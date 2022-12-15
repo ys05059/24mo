@@ -44,16 +44,6 @@ class BarCode_Fragment : DialogFragment() {
 
     override fun onResume() {
         super.onResume()
-        val windowManager = (activity as MainActivity).getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val display = windowManager.defaultDisplay
-        val size = Point()
-        display.getSize(size)
-        val params: ViewGroup.LayoutParams? = dialog?.window?.attributes
-        val deviceWidth = size.x
-        val deviceHeight = size.y
-        params?.width = (deviceWidth * 0.9).toInt()
-        params?.height = (deviceHeight * 0.5).toInt()
-        dialog?.window?.attributes = params as WindowManager.LayoutParams
         CoroutineScope(Dispatchers.Default).launch {
             launch {
 //                (activity as MainActivity).replaceTransaction(FinishPayFragment())
@@ -65,6 +55,16 @@ class BarCode_Fragment : DialogFragment() {
                 }
             }.join()
         }
+        val windowManager = (activity as MainActivity).getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val params: ViewGroup.LayoutParams? = dialog?.window?.attributes
+        val deviceWidth = size.x
+        val deviceHeight = size.y
+        params?.width = (deviceWidth * 0.9).toInt()
+        params?.height = (deviceHeight * 0.5).toInt()
+        dialog?.window?.attributes = params as WindowManager.LayoutParams
 
     }
     override fun onDestroyView() {
