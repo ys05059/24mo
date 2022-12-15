@@ -120,10 +120,10 @@ class HomeFragment : Fragment(){
                 ScaleTypes.CENTER_INSIDE)
         )          // 케이머스
         image_list.add(
-            SlideModel(R.drawable.event_wine_3,
+            SlideModel(R.drawable.event_wine_4,
                 ScaleTypes.CENTER_INSIDE)
         )          // 몬테스 알파
-        image_list.add(SlideModel(R.drawable.event_wine_4, ScaleTypes.CENTER_INSIDE))         // 돔페리뇽
+        image_list.add(SlideModel(R.drawable.event_wine_3, ScaleTypes.CENTER_INSIDE))         // 돔페리뇽
         image_list.add(SlideModel(R.drawable.event_wine_5, ScaleTypes.CENTER_INSIDE))         // 벨 아사이
         return image_list
     }
