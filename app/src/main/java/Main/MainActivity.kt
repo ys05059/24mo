@@ -1,33 +1,22 @@
 package Main
 
 import Fragment.*
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.Window
-import android.widget.Button
-import android.widget.ImageButton
+import android.view.Display
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
-import com.denzcoskun.imageslider.interfaces.ItemClickListener
-import com.denzcoskun.imageslider.models.SlideModel
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import android.view.View
 import com.example.a24mo.R
 import com.example.a24mo.databinding.HomeLayoutBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+
 
 class MainActivity : AppCompatActivity(){
 

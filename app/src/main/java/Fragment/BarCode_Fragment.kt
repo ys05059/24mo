@@ -3,7 +3,9 @@ package Fragment
 import Main.MainActivity
 import Main.MainViewModel
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Point
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -55,6 +57,7 @@ class BarCode_Fragment : DialogFragment() {
                 }
             }.join()
         }
+
         val windowManager = (activity as MainActivity).getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val display = windowManager.defaultDisplay
         val size = Point()
@@ -65,6 +68,7 @@ class BarCode_Fragment : DialogFragment() {
         params?.width = (deviceWidth * 0.9).toInt()
         params?.height = (deviceHeight * 0.5).toInt()
         dialog?.window?.attributes = params as WindowManager.LayoutParams
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) //다이얼로그 테두리 둥글게
 
     }
     override fun onDestroyView() {

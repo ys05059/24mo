@@ -51,7 +51,8 @@
         android:rowCount="2"
         android:columnCount="2"
         android:layout_gravity="center"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         >
         <!--와인추천버튼-->
@@ -108,5 +109,8 @@
 
             />
     </GridLayout>
-
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

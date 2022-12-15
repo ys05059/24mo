@@ -28,6 +28,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:text = "   당도"
             android:textSize="30dp"
             android:textColor="@color/grey_font"
@@ -37,6 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginLeft="35dp"
+
             >
 
             <Button
@@ -49,7 +53,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/nanum_gothic_bold"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
                 />
 
@@ -109,12 +113,16 @@
             android:text = "   산도"
             android:textSize="30dp"
             android:textColor="@color/grey_font"
+            android:layout_marginLeft="30dp"
             android:fontFamily="@font/nanum_gothic_bold"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="35dp"
+            android:layout_gravity="center"
+            >
 
             <Button
                 android:id = "@+id/acid_low"
@@ -123,10 +131,10 @@
                 android:background="@drawable/taste_btn_1"
                 android:text = "낮음"
                 android:textSize="20dp"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/nanum_gothic_bold"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="25dp"
                 android:layout_marginBottom="10dp"
                 />
 
@@ -187,13 +195,17 @@
             android:layout_height="wrap_content"
             android:text = "   바디"
             android:textSize="30dp"
+            android:layout_marginLeft="35dp"
             android:textColor="@color/grey_font"
             android:fontFamily="@font/nanum_gothic_bold"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginLeft="35dp"
+            >
 
             <Button
                 android:id = "@+id/body_low"
@@ -205,8 +217,9 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/nanum_gothic_bold"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
+
                 />
 
             <Button
@@ -257,7 +270,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+
+        >
 
         <TextView
             android:layout_width="match_parent"
@@ -265,12 +281,15 @@
             android:text = "   타닌"
             android:textSize="30dp"
             android:textColor="@color/grey_font"
+            android:layout_marginLeft="35dp"
             android:fontFamily="@font/nanum_gothic_bold"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="35dp"
+            >
 
             <Button
                 android:id = "@+id/tanin_low"

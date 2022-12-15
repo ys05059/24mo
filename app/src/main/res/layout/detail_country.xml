@@ -1,146 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/dialog_round">
+    android:background="@drawable/dialog_round"
+    android:orientation="vertical">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "생산지 설정"
-        android:textColor="@color/grey_font"
-        android:textSize="40dp"
-        android:fontFamily="@font/nanum_gothic_bold"
-        android:layout_marginTop="30dp"
         android:layout_gravity="center"
-        />
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:text="생산지 설정"
+        android:textColor="@color/grey_font"
+        android:textSize="40dp" />
 
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:rowCount="3">
 
         <Button
-            android:id= "@+id/France"
+            android:id="@+id/France"
             android:layout_width="160dp"
             android:layout_height="120dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/button_less_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
             android:text="프랑스"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
-            />
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/italy"
             android:layout_width="160dp"
             android:layout_height="120dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/button_less_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
             android:text="이탈리아"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="5dp">
-        </Button>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:textSize="30dp"></Button>
 
         <Button
-            android:id= "@+id/spain"
+            android:id="@+id/spain"
             android:layout_width="160dp"
             android:layout_height="120dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/button_less_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
             android:text="스페인"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            />
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/usa"
             android:layout_width="160dp"
             android:layout_height="120dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/button_less_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
             android:text="미국"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="5dp">
-        </Button>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:textSize="30dp" />
 
         <Button
-            android:id= "@+id/chile"
+            android:id="@+id/chile"
             android:layout_width="160dp"
             android:layout_height="120dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/button_less_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
             android:text="칠레"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            />
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/etc"
             android:layout_width="160dp"
             android:layout_height="120dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/button_less_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center"
             android:text="기타"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="5dp">
-        </Button>
-    </LinearLayout>
+            android:textSize="30dp"></Button>
+    </GridLayout>
+
 
     <Button
-        android:id = "@+id/done_btn"
+        android:id="@+id/done_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_round"
-        android:text="완료"
-        android:textSize="35dp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/nanum_gothic_bold"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"
-        />
+        android:background="@drawable/button_round"
+        android:fontFamily="@font/nanum_gothic_bold"
+        android:text="완료"
+        android:textColor="@color/white"
+        android:textSize="35dp" />
 </LinearLayout>
