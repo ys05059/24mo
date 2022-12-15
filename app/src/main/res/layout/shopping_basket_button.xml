@@ -1,54 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="188dp"
-    android:layout_height="74dp"
+    android:layout_width="220dp"
+    android:layout_height="90dp"
     android:background="@drawable/button_round">
 
     <TextView
-        android:layout_width="126dp"
+        android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:fontFamily="@font/lineseed_bd"
         android:gravity="center"
+        android:layout_gravity="center_vertical"
         android:padding="0dp"
         android:text="장바구니"
         android:textColor="@color/white"
-        android:textSize="31dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.513" />
-
-    <TextView
-        android:layout_width="37dp"
-        android:layout_height="37dp"
-        android:background="@drawable/round_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.874"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.513" />
+        android:textSize="34dp"
+        android:layout_marginLeft="20dp"
+        />
 
     <TextView
         android:id="@+id/shopping_count"
-        android:layout_width="37dp"
-        android:layout_height="37dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:autoSizeMaxTextSize="40dp"
+        android:autoSizeMinTextSize="26dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/round_btn"
         android:fontFamily="@font/lineseed_bd"
         android:gravity="center"
-
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="26dp"
-        android:autoSizeMaxTextSize="34dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="15dp"
         android:text="0"
-        android:textColor="@color/wine"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.874"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.567" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textColor="@color/wine" />
+</LinearLayout>

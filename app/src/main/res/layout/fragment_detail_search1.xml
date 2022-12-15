@@ -9,33 +9,41 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        >
         <EditText
             android:id="@+id/wine_name_search"
-            android:layout_width="357dp"
-            android:layout_height="wrap_content"
+            android:layout_width="360dp"
+            android:layout_height="90dp"
             android:background="@drawable/button_gray"
-            android:hint="     와인 이름을 검색하세요"
+            android:gravity="center_vertical"
+            android:hint="      와인 이름을 검색하세요"
+            android:textSize="26dp"
+            android:fontFamily="@font/nanum_gothic_bold"
             android:textColor="@color/grey_font"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="60dp"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="85dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        >
+
         <Button
             android:id="@+id/priceRange"
             android:layout_width="357dp"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:background="@drawable/button_less_round_white"
             android:elevation="20dp"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center_vertical"
-            android:text="      가격대"
+            android:text="     가격대"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="20dp"
+            android:textSize="35dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
         </Button>
@@ -44,32 +52,35 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        >
         <Button
             android:id="@+id/wineKind"
-            android:layout_width="160dp"
-            android:layout_height="120dp"
+            android:layout_width="180dp"
+            android:layout_height="160dp"
             android:background="@drawable/button_less_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center_horizontal"
             android:text="\n종류"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
+            android:textSize="35dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             />
         <Button
             android:id="@+id/wineCountry"
-            android:layout_width="160dp"
-            android:layout_height="120dp"
+            android:layout_width="180dp"
+            android:layout_height="160dp"
             android:background="@drawable/button_less_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center_horizontal"
             android:text="\n생산지"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="40dp"
+            android:textSize="35dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="5dp">
@@ -78,57 +89,57 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        >
         <Button
             android:id="@+id/wineAlcohol"
-            android:layout_width="160dp"
-            android:layout_height="120dp"
+            android:layout_width="180dp"
+            android:layout_height="160dp"
             android:background="@drawable/button_less_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center_horizontal"
             android:text="\n도수"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
+            android:textSize="35dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             />
         <Button
             android:id="@+id/wineFood"
-            android:layout_width="160dp"
-            android:layout_height="120dp"
+            android:layout_width="180dp"
+            android:layout_height="160dp"
             android:background="@drawable/button_less_round_white"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center_horizontal"
             android:text="\n음식"
             android:textColor="@color/grey_font"
-            android:textSize="30dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="10dp"
+            android:textSize="35dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="5dp">
         </Button>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
         >
 
         <Button
             android:id="@+id/wineOthers"
-            android:layout_width="360dp"
-            android:layout_height="70dp"
+            android:layout_width="380dp"
+            android:layout_height="100dp"
             android:background="@drawable/button_less_round_white"
             android:elevation="20dp"
             android:fontFamily="@font/nanum_gothic_bold"
             android:gravity="center_vertical"
             android:text="   당도/산도/바디/타닌"
             android:textColor="@color/grey_font"
-            android:textSize="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp">
+            android:textSize="25dp"
+            android:layout_margin="10dp">
 
         </Button>
     </LinearLayout>
@@ -143,13 +154,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginBottom="10dp"
+        android:layout_marginLeft="17dp"
         >
 
         <Fragment.CustomBottomButton
             android:id="@+id/basket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             app:customText="0"
             app:customTextColor="@color/wine"
             />
@@ -157,8 +168,8 @@
         <Button
             android:id="@+id/searchBtn"
             android:layout_marginLeft="10dp"
-            android:layout_width="188dp"
-            android:layout_height="74dp"
+            android:layout_width="220dp"
+            android:layout_height="90dp"
             android:background="@drawable/button_round"
             android:fontFamily="@font/lineseed_bd"
             android:gravity="center"

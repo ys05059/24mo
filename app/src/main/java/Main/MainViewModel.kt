@@ -274,10 +274,10 @@ class MainViewModel :  ViewModel(){
         {
             if(Detail_Parameter.max_price > 200000)
             {
-                content = "      가격대" + "    \t ${Detail_Parameter.min_price}원 ~ 상관없음"
+                content = "     가격대" + "    \t ${Detail_Parameter.min_price}원 ~ 상관없음"
             }
             else{
-                content = "      가격대" + "    \t ${Detail_Parameter.min_price}원 ~ ${Detail_Parameter.max_price}원"
+                content = "     가격대" + "    \t ${Detail_Parameter.min_price}원 ~ ${Detail_Parameter.max_price}원"
             }
         }
         when(tag){
