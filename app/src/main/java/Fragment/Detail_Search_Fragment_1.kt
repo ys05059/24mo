@@ -94,6 +94,94 @@ class Detail_Search_Fragment_1 : Fragment() {
             }
         }
 
+        //생산지
+        binding.wineKind.setOnClickListener {
+            // 이미 설정된 음식이 있을 경우
+            if(!vm.Detail_Parameter.food.equals("")){
+                // 테두리 빼기
+                binding.wineKind.setBackgroundResource(R.drawable.button_less_round_white)
+                vm.Detail_Parameter.food = ""
+                //vm.Change_font_size(binding.wineFood,"food_reset")
+            }else {
+                val dialog = kindDialog(activity as MainActivity)
+                dialog.Show()
+                dialog.setOnClickedListener(object : kindDialog.ButtonClickListener {
+                    override fun onClicked(select_index: Int) {
+                        when (select_index) {
+                            //뷰모델에 값는것인데 일단 선택된음식 String으로 넘기겠습니다.
+                            0 -> vm.Detail_Parameter.food = "고기"
+                            1 -> vm.Detail_Parameter.food = "해산물"
+                            2 -> vm.Detail_Parameter.food = "치즈"
+                            3 -> vm.Detail_Parameter.food = "과일"
+                            4 -> vm.Detail_Parameter.food = "디저트"
+                        }
+                        //Log.d("음식선택", "${vm.Detail_Parameter.food}")
+                        vm.Change_font_size(binding.wineKind, "food")
+                        binding.wineKind.setBackgroundResource(R.drawable.button_round_white_red)
+                    }
+                })
+            }
+        }
+
+
+        //생산지
+        binding.wineCountry.setOnClickListener {
+            // 이미 설정된 음식이 있을 경우
+            if(!vm.Detail_Parameter.food.equals("")){
+                // 테두리 빼기
+                binding.wineCountry.setBackgroundResource(R.drawable.button_less_round_white)
+                vm.Detail_Parameter.food = ""
+                //vm.Change_font_size(binding.wineFood,"food_reset")
+            }else {
+                val dialog = CountryDialog(activity as MainActivity)
+                dialog.Show()
+                dialog.setOnClickedListener(object : CountryDialog.ButtonClickListener {
+                    override fun onClicked(select_index: Int) {
+                        when (select_index) {
+                            //뷰모델에 값는것인데 일단 선택된음식 String으로 넘기겠습니다.
+                            0 -> vm.Detail_Parameter.food = "고기"
+                            1 -> vm.Detail_Parameter.food = "해산물"
+                            2 -> vm.Detail_Parameter.food = "치즈"
+                            3 -> vm.Detail_Parameter.food = "과일"
+                            4 -> vm.Detail_Parameter.food = "디저트"
+                            5 -> vm.Detail_Parameter.food = "기타"
+                        }
+                        //Log.d("음식선택", "${vm.Detail_Parameter.food}")
+                        vm.Change_font_size(binding.wineCountry, "food")
+                        binding.wineCountry.setBackgroundResource(R.drawable.button_round_white_red)
+                    }
+                })
+            }
+        }
+
+        //도수
+        binding.wineAlcohol.setOnClickListener {
+            // 이미 설정된 음식이 있을 경우
+            if(!vm.Detail_Parameter.food.equals("")){
+                // 테두리 빼기
+                binding.wineAlcohol.setBackgroundResource(R.drawable.button_less_round_white)
+                vm.Detail_Parameter.food = ""
+                //vm.Change_font_size(binding.wineFood,"food_reset")
+            }else {
+                val dialog = AlcoholDialog(activity as MainActivity)
+                dialog.Show()
+                dialog.setOnClickedListener(object : AlcoholDialog.ButtonClickListener {
+                    override fun onClicked(select_index: Int) {
+                        when (select_index) {
+                            //뷰모델에 값는것인데 일단 선택된음식 String으로 넘기겠습니다.
+                            0 -> vm.Detail_Parameter.food = "고기"
+                            1 -> vm.Detail_Parameter.food = "해산물"
+                            2 -> vm.Detail_Parameter.food = "치즈"
+                            3 -> vm.Detail_Parameter.food = "과일"
+                        }
+                        //Log.d("음식선택", "${vm.Detail_Parameter.food}")
+                        vm.Change_font_size(binding.wineAlcohol, "food")
+                        binding.wineAlcohol.setBackgroundResource(R.drawable.button_round_white_red)
+                    }
+                })
+            }
+        }
+
         //맛 설정
         binding.wineOthers.setOnClickListener {
             val dp = vm.Detail_Parameter
