@@ -1,0 +1,77 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragment.CardFragment"
+    android:background="@drawable/pay_dialog_round"
+    >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="50dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/nanum_gothic_extra_bold"
+            android:textSize="35dp"
+            android:text="카드 인식"
+            android:gravity="center"
+            android:textColor="@color/wine"
+           />
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_gothic_extra_bold"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="카드를 그림과 같이 꽂은 후 결제 버튼을 눌러주세요"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginVertical="30dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/card" />
+
+            <LinearLayout
+            android:id="@+id/bottom_btn_box"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/closeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/solid_button"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/nanum_gothic_extra_bold"
+                android:text="닫기"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/payButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/solid_button"
+                android:fontFamily="@font/nanum_gothic_extra_bold"
+                android:text="결제하기"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
