@@ -272,7 +272,6 @@
                     android:layout_gravity="right"
                     android:layout_marginBottom="20dp"
                     android:fontFamily="@font/nanum_gothic_bold"
-                    android:layout_marginBottom="20dp"
                     android:textSize="18dp"
 
                      />

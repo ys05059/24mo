@@ -39,6 +39,15 @@ class Search_Category_Fragment : Fragment() {
             (activity as MainActivity).fragmentManager.findFragmentById(R.id.fragment_container) as Search_Main_Fragment
         ParentFragment.invisible_back_btn(true)
         //가격대
+
+        //이미 설정
+        if(!(vm.Detail_Parameter.min_price==0 && vm.Detail_Parameter.max_price ==0)){
+            binding.priceRange.setBackgroundResource(R.drawable.button_round_white_red)
+            vm.Change_font_size(binding.priceRange,"price")}
+        //설정안됨
+        else{
+            binding.priceRange.setBackgroundResource(R.drawable.button_less_round_white)
+        }
         binding.priceRange.setOnClickListener{
             // 이미 가격대를 설정했을 경우
             if(!(vm.Detail_Parameter.min_price==0 && vm.Detail_Parameter.max_price ==0)){
@@ -47,7 +56,7 @@ class Search_Category_Fragment : Fragment() {
                 vm.Detail_Parameter.max_price =0
                 vm.Change_font_size(binding.priceRange,"price_reset")
             }else{
-
+                binding.priceRange.setBackgroundResource(R.drawable.button_round_white_red)
                 val dialog = PriceDialog(activity as MainActivity)
                 dialog.Show()
                 //뷰모델에 값을 전달하기위함.
@@ -58,19 +67,20 @@ class Search_Category_Fragment : Fragment() {
 
                         Log.d("가격대", "min: ${vm.Detail_Parameter.min_price} max: ${vm.Detail_Parameter.max_price}")
                         vm.Change_font_size(binding.priceRange,"price")
-                        binding.priceRange.setBackgroundResource(R.drawable.button_round_white_red) //선택시 테두리 빨갛게.
-
-
-
-
-
-
                     }
                 })
             }
         }
 
         //음식
+
+        if(!vm.Detail_Parameter.food.equals("")){
+            binding.wineFood.setBackgroundResource(R.drawable.button_round_white_red)
+            vm.Change_font_size(binding.wineFood,"food")}
+        //설정안됨
+        else{
+            binding.wineFood.setBackgroundResource(R.drawable.button_less_round_white)
+        }
         binding.wineFood.setOnClickListener {
             // 이미 설정된 음식이 있을 경우
             if(!vm.Detail_Parameter.food.equals("")){
@@ -101,6 +111,14 @@ class Search_Category_Fragment : Fragment() {
         }
 
         //종류
+        if(!vm.Detail_Parameter.type.equals("")){
+            binding.wineKind.setBackgroundResource(R.drawable.button_round_white_red)
+            vm.Change_font_size(binding.wineKind,"kind")}
+        //설정안됨
+        else{
+            binding.wineFood.setBackgroundResource(R.drawable.button_less_round_white)
+        }
+
         binding.wineKind.setOnClickListener {
             // 이미 설정된 음식이 있을 경우
             if(!vm.Detail_Parameter.type.equals("")){
@@ -131,6 +149,14 @@ class Search_Category_Fragment : Fragment() {
 
 
         //생산지
+        if(!vm.Detail_Parameter.region.equals("")){
+            binding.wineCountry.setBackgroundResource(R.drawable.button_round_white_red)
+            vm.Change_font_size(binding.wineCountry,"country")}
+        //설정안됨
+        else{
+            binding.wineCountry.setBackgroundResource(R.drawable.button_less_round_white)
+        }
+
         binding.wineCountry.setOnClickListener {
             // 이미 설정된 음식이 있을 경우
             if(!vm.Detail_Parameter.region.equals("")){
@@ -161,6 +187,14 @@ class Search_Category_Fragment : Fragment() {
         }
 
         //도수
+        if(vm.Detail_Parameter.alcohol != 0){
+            binding.wineAlcohol.setBackgroundResource(R.drawable.button_round_white_red)
+            vm.Change_font_size(binding.wineAlcohol,"country")}
+        //설정안됨
+        else{
+            binding.wineAlcohol.setBackgroundResource(R.drawable.button_less_round_white)
+        }
+
         binding.wineAlcohol.setOnClickListener {
             // 이미 설정된 음식이 있을 경우
             if(vm.Detail_Parameter.alcohol != 0){
@@ -189,6 +223,13 @@ class Search_Category_Fragment : Fragment() {
         }
 
         //맛 설정
+        if(!(vm.Detail_Parameter.sweet == -1 && vm.Detail_Parameter.acidity == -1 && vm.Detail_Parameter.body == -1 && vm.Detail_Parameter.tannin == -1) ){
+            binding.wineOthers.setBackgroundResource(R.drawable.button_round_white_red)
+            vm.Change_font_size(binding.wineOthers,"others")}
+        //설정안됨
+        else{
+            binding.wineOthers.setBackgroundResource(R.drawable.button_less_round_white)
+        }
         binding.wineOthers.setOnClickListener {
             val dp = vm.Detail_Parameter
             // 맛을 설정한 경우
@@ -253,6 +294,7 @@ class Search_Category_Fragment : Fragment() {
 //                    }
             }
         }
+
         return view
     }
     override fun onDestroyView() {
